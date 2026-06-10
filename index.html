@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SIPA OS — Company Deck</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a12;color:#e8e0f0;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh}
+.deck{max-width:900px;margin:0 auto;padding:2rem 1.5rem}
+.slide{background:linear-gradient(135deg,#12101e,#1a1530);border:1px solid #2d2550;border-radius:16px;padding:3rem;margin-bottom:2rem;position:relative;overflow:hidden}
+.slide::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2fff,#ff2fd7,#2fffff)}
+.tag{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:#7b2fff;margin-bottom:.75rem;font-weight:600}
+h1{font-size:3rem;font-weight:700;line-height:1.1;background:linear-gradient(135deg,#fff,#c8b0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem}
+h2{font-size:1.8rem;font-weight:700;color:#fff;margin-bottom:1rem}
+.sub{font-size:1.1rem;color:#9b8fc0;margin-bottom:.5rem}
+.domain{color:#7b2fff;font-family:monospace;font-size:.95rem}
+.stat{display:inline-block;background:#1e1a35;border:1px solid #3d3070;border-radius:8px;padding:.75rem 1.25rem;margin:.4rem;text-align:center}
+.stat-n{font-size:1.8rem;font-weight:700;color:#7b2fff;display:block}
+.stat-l{font-size:.8rem;color:#9b8fc0;text-transform:uppercase;letter-spacing:.1em}
+ul{list-style:none;padding:0}
+ul li{padding:.5rem 0;padding-left:1.5rem;position:relative;color:#c8b0ff;border-bottom:1px solid #1e1a35}
+ul li::before{content:'◎';position:absolute;left:0;color:#7b2fff;font-size:.7rem;top:.65rem}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.card{background:#0f0d1e;border:1px solid #2d2550;border-radius:10px;padding:1.25rem}
+.card h3{color:#7b2fff;font-size:1rem;margin-bottom:.5rem}
+.card p{color:#9b8fc0;font-size:.9rem;line-height:1.5}
+.ask{background:linear-gradient(135deg,#1a0a35,#0a1535);border:2px solid #7b2fff;border-radius:16px;padding:2rem;text-align:center;margin-top:1rem}
+.ask h2{color:#7b2fff;font-size:1.5rem;margin-bottom:1rem}
+.ask p{color:#c8b0ff;margin-bottom:.5rem}
+.footer{text-align:center;padding:2rem;color:#5a4a80;font-size:.85rem}
+a{color:#7b2fff;text-decoration:none}
+@media(max-width:600px){h1{font-size:2rem}.grid{grid-template-columns:1fr}}
+</style>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="f5acf9c9-b423-4e8b-8396-47d7a479232d"></script>
+<script src="https://browser.sentry-cdn.com/8.0.0/bundle.min.js" crossorigin="anonymous"></script>
+<script>Sentry.init({dsn:"https://aad6081c0afcdd7a5dede25592742dcf@o4511524169318400.ingest.us.sentry.io/4511524193173504",tracesSampleRate:1.0});</script>
+</head>
+<body>
+<div class="deck">
+
+<div class="slide">
+  <div class="tag">Company Deck · 2026</div>
+  <h1>SIPA OS</h1>
+  <p class="sub">Cognitive infrastructure for neurodivergent minds</p>
+  <p class="sub" style="margin-top:1rem;color:#c8b0ff">Aelin AquaSoul &nbsp;·&nbsp; Founder &amp; CEO<br>Soul In PsyAbstract LLC &nbsp;·&nbsp; Delaware &nbsp;·&nbsp; Eilat, Israel</p>
+  <p class="domain" style="margin-top:1.5rem">sipa-os.org &nbsp;·&nbsp; ai.sipa-os.org</p>
+</div>
+
+<div class="slide">
+  <div class="tag">Problem</div>
+  <h2>Executive dysfunction is invisible infrastructure debt</h2>
+  <ul style="margin-top:1rem">
+    <li>40M+ neurodivergent adults in the US alone struggle with executive function daily</li>
+    <li>Existing tools are built for neurotypical workflows — forcing masking, not scaffolding</li>
+    <li>No AI system designed from the inside of neurodivergent experience</li>
+    <li>Result: burnout, underperformance, and systems that work against the user</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <div class="tag">Solution</div>
+  <h2>SIPA OS — your external brain</h2>
+  <p style="color:#c8b0ff;margin-bottom:1.5rem;line-height:1.6">An AI coordination platform that scaffolds executive function — structure, focus, memory, and emotional regulation — built by someone who lives it.</p>
+  <div class="grid">
+    <div class="card">
+      <h3>Protocol 0</h3>
+      <p>Pre-LLM safety filter: blocks jailbreaks, routes crisis signals, SHA256-stamps every prompt before inference</p>
+    </div>
+    <div class="card">
+      <h3>BrainDump</h3>
+      <p>Secure thought capture with SHA256 audit trail. No raw data stored — GDPR-compatible</p>
+    </div>
+    <div class="card">
+      <h3>AI Chat</h3>
+      <p>Neurodivergent-aware responses. 14-layer SPHERE pipeline prevents context degradation</p>
+    </div>
+    <div class="card">
+      <h3>Edge PWA</h3>
+      <p>Works offline. Deployed on Cloudflare Workers + Supabase. &lt;100ms response. No GPU required</p>
+    </div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="tag">Traction</div>
+  <h2>Live &amp; growing</h2>
+  <div style="margin:1.5rem 0">
+    <div class="stat"><span class="stat-n">5</span><span class="stat-l">Live domains</span></div>
+    <div class="stat"><span class="stat-n">14</span><span class="stat-l">Pipeline layers</span></div>
+    <div class="stat"><span class="stat-n">12</span><span class="stat-l">ADHD mini-games</span></div>
+    <div class="stat"><span class="stat-n">Apr 2026</span><span class="stat-l">Delaware LLC + EIN</span></div>
+  </div>
+  <ul>
+    <li>KubeCon + CloudNativeCon NA 2026 — CFP submitted ✅ (Nov 9-12, Salt Lake City)</li>
+    <li>ElevenLabs Grant — selected ✅</li>
+    <li>NVIDIA Inception Program + NIM integration active</li>
+    <li>NVIDIA Nemotron VoiceChat EA + Riva TTS EA — accepted</li>
+    <li>Auth0 Startup Program, AWS Activate, Azure AI Foundry — all live</li>
+    <li>Multi-model AI stack: 30+ providers via DeepSeek, NIM, OpenRouter, SiliconFlow</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <div class="tag">Market</div>
+  <h2>Mental health × neurodivergence × AI</h2>
+  <ul style="margin-top:1rem">
+    <li>Global mental health tech market: <strong style="color:#fff">$6.2B → $17.5B by 2030</strong></li>
+    <li>ADHD diagnosis rates growing <strong style="color:#fff">30% YoY</strong> post-pandemic</li>
+    <li>40M+ neurodivergent adults in the US alone — <strong style="color:#fff">underserved at scale</strong></li>
+    <li>Existing digital therapeutics (Akili/EndeavorRx) target children with prescriptions — <strong style="color:#fff">adults = open market</strong></li>
+    <li>No AI-first multi-diagnosis platform (ADHD + ASD + BPD) built by lived experience</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <div class="tag">Competitive Advantage</div>
+  <h2>Why we win vs. existing solutions</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Akili / EndeavorRx</h3>
+      <p>Children only · Requires prescription · Single diagnosis (ADHD) · Game as device · FDA cleared but limited reach</p>
+    </div>
+    <div class="card">
+      <h3>SIPA OS</h3>
+      <p>Adults (18+) · No prescription needed · Multi-diagnosis (ADHD+ASD+BPD) · Full cognitive infrastructure · Edge PWA, no app store required</p>
+    </div>
+    <div class="card">
+      <h3>Generic Wellness Apps</h3>
+      <p>Headspace, Calm — neurotypical design · No executive function scaffolding · No crisis guardrails · No medical pathway</p>
+    </div>
+    <div class="card">
+      <h3>Our Edge</h3>
+      <p>Lived-experience design · Protocol 0 crisis layer · GDPR + HIPAA-ready architecture · Built on NVIDIA NIM — no GPU cost</p>
+    </div>
+  </div>
+</div>
+
+<div class="slide">
+  <div class="tag">Business Model</div>
+  <h2>B2C + B2B dual-channel</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>B2C — Freemium</h3>
+      <p>Free tier: BrainDump + 3 games<br><strong style="color:#fff">$9.99/mo</strong> Premium: full AI chat, all 12 games, voice mode<br>Community-led acquisition via ADHD/neuro influencers</p>
+    </div>
+    <div class="card">
+      <h3>B2B — Clinic Licensing</h3>
+      <p><strong style="color:#fff">$50–100/mo per active patient</strong><br>Psychiatric clinics, ADHD coaches, employee wellness programs<br>White-label option available</p>
+    </div>
+  </div>
+  <ul style="margin-top:1.5rem">
+    <li>Phase 1 (2026): 3–5 pilot clinic partnerships, B2C community growth</li>
+    <li>Phase 2 (2027): CPT reimbursement codes as SaMD pathway progresses</li>
+    <li>Revenue target: $250K ARR by Month 18 post-raise</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <div class="tag">Clinical Roadmap</div>
+  <h2>From wellness product to evidence-based platform</h2>
+  <ul style="margin-top:1rem">
+    <li><strong style="color:#7b2fff">Now → Q2 2026:</strong> General wellness launch — cognitive coaching, no medical claims. HIPAA-compliant architecture.</li>
+    <li><strong style="color:#7b2fff">Q3 2026:</strong> Pilot RCT — 80 participants, ADHD adults 18–45. Measuring executive function (BRIEF-A, ASRS validated scales). Partnership with academic center TBD.</li>
+    <li><strong style="color:#7b2fff">Q1 2027:</strong> Publish pilot results. Initiate FDA pre-submission consultation for Software as Medical Device (SaMD) 510(k).</li>
+    <li><strong style="color:#7b2fff">Q3 2027:</strong> B2B clinical partnerships using validated outcomes data. CPT reimbursement exploration.</li>
+    <li>Design follows established CBT + DBT principles. Crisis Rail guardrail layer (Protocol 0) documented and red-teamed.</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <div class="tag">Technology</div>
+  <h2>Stack built for resilience, not demos</h2>
+  <ul style="margin-top:1rem">
+    <li>TanStack Start + Cloudflare Workers — edge-first, &lt;100ms globally</li>
+    <li>NVIDIA NIM public endpoints — inference without GPU cost</li>
+    <li>Supabase RLS — row-level security, GDPR from day one</li>
+    <li>Protocol 0 — pre-LLM guardrail layer (crisis routing, jailbreak prevention)</li>
+    <li>SPHERE pipeline — 14-layer governance: WATCH→GATE→GUARD→REWRITE→FORENSIC</li>
+    <li>Multi-model: DeepSeek V4 Pro, Tencent Hy3, Kimi-K2, GLM-5, NIM Nemotron</li>
+  </ul>
+</div>
+
+<div class="slide">
+  <div class="tag">Founder</div>
+  <h2>Aelin AquaSoul</h2>
+  <p style="color:#c8b0ff;line-height:1.7;margin-top:.5rem">
+    Diagnosed ADHD + BPD. SIPA OS is the system I needed to build to function — turns out a lot of people need it too.<br><br>
+    Former creative technologist → now building AI infrastructure from the edge. Eilat, Israel.<br>
+    PsyAbstract UV artist (ICON 2026 award recipient). Delaware LLC. Solo founder.<br><br>
+    <em style="color:#7b2fff">"I draw chaos before it becomes form."</em>
+  </p>
+</div>
+
+<div class="ask">
+  <h2>Raising $1.5M — Seed Round</h2>
+  <p style="font-size:1.1rem;color:#fff;margin-bottom:1.25rem">Building the cognitive infrastructure layer for 40M+ neurodivergent adults.</p>
+  <div class="grid" style="text-align:left;margin-bottom:1.5rem">
+    <div class="card">
+      <h3>Use of Funds</h3>
+      <p>40% R&amp;D — AI core + mobile<br>30% Clinical validation + FDA prep<br>20% Go-to-market + clinic pilots<br>10% Ops + key hires</p>
+    </div>
+    <div class="card">
+      <h3>Milestones at 18 months</h3>
+      <p>Pilot RCT (80 participants) complete<br>3–5 clinic B2B contracts signed<br>$250K ARR<br>FDA pre-submission filed</p>
+    </div>
+  </div>
+  <p style="color:#c8b0ff">Stage: Seed · Delaware LLC + EIN · Bootstrapped to MVP</p>
+  <p style="margin-top:1.5rem"><a href="mailto:sipa-core@sipa-os.org">sipa-core@sipa-os.org</a> &nbsp;·&nbsp; <a href="https://sipa-os.org">sipa-os.org</a> &nbsp;·&nbsp; <a href="https://ai.sipa-os.org">ai.sipa-os.org</a></p>
+</div>
+
+<div class="footer">Soul In PsyAbstract LLC · Delaware · 2026 · <a href="https://sipa-os.org">sipa-os.org</a></div>
+</div>
+<script>
+(function(){
+  var s = document.createElement('script');
+  var h = document.querySelector('head') || document.body;
+  s.src = 'https://acsbapp.com/apps/app/dist/js/app.js';
+  s.async = true;
+  s.onload = function(){ acsbJS.init(); };
+  h.appendChild(s);
+})();
+</script>
+</body>
+</html>
