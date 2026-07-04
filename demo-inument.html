@@ -1,0 +1,442 @@
+<title>Hire-a-Mind × SIPA OS — AI Infrastructure Proposal</title>
+<style>
+:root {
+  --ink: #111820;
+  --paper: #F7F9FB;
+  --accent: #1B6CA8;
+  --accent-hi: #2480C8;
+  --accent-bg: #E8F2FA;
+  --rule: #D0DBE6;
+  --muted: #5A6E80;
+  --code-bg: #EDF2F7;
+  --green: #0E8A4A;
+  --green-bg: #E6F5ED;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Menlo", "Consolas", "Courier New", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #D8E6F0;
+    --paper: #0C1520;
+    --accent: #4A9FD4;
+    --accent-hi: #6AB8E8;
+    --accent-bg: #0D2035;
+    --rule: #1A2E40;
+    --muted: #7A96A8;
+    --code-bg: #0D1E2C;
+    --green: #3AB870;
+    --green-bg: #0A2016;
+  }
+}
+:root[data-theme="dark"] {
+  --ink:#D8E6F0;--paper:#0C1520;--accent:#4A9FD4;--accent-hi:#6AB8E8;
+  --accent-bg:#0D2035;--rule:#1A2E40;--muted:#7A96A8;--code-bg:#0D1E2C;
+  --green:#3AB870;--green-bg:#0A2016;
+}
+:root[data-theme="light"] {
+  --ink:#111820;--paper:#F7F9FB;--accent:#1B6CA8;--accent-hi:#2480C8;
+  --accent-bg:#E8F2FA;--rule:#D0DBE6;--muted:#5A6E80;--code-bg:#EDF2F7;
+  --green:#0E8A4A;--green-bg:#E6F5ED;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  padding: 0 16px 80px;
+}
+.doc { max-width: 740px; margin: 0 auto; }
+
+.doc-header {
+  padding: 44px 0 28px;
+  border-bottom: 3px solid var(--accent);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: start;
+}
+.doc-eyebrow {
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.doc-title {
+  font-size: clamp(20px, 3.5vw, 30px);
+  font-weight: 700;
+  line-height: 1.2;
+  text-wrap: balance;
+  margin-bottom: 10px;
+}
+.doc-sub { color: var(--muted); font-size: 14px; }
+.badge-live {
+  background: var(--green-bg);
+  color: var(--green);
+  border: 1px solid var(--green);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  align-self: start;
+  margin-top: 4px;
+}
+
+.section { padding: 32px 0 0; }
+.section + .section { border-top: 1px solid var(--rule); margin-top: 32px; }
+.section-label {
+  font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); font-weight: 600; margin-bottom: 14px;
+}
+h2 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+p { max-width: 64ch; margin-bottom: 12px; }
+p:last-child { margin-bottom: 0; }
+
+/* ── Comparison ── */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+.compare-col { background: var(--paper); padding: 18px 20px; }
+.compare-col-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; margin-bottom: 12px;
+}
+.compare-col-label.bad { color: #C04000; }
+.compare-col-label.good { color: var(--green); }
+.compare-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.compare-list li { font-size: 13.5px; display: flex; gap: 8px; }
+.compare-list li::before { flex-shrink: 0; }
+.compare-list.bad li::before { content: "✗"; color: #C04000; }
+.compare-list.good li::before { content: "✓"; color: var(--green); }
+@media (max-width: 480px) { .compare { grid-template-columns: 1fr; } }
+
+/* ── API demo block ── */
+.api-demo {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+.api-demo-header {
+  background: var(--code-bg);
+  border-bottom: 1px solid var(--rule);
+  padding: 10px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.api-method {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--accent);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+.api-url {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  overflow-x: auto;
+}
+pre {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.65;
+  padding: 18px 20px;
+  background: var(--code-bg);
+  color: var(--ink);
+  overflow-x: auto;
+  margin: 0;
+}
+.kw { color: var(--accent-hi); }
+.str { color: var(--green); }
+.num { color: #C06800; }
+.cm { color: var(--muted); font-style: italic; }
+
+/* ── Response headers demo ── */
+.headers-block {
+  background: var(--code-bg);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 16px 20px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.8;
+  margin: 20px 0;
+  overflow-x: auto;
+}
+.hk { color: var(--accent-hi); }
+.hv { color: var(--green); }
+
+/* ── Tier table ── */
+.tier-table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 20px 0; }
+.tier-table th {
+  text-align: left; font-size: 10.5px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+  border-bottom: 2px solid var(--accent); padding: 8px 12px; font-weight: 600;
+}
+.tier-table td { padding: 11px 12px; border-bottom: 1px solid var(--rule); font-size: 14px; }
+.tier-table tr:last-child td { border-bottom: none; }
+.tier-name { font-weight: 700; color: var(--accent); }
+.tier-price { font-variant-numeric: tabular-nums; font-weight: 600; }
+.tier-highlight td { background: var(--accent-bg); }
+
+/* ── Callout ── */
+.callout {
+  background: var(--accent-bg);
+  border-left: 4px solid var(--accent);
+  padding: 16px 20px;
+  border-radius: 0 6px 6px 0;
+  margin: 20px 0;
+  font-size: 14px;
+  max-width: 64ch;
+}
+.callout strong { color: var(--accent-hi); }
+
+/* ── CTA ── */
+.cta-block {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  padding: 28px 28px;
+  margin: 28px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+.cta-text h3 { font-size: 17px; margin-bottom: 4px; }
+.cta-text p { font-size: 13.5px; opacity: .88; max-width: 45ch; margin: 0; }
+.cta-links { display: flex; flex-direction: column; gap: 6px; }
+.cta-link {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: rgba(255,255,255,.9);
+  background: rgba(255,255,255,.15);
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.cta-link:hover { background: rgba(255,255,255,.25); }
+
+footer { margin-top: 44px; padding-top: 18px; border-top: 1px solid var(--rule); font-size: 12px; color: var(--muted); }
+</style>
+
+<div class="doc">
+  <header class="doc-header">
+    <div>
+      <div class="doc-eyebrow">SIPA OS · B2B AI Infrastructure Proposal</div>
+      <h1 class="doc-title">Power Hire-a-Mind interview analysis with SIPA OS API</h1>
+      <p class="doc-sub">OpenAI-compatible · multi-tenant · rate limits + billing built in · live today</p>
+    </div>
+    <span class="badge-live">API LIVE ✓</span>
+  </header>
+
+  <!-- Problem -->
+  <section class="section">
+    <div class="section-label">The Infrastructure Problem</div>
+    <h2>Building AI inference yourself is the slow path</h2>
+    <p>Hire-a-Mind converts interview conversations into structured hiring decisions. That pipeline needs reliable, low-latency AI inference — and building the provider layer from scratch means time spent on rate limiting, billing, key management, and multi-tenant isolation instead of the product itself.</p>
+
+    <div class="compare">
+      <div class="compare-col">
+        <div class="compare-col-label bad">Build it yourself</div>
+        <ul class="compare-list bad">
+          <li>Auth + API key management from scratch</li>
+          <li>Per-tenant rate limiting logic</li>
+          <li>Usage tracking + billing integration</li>
+          <li>Provider failover and routing</li>
+          <li>3–6 weeks engineering time minimum</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-label good">SIPA OS API (today)</div>
+        <ul class="compare-list good">
+          <li>OpenAI-compatible — drop-in replacement</li>
+          <li>Multi-tenant sk-sipa-* keys via KV</li>
+          <li>Rate limits + credit billing per key</li>
+          <li>Usage headers on every response</li>
+          <li>Live at api.sipa-os.org/v1</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Integration -->
+  <section class="section">
+    <div class="section-label">Integration — Drop-In Replacement</div>
+    <h2>One line change in Hire-a-Mind</h2>
+    <p>SIPA OS is fully OpenAI-compatible. Your current interview analysis code changes only the base URL and key — nothing else.</p>
+
+    <div class="api-demo">
+      <div class="api-demo-header">
+        <span class="api-method">POST</span>
+        <span class="api-url">api.sipa-os.org/v1/chat/completions</span>
+      </div>
+<pre><span class="cm">// Before — OpenAI directly</span>
+<span class="kw">const</span> client = <span class="kw">new</span> OpenAI({ apiKey: <span class="str">"sk-..."</span> });
+
+<span class="cm">// After — SIPA OS (same code, different endpoint)</span>
+<span class="kw">const</span> client = <span class="kw">new</span> OpenAI({
+  apiKey: <span class="str">"sk-sipa-{tenant_key}"</span>,
+  baseURL: <span class="str">"https://api.sipa-os.org/v1"</span>,
+});
+
+<span class="cm">// Interview analysis — unchanged</span>
+<span class="kw">const</span> result = <span class="kw">await</span> client.chat.completions.create({
+  model: <span class="str">"sipa-auto"</span>,
+  messages: [
+    { role: <span class="str">"system"</span>, content: <span class="str">"Extract structured hiring signals from this interview transcript. Return competencies, evidence, and confidence scores."</span> },
+    { role: <span class="str">"user"</span>, content: interviewTranscript },
+  ],
+  response_format: { type: <span class="str">"json_object"</span> },
+});</pre>
+    </div>
+
+    <p>Each enterprise customer on Hire-a-Mind gets their own isolated <code>sk-sipa-*</code> key. Usage, billing, and rate limits are enforced per key — no shared state between tenants.</p>
+  </section>
+
+  <!-- Usage headers -->
+  <section class="section">
+    <div class="section-label">Built-in Observability</div>
+    <h2>Usage data on every response — no extra calls</h2>
+    <p>Every API response includes real-time usage headers your platform can surface to customers or use for internal alerting:</p>
+
+    <div class="headers-block">
+<span class="hk">HTTP/2</span> <span class="hv">200</span> OK<br>
+<span class="hk">X-SIPA-Usage-Remaining:</span>  <span class="hv">4,821</span><br>
+<span class="hk">X-SIPA-Usage-Limit:</span>      <span class="hv">5,000</span><br>
+<span class="hk">X-SIPA-Usage-Reset:</span>      <span class="hv">on-topup</span><br>
+<span class="hk">Content-Type:</span>            <span class="hv">application/json</span>
+    </div>
+
+    <p>Hire-a-Mind can read <code>X-SIPA-Usage-Remaining</code> to show customers their remaining interview analysis quota directly in your UI — zero infrastructure work on your side.</p>
+  </section>
+
+  <!-- Pricing -->
+  <section class="section">
+    <div class="section-label">Commercial Model</div>
+    <h2>Usage-based — pay only for what Hire-a-Mind consumes</h2>
+
+    <table class="tier-table">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>Credits included</th>
+          <th>Price</th>
+          <th>Best for</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="tier-name">Spark</td>
+          <td>100 req/day</td>
+          <td class="tier-price">Free</td>
+          <td style="color:var(--muted);font-size:13px">Evaluation / sandbox</td>
+        </tr>
+        <tr class="tier-highlight">
+          <td class="tier-name">FLOW</td>
+          <td>1,000 credits</td>
+          <td class="tier-price">$9/mo</td>
+          <td style="font-size:13px">~1,000 interview analyses/mo</td>
+        </tr>
+        <tr>
+          <td class="tier-name">POWER</td>
+          <td>5,000 credits</td>
+          <td class="tier-price">$39/mo</td>
+          <td style="font-size:13px">~5,000 analyses/mo — growth</td>
+        </tr>
+        <tr>
+          <td class="tier-name">MEGA</td>
+          <td>25,000 credits</td>
+          <td class="tier-price">$99/mo</td>
+          <td style="font-size:13px">Enterprise volume</td>
+        </tr>
+        <tr>
+          <td class="tier-name" style="color:var(--accent-hi)">B2B Custom</td>
+          <td>Unlimited</td>
+          <td class="tier-price">Negotiated</td>
+          <td style="font-size:13px">White-label or revenue share</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>Enterprise / white-label option:</strong> Hire-a-Mind can resell SIPA OS inference to its own customers under your branding. Revenue share or flat-fee — we'll structure it to fit your model.
+    </div>
+  </section>
+
+  <!-- Live proof -->
+  <section class="section">
+    <div class="section-label">Live Proof</div>
+    <h2>Test the endpoint right now</h2>
+    <p>The free Spark tier needs no payment — generate a key and run your first interview analysis in under two minutes:</p>
+
+    <div class="api-demo">
+      <div class="api-demo-header">
+        <span class="api-method">GET</span>
+        <span class="api-url">api.sipa-os.org/v1/models</span>
+        <span style="font-size:11px;color:var(--green);margin-left:auto">→ returns available models</span>
+      </div>
+<pre><span class="cm"># 1. Get a free API key</span>
+curl https://ai.sipa-os.org/dashboard
+
+<span class="cm"># 2. List models</span>
+curl https://api.sipa-os.org/v1/models \
+  -H <span class="str">"Authorization: Bearer sk-sipa-YOUR_KEY"</span>
+
+<span class="cm"># 3. Run interview analysis</span>
+curl https://api.sipa-os.org/v1/chat/completions \
+  -H <span class="str">"Authorization: Bearer sk-sipa-YOUR_KEY"</span> \
+  -H <span class="str">"Content-Type: application/json"</span> \
+  -d <span class="str">'{
+    "model": "sipa-auto",
+    "messages": [{
+      "role": "system",
+      "content": "Extract structured competency evidence from this interview."
+    },{
+      "role": "user",
+      "content": "Candidate described leading a team of 12 through a system migration..."
+    }]
+  }'</span>
+
+<span class="cm"># Response headers include real-time quota:</span>
+<span class="cm"># X-SIPA-Usage-Remaining: 99</span>
+<span class="cm"># X-SIPA-Usage-Limit: 100</span></pre>
+    </div>
+  </section>
+
+  <div class="cta-block">
+    <div class="cta-text">
+      <h3>Ready to integrate — no procurement process needed</h3>
+      <p>Start with the free tier today. We can issue a dedicated Hire-a-Mind integration key and discuss volume terms in one call.</p>
+    </div>
+    <div class="cta-links">
+      <a class="cta-link" href="https://ai.sipa-os.org/dashboard">ai.sipa-os.org/dashboard</a>
+      <a class="cta-link" href="https://api.sipa-os.org/v1/models">api.sipa-os.org/v1/models</a>
+    </div>
+  </div>
+
+  <footer>
+    Aelin AquaSoul · Soul In PsyAbstract LLC · sipa-core@sipa-os.org · SIPA OS AI Provider
+  </footer>
+</div>

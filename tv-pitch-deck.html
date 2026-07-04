@@ -1,0 +1,694 @@
+<meta charset="UTF-8"><title>LAST LIGHT — TV Pitch Deck Demo</title>
+<style>
+  :root {
+    --bg: #F9FAFB;
+    --bg-dark: #0B1929;
+    --bg-card: #F2F4F7;
+    --navy: #0B1929;
+    --blue: #1968B4;
+    --orange: #D4520C;
+    --text: #141C26;
+    --muted: #5A6E82;
+    --rule: #D0D8E2;
+    --light-on-dark: #E8EEF5;
+    --muted-on-dark: #5A7A99;
+    --orange-on-dark: #E86A2A;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0B1929;
+      --bg-dark: #060F1A;
+      --bg-card: #101F30;
+      --navy: #F9FAFB;
+      --blue: #4A9FE8;
+      --orange: #E86A2A;
+      --text: #E0E8F2;
+      --muted: #6A8BA8;
+      --rule: #1A2D40;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0B1929;
+    --bg-dark: #060F1A;
+    --bg-card: #101F30;
+    --navy: #F9FAFB;
+    --blue: #4A9FE8;
+    --orange: #E86A2A;
+    --text: #E0E8F2;
+    --muted: #6A8BA8;
+    --rule: #1A2D40;
+  }
+  :root[data-theme="light"] {
+    --bg: #F9FAFB;
+    --bg-dark: #0B1929;
+    --bg-card: #F2F4F7;
+    --navy: #0B1929;
+    --blue: #1968B4;
+    --orange: #D4520C;
+    --text: #141C26;
+    --muted: #5A6E82;
+    --rule: #D0D8E2;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── DEMO BANNER ── */
+  .demo-banner {
+    background: var(--blue);
+    color: #fff;
+    text-align: center;
+    padding: 10px 24px;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* ── SLIDES ── */
+  .slide {
+    width: 100%;
+    padding: 80px 48px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .slide-dark {
+    background: var(--bg-dark);
+    max-width: 100%;
+    padding: 0;
+  }
+  .slide-dark .slide-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 80px 48px;
+    color: var(--light-on-dark, #E8EEF5);
+  }
+  :root[data-theme="dark"] .slide-dark .slide-inner,
+  @media (prefers-color-scheme: dark) { .slide-dark .slide-inner { color: var(--text); } }
+
+  hr.rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 40px 0;
+  }
+
+  /* ── COVER SLIDE ── */
+  .cover {
+    background: var(--bg-dark);
+    width: 100%;
+    padding: 0;
+  }
+  .cover-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 100px 48px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: end;
+    color: #E8EEF5;
+  }
+  .cover-left {}
+  .show-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange-on-dark, #E86A2A);
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+  .show-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    font-weight: 700;
+    line-height: 0.9;
+    text-wrap: balance;
+    color: #F4F8FF;
+    letter-spacing: -0.02em;
+  }
+  .show-title span {
+    display: block;
+    color: var(--orange-on-dark, #E86A2A);
+  }
+  .cover-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 4px;
+  }
+  .meta-block { }
+  .meta-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted-on-dark, #5A7A99);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    font-size: 1rem;
+    color: #C8D8E8;
+    line-height: 1.4;
+  }
+  .logline {
+    grid-column: 1 / -1;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 32px;
+    margin-top: 16px;
+  }
+  .logline p {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.25rem;
+    color: #B8CCD8;
+    line-height: 1.65;
+    max-width: 680px;
+    font-style: italic;
+  }
+
+  /* ── SECTION HEADING ── */
+  .section-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-heading {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    text-wrap: balance;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+  }
+  .slide-dark .section-heading,
+  .slide-dark .slide-inner .section-heading {
+    color: #F4F8FF;
+  }
+  .slide-dark .section-eyebrow,
+  .slide-dark .slide-inner .section-eyebrow {
+    color: var(--orange-on-dark, #E86A2A);
+  }
+
+  /* ── CONCEPT SLIDE ── */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  .concept-body {
+    font-size: 1.0625rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+  .concept-body strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .concept-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .concept-pill {
+    background: var(--bg-card);
+    border-left: 3px solid var(--orange);
+    padding: 16px 20px;
+    border-radius: 0 6px 6px 0;
+  }
+  .concept-pill-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .concept-pill-value {
+    font-size: 0.95rem;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* ── AUDIENCE SLIDE ── */
+  .audience-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .audience-card {
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 28px 24px;
+    border-top: 3px solid var(--blue);
+  }
+  :root[data-theme="dark"] .audience-card,
+  @media (prefers-color-scheme: dark) { .audience-card { background: rgba(255,255,255,0.04); } }
+  .audience-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .audience-card p {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .audience-stat {
+    font-family: Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── EPISODES SLIDE ── */
+  .episode-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .episode-row {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    gap: 20px;
+    align-items: start;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .episode-row:last-child { border-bottom: none; }
+  .ep-num {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--orange-on-dark, #E86A2A);
+    font-weight: 700;
+    padding-top: 3px;
+    text-transform: uppercase;
+  }
+  .ep-body {}
+  .ep-title {
+    font-family: Georgia, serif;
+    font-size: 1.05rem;
+    color: #E8EEF5;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .ep-desc {
+    font-size: 0.85rem;
+    color: #5A7A99;
+    line-height: 1.55;
+  }
+  .ep-runtime {
+    font-size: 0.75rem;
+    color: #3A6080;
+    white-space: nowrap;
+    padding-top: 3px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── COMPS SLIDE ── */
+  .comps-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .comp-card {
+    background: var(--bg-card);
+    border-radius: 6px;
+    padding: 20px 18px;
+    border: 1px solid var(--rule);
+  }
+  .comp-show {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .comp-network {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .comp-note {
+    font-size: 0.825rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .differentiator {
+    background: var(--navy);
+    color: #E8EEF5;
+    border-radius: 8px;
+    padding: 28px 32px;
+    display: flex;
+    gap: 20px;
+    align-items: start;
+  }
+  :root[data-theme="dark"] .differentiator {
+    background: rgba(255,255,255,0.06);
+  }
+  .diff-accent {
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+    padding-top: 2px;
+    color: var(--orange-on-dark, #E86A2A);
+  }
+  .diff-text { font-size: 0.9rem; color: #B8CCD8; line-height: 1.65; }
+  .diff-text strong { color: #E8EEF5; }
+
+  /* ── BUDGET SLIDE ── */
+  .budget-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .budget-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 20px 24px;
+    background: var(--bg-card);
+    border-radius: 6px;
+  }
+  .budget-item .meta-label { margin-bottom: 2px; }
+  .budget-figure {
+    font-family: Georgia, serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+  .budget-note { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── FOOTER CTA ── */
+  .cta-slide {
+    background: var(--blue);
+    width: 100%;
+    padding: 0;
+  }
+  .cta-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 64px 48px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+    color: #fff;
+  }
+  .cta-headline {
+    font-family: Georgia, serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #fff;
+    text-wrap: balance;
+    line-height: 1.2;
+  }
+  .cta-sub {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.75);
+  }
+  .cta-contact {
+    text-align: right;
+  }
+  .cta-contact a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+    padding-bottom: 2px;
+  }
+  .cta-name {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-top: 8px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    .slide { padding: 56px 24px; }
+    .cover-inner { grid-template-columns: 1fr; padding: 64px 24px 56px; }
+    .concept-grid { grid-template-columns: 1fr; }
+    .audience-cols { grid-template-columns: 1fr; }
+    .comps-row { grid-template-columns: 1fr; }
+    .budget-grid { grid-template-columns: 1fr; }
+    .cta-inner { grid-template-columns: 1fr; }
+    .cta-contact { text-align: left; }
+    .slide-dark .slide-inner { padding: 56px 24px; }
+    .logline { grid-column: 1; }
+    .episode-row { grid-template-columns: 40px 1fr; }
+    .ep-runtime { display: none; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .slide, .slide-dark { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .slide.visible, .slide-dark.visible { opacity: 1; transform: none; }
+  }
+</style>
+
+<div class="demo-banner">Portfolio Demo · Pitch Deck Design · Aelin AquaSoul / Soul In PsyAbstract</div>
+
+<!-- COVER -->
+<div class="cover slide-dark">
+  <div class="cover-inner">
+    <div class="cover-left">
+      <div class="show-eyebrow">Limited Series · 6 Episodes</div>
+      <h1 class="show-title">LAST<span>LIGHT</span></h1>
+    </div>
+    <div class="cover-meta">
+      <div class="meta-block">
+        <div class="meta-label">Format</div>
+        <div class="meta-value">6 × 48 min · Streaming</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Genre</div>
+        <div class="meta-value">Sci-fi Thriller · Conspiracy Drama</div>
+      </div>
+      <div class="meta-block">
+        <div class="meta-label">Target</div>
+        <div class="meta-value">Netflix · Apple TV+ · HBO Max</div>
+      </div>
+    </div>
+    <div class="logline">
+      <p>When a radio engineer discovers a dying star transmitting a non-random pattern, she has 72 hours to decode it before three governments classify the signal — and everyone who heard it.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CONCEPT -->
+<div class="slide">
+  <div class="section-eyebrow">The Concept</div>
+  <h2 class="section-heading">Science they buried.<br>A signal that won't stay quiet.</h2>
+  <div class="concept-grid">
+    <div class="concept-body">
+      <p><strong>LAST LIGHT</strong> is a six-part limited series following Dr. Mara Voss, a radio telescope engineer at a remote Chilean observatory. During a routine calibration sweep, she intercepts an anomalous signal from the Cygnus X-3 binary system — a dying neutron star 37,000 light-years away.</p>
+      <br>
+      <p>The pattern is <strong>mathematical. Intentional. Repeating.</strong> Within 18 hours of her initial report, the observatory receives a visit from a delegation she was never told to expect. By hour 24, the signal is classified.</p>
+      <br>
+      <p>Mara has one backup drive. And she trusts no one.</p>
+    </div>
+    <div class="concept-aside">
+      <div class="concept-pill">
+        <div class="concept-pill-label">Core Tension</div>
+        <div class="concept-pill-value">Individual truth vs. institutional silence</div>
+      </div>
+      <div class="concept-pill">
+        <div class="concept-pill-label">Tone</div>
+        <div class="concept-pill-value">Methodical dread · Paranoid precision · No jump scares</div>
+      </div>
+      <div class="concept-pill">
+        <div class="concept-pill-label">Visual Language</div>
+        <div class="concept-pill-value">Radio-telescope interference patterns, isolated landscapes, institutional grey</div>
+      </div>
+      <div class="concept-pill">
+        <div class="concept-pill-label">Central Question</div>
+        <div class="concept-pill-value">At what point does concealment become complicity?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="rule" style="max-width:960px;margin:0 auto;">
+
+<!-- AUDIENCE -->
+<div class="slide">
+  <div class="section-eyebrow">Target Audience</div>
+  <h2 class="section-heading">Viewers who stay up to finish it.</h2>
+  <div class="audience-cols">
+    <div class="audience-card">
+      <div class="audience-stat">25–44</div>
+      <h3>Primary Demo</h3>
+      <p>Educated streaming audience who made <em>Dark</em>, <em>Severance</em>, and <em>Slow Horses</em> word-of-mouth phenomenons. Values craft over spectacle.</p>
+    </div>
+    <div class="audience-card">
+      <div class="audience-stat">62M</div>
+      <h3>Conspiracy Thriller Fans</h3>
+      <p>Subscribers who engaged with classified-information narratives in the last 18 months across Netflix, Apple TV+, and Prime combined.</p>
+    </div>
+    <div class="audience-card">
+      <div class="audience-stat">4.8×</div>
+      <h3>Rewatch Multiplier</h3>
+      <p>Limited series with embedded clues generate significantly higher rewatch rates — and more social discussion — than procedural formats.</p>
+    </div>
+  </div>
+</div>
+
+<!-- EPISODES -->
+<div class="slide-dark">
+  <div class="slide-inner">
+    <div class="section-eyebrow">Episode Structure</div>
+    <h2 class="section-heading">Six acts. One truth.</h2>
+    <div class="episode-list">
+      <div class="episode-row">
+        <div class="ep-num">E01</div>
+        <div class="ep-body">
+          <div class="ep-title">The Anomaly</div>
+          <div class="ep-desc">Mara detects the signal. Initial classification as instrument error. The delegation arrives.</div>
+        </div>
+        <div class="ep-runtime">48 min</div>
+      </div>
+      <div class="episode-row">
+        <div class="ep-num">E02</div>
+        <div class="ep-body">
+          <div class="ep-title">Dead Channels</div>
+          <div class="ep-desc">The backup drive. A cryptographer in Prague who stopped working for governments four years ago.</div>
+        </div>
+        <div class="ep-runtime">51 min</div>
+      </div>
+      <div class="episode-row">
+        <div class="ep-num">E03</div>
+        <div class="ep-body">
+          <div class="ep-title">Interference</div>
+          <div class="ep-desc">The pattern decodes — partially. What it implies is worse than the cover-up.</div>
+        </div>
+        <div class="ep-runtime">47 min</div>
+      </div>
+      <div class="episode-row">
+        <div class="ep-num">E04</div>
+        <div class="ep-body">
+          <div class="ep-title">Source Code</div>
+          <div class="ep-desc">Mara learns three other stations caught the signal. Two of those operators are dead.</div>
+        </div>
+        <div class="ep-runtime">52 min</div>
+      </div>
+      <div class="episode-row">
+        <div class="ep-num">E05</div>
+        <div class="ep-body">
+          <div class="ep-title">Half-Life</div>
+          <div class="ep-desc">The star is accelerating its collapse. The signal will stop in 11 days. Everything pivots.</div>
+        </div>
+        <div class="ep-runtime">49 min</div>
+      </div>
+      <div class="episode-row">
+        <div class="ep-num">E06</div>
+        <div class="ep-body">
+          <div class="ep-title">Last Light</div>
+          <div class="ep-desc">The message decoded in full. The choice Mara makes will define what the discovery means — for everyone.</div>
+        </div>
+        <div class="ep-runtime">58 min</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPS -->
+<div class="slide">
+  <div class="section-eyebrow">Comparables</div>
+  <h2 class="section-heading">Where it lives in the market.</h2>
+  <div class="comps-row">
+    <div class="comp-card">
+      <div class="comp-show">Severance</div>
+      <div class="comp-network">Apple TV+</div>
+      <div class="comp-note">Institutional paranoia. Slow reveal. Audience rewards patience and rewards it again on rewatch.</div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-show">Dark</div>
+      <div class="comp-network">Netflix</div>
+      <div class="comp-note">Methodical non-English-language thriller that became a global phenomenon through word of mouth.</div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-show">Station Eleven</div>
+      <div class="comp-network">HBO Max</div>
+      <div class="comp-note">Fragmented timeline structure used to deliver emotional payoffs that linear narrative couldn't.</div>
+    </div>
+  </div>
+  <div class="differentiator">
+    <div class="diff-accent">→</div>
+    <div class="diff-text"><strong>What LAST LIGHT adds:</strong> The scientific procedural accuracy of signal analysis grounds the conspiracy in verifiable reality. Viewers can check the mathematics. The cover-up becomes more frightening — not because it's supernatural, but because it isn't.</div>
+  </div>
+</div>
+
+<hr class="rule" style="max-width:960px;margin:0 auto;">
+
+<!-- BUDGET -->
+<div class="slide">
+  <div class="section-eyebrow">Production Overview</div>
+  <h2 class="section-heading">Built for streaming scale.</h2>
+  <div class="budget-grid">
+    <div class="budget-item">
+      <div class="meta-label">Budget Per Episode</div>
+      <div class="budget-figure">$4.2M</div>
+      <div class="budget-note">Lean on VFX. Heavy on location and performance. Chile locations in pre-negotiation.</div>
+    </div>
+    <div class="budget-item">
+      <div class="meta-label">Total Series Budget</div>
+      <div class="budget-figure">$26M</div>
+      <div class="budget-note">Full 6-episode order. Option for standalone second cycle with new signal, new team.</div>
+    </div>
+    <div class="budget-item">
+      <div class="meta-label">Production Timeline</div>
+      <div class="budget-figure">14 mo.</div>
+      <div class="budget-note">Pre-production through final delivery. Principal photography in Q2.</div>
+    </div>
+    <div class="budget-item">
+      <div class="meta-label">Seeking</div>
+      <div class="budget-figure">Co-Prod</div>
+      <div class="budget-note">Co-production partner for 40–60% stake. Strong preference for streaming-first release window.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-slide">
+  <div class="cta-inner">
+    <div>
+      <div class="cta-headline">Ready to take the meeting?</div>
+      <div class="cta-sub">Full bible, writer's room candidates, and location survey available on request.</div>
+    </div>
+    <div class="cta-contact">
+      <a href="mailto:sipa-core@sipa-os.org">sipa-core@sipa-os.org</a>
+      <div class="cta-name">Aelin AquaSoul · Soul In PsyAbstract LLC</div>
+    </div>
+  </div>
+</div>
+
+<div class="demo-banner" style="border-top: 1px solid rgba(255,255,255,0.15);">This is a sample pitch deck created to demonstrate pitch deck design capabilities — content is fictional</div>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.slide, .slide-dark, .cover, .cta-slide').forEach(el => observer.observe(el));
+</script>

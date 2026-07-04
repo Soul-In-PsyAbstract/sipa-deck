@@ -1,0 +1,726 @@
+<title>Kajabi Course Setup — Aelin AquaSoul · Process & Capability Demo</title>
+<style>
+:root {
+  --ink: #F8F5F0;
+  --surface: #EFE9E2;
+  --card: #E8E1D9;
+  --border: #CFC7BC;
+  --fg: #1A1814;
+  --dim: #6B6358;
+  --accent: #2C6BE0;
+  --warm: #D45F1A;
+  --glow: rgba(44,107,224,0.1);
+  --tag-bg: rgba(44,107,224,0.1);
+  --tag-fg: #2C6BE0;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #0C0F14;
+    --surface: #141922;
+    --card: #1D2535;
+    --border: #283048;
+    --fg: #E4EAF6;
+    --dim: #7A8BA8;
+    --accent: #5FA3F5;
+    --warm: #FF9B5C;
+    --glow: rgba(95,163,245,0.1);
+    --tag-bg: rgba(95,163,245,0.08);
+    --tag-fg: #5FA3F5;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #0C0F14; --surface: #141922; --card: #1D2535;
+  --border: #283048; --fg: #E4EAF6; --dim: #7A8BA8;
+  --accent: #5FA3F5; --warm: #FF9B5C;
+  --glow: rgba(95,163,245,0.1); --tag-bg: rgba(95,163,245,0.08); --tag-fg: #5FA3F5;
+}
+:root[data-theme="light"] {
+  --ink: #F8F5F0; --surface: #EFE9E2; --card: #E8E1D9;
+  --border: #CFC7BC; --fg: #1A1814; --dim: #6B6358;
+  --accent: #2C6BE0; --warm: #D45F1A;
+  --glow: rgba(44,107,224,0.1); --tag-bg: rgba(44,107,224,0.1); --tag-fg: #2C6BE0;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--ink);
+  color: var(--fg);
+  font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 32px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--ink);
+  z-index: 100;
+}
+.nav-brand {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.nav-brand strong { color: var(--accent); font-weight: 600; }
+.nav-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--tag-bg);
+  border: 1px solid var(--accent);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--tag-fg);
+}
+.nav-badge::before {
+  content: '';
+  display: block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* HERO */
+.hero {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 64px 24px 48px;
+  border-bottom: 1px solid var(--border);
+}
+.hero-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  text-wrap: balance;
+  margin-bottom: 18px;
+}
+.hero p {
+  font-size: 16px;
+  color: var(--dim);
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.hero-stats {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.stat-num {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+.stat-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+/* SECTIONS */
+.section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 56px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.section:last-of-type { border-bottom: none; }
+.section-header {
+  margin-bottom: 32px;
+}
+.section-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+
+/* MODULE GRID */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+}
+.module-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.module-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.module-num {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+  font-variant-numeric: tabular-nums;
+}
+.module-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg);
+  margin-bottom: 8px;
+}
+.module-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.tag {
+  background: var(--tag-bg);
+  color: var(--tag-fg);
+  border-radius: 3px;
+  padding: 2px 7px;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+/* EMAIL FLOW */
+.email-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.email-step {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0 20px;
+  align-items: start;
+  padding: 0 0 24px 0;
+  position: relative;
+}
+.email-step::after {
+  content: '';
+  position: absolute;
+  left: 39px;
+  top: 28px;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+.email-step:last-child::after { display: none; }
+.email-day {
+  text-align: center;
+  padding-top: 4px;
+  position: relative;
+  z-index: 1;
+}
+.day-bubble {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 2px solid var(--border);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+  transition: border-color 0.2s;
+}
+.email-step:hover .day-bubble {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.email-content {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+  transition: border-color 0.2s;
+}
+.email-step:hover .email-content { border-color: var(--accent); }
+.email-subject {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg);
+  margin-bottom: 4px;
+}
+.email-desc {
+  font-size: 12px;
+  color: var(--dim);
+}
+.email-tag {
+  display: inline-block;
+  margin-top: 6px;
+  background: var(--tag-bg);
+  color: var(--tag-fg);
+  border-radius: 3px;
+  padding: 2px 7px;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+
+/* DELIVERABLES */
+.deliverable-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+@media (max-width: 560px) { .deliverable-grid { grid-template-columns: 1fr; } }
+.del-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 12px 14px;
+}
+.del-check {
+  flex-shrink: 0;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: rgba(44,107,224,0.1);
+  border: 1.5px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.del-check::after {
+  content: '';
+  width: 6px; height: 4px;
+  border-left: 1.5px solid var(--accent);
+  border-bottom: 1.5px solid var(--accent);
+  transform: rotate(-45deg) translateY(-1px);
+}
+.del-text { font-size: 13px; color: var(--fg); }
+
+/* TIMELINE */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+@media (max-width: 600px) { .timeline { grid-template-columns: 1fr 1fr; } }
+.tl-col {
+  padding: 20px 18px;
+  border-right: 1px solid var(--border);
+}
+.tl-col:last-child { border-right: none; }
+.tl-week {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.tl-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg);
+  margin-bottom: 6px;
+}
+.tl-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.tl-items li {
+  font-size: 12px;
+  color: var(--dim);
+  padding-left: 10px;
+  position: relative;
+}
+.tl-items li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+/* PRICING */
+.price-table {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+}
+.price-row:last-child { border-bottom: none; }
+.price-row.highlight { background: var(--card); }
+.price-name { font-size: 14px; color: var(--fg); }
+.price-desc { font-size: 12px; color: var(--dim); margin-top: 2px; }
+.price-val {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* CTA */
+.cta {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 40px 24px;
+  text-align: center;
+}
+.cta h3 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+.cta p {
+  color: var(--dim);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+.cta-link {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: opacity 0.2s;
+  margin-right: 10px;
+}
+.cta-link:hover { opacity: 0.88; }
+.cta-link.secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  margin-right: 0;
+}
+.cta-link.secondary:hover { border-color: var(--accent); color: var(--accent); }
+</style>
+
+<nav>
+  <div class="nav-brand"><strong>Aelin AquaSoul</strong> · Kajabi Setup Capability</div>
+  <div class="nav-badge">Proposal Demo</div>
+</nav>
+
+<section class="hero">
+  <p class="hero-eyebrow">Course Platform Setup · 8 Modules + Email</p>
+  <h1>From raw recordings to a launch-ready course in 14 days.</h1>
+  <p>You focus on creating the content. I build the technical layer — module structure, video configuration, email automation, and the full student experience on Kajabi — ready to sell on day one.</p>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">8</span><span class="stat-label">Modules configured</span></div>
+    <div class="stat"><span class="stat-num">8</span><span class="stat-label">Email sequences</span></div>
+    <div class="stat"><span class="stat-num">14</span><span class="stat-label">Days to launch</span></div>
+    <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Async support</span></div>
+  </div>
+</section>
+
+<!-- MODULE STRUCTURE -->
+<section class="section">
+  <div class="section-header">
+    <p class="section-label">Course Architecture</p>
+    <p class="section-title">8-Module Structure — Sample Configuration</p>
+  </div>
+  <div class="module-grid">
+    <div class="module-card">
+      <div class="module-num">Module 01</div>
+      <div class="module-name">Welcome & Foundation</div>
+      <div class="module-tags">
+        <span class="tag">Intro video</span>
+        <span class="tag">PDF guide</span>
+        <span class="tag">Quiz</span>
+      </div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">Module 02</div>
+      <div class="module-name">Core Framework</div>
+      <div class="module-tags">
+        <span class="tag">Video lesson</span>
+        <span class="tag">Worksheet</span>
+        <span class="tag">Checklist</span>
+      </div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">Module 03</div>
+      <div class="module-name">Deep Dive I</div>
+      <div class="module-tags">
+        <span class="tag">Video lesson</span>
+        <span class="tag">Assessment</span>
+        <span class="tag">Resource list</span>
+      </div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">Module 04</div>
+      <div class="module-name">Practice & Application</div>
+      <div class="module-tags">
+        <span class="tag">Video lesson</span>
+        <span class="tag">Exercise</span>
+        <span class="tag">Live examples</span>
+      </div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">Module 05</div>
+      <div class="module-name">Deep Dive II</div>
+      <div class="module-tags">
+        <span class="tag">Video lesson</span>
+        <span class="tag">Case studies</span>
+        <span class="tag">Workbook</span>
+      </div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">Module 06</div>
+      <div class="module-name">Implementation</div>
+      <div class="module-tags">
+        <span class="tag">Step-by-step</span>
+        <span class="tag">Tracker</span>
+        <span class="tag">Quiz</span>
+      </div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">Module 07</div>
+      <div class="module-name">Troubleshooting & Q&A</div>
+      <div class="module-tags">
+        <span class="tag">Video lesson</span>
+        <span class="tag">FAQ doc</span>
+        <span class="tag">Resources</span>
+      </div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">Module 08</div>
+      <div class="module-name">Completion & Next Steps</div>
+      <div class="module-tags">
+        <span class="tag">Celebration</span>
+        <span class="tag">Certificate</span>
+        <span class="tag">Upsell path</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL AUTOMATION -->
+<section class="section">
+  <div class="section-header">
+    <p class="section-label">Email Automation</p>
+    <p class="section-title">8-Step Student Journey Sequence</p>
+  </div>
+  <div class="email-flow">
+    <div class="email-step">
+      <div class="email-day"><span class="day-bubble">0</span></div>
+      <div class="email-content">
+        <div class="email-subject">Welcome — you're in.</div>
+        <div class="email-desc">Immediate access email. Login instructions, what to expect, your first step.</div>
+        <span class="email-tag">Triggered on purchase</span>
+      </div>
+    </div>
+    <div class="email-step">
+      <div class="email-day"><span class="day-bubble">1</span></div>
+      <div class="email-content">
+        <div class="email-subject">Your getting-started guide</div>
+        <div class="email-desc">How to navigate the course portal. Recommended pace. Downloadable companion guide.</div>
+        <span class="email-tag">Day 1 · 9am</span>
+      </div>
+    </div>
+    <div class="email-step">
+      <div class="email-day"><span class="day-bubble">3</span></div>
+      <div class="email-content">
+        <div class="email-subject">How's Module 1 going?</div>
+        <div class="email-desc">Check-in email. Encourage first quiz completion. Light nudge toward module 2.</div>
+        <span class="email-tag">Day 3 · 10am</span>
+      </div>
+    </div>
+    <div class="email-step">
+      <div class="email-day"><span class="day-bubble">7</span></div>
+      <div class="email-content">
+        <div class="email-subject">You're building momentum</div>
+        <div class="email-desc">Week 1 encouragement. Highlight a key insight from the content. Community link.</div>
+        <span class="email-tag">Day 7 · 9am</span>
+      </div>
+    </div>
+    <div class="email-step">
+      <div class="email-day"><span class="day-bubble">14</span></div>
+      <div class="email-content">
+        <div class="email-subject">Halfway there — celebrate this</div>
+        <div class="email-desc">Mid-course celebration. Re-energize commitment. Surface a transformation story.</div>
+        <span class="email-tag">Day 14 · 9am</span>
+      </div>
+    </div>
+    <div class="email-step">
+      <div class="email-day"><span class="day-bubble">21</span></div>
+      <div class="email-content">
+        <div class="email-subject">Final stretch — don't stop now</div>
+        <div class="email-desc">Completion nudge. Link to Module 7. Remind of the outcome they signed up for.</div>
+        <span class="email-tag">Day 21 · 10am</span>
+      </div>
+    </div>
+    <div class="email-step">
+      <div class="email-day"><span class="day-bubble">28</span></div>
+      <div class="email-content">
+        <div class="email-subject">You completed it. Here's what's next.</div>
+        <div class="email-desc">Completion email. Certificate trigger. Testimonial request. Path to next offer.</div>
+        <span class="email-tag">Day 28 · Triggered on completion</span>
+      </div>
+    </div>
+    <div class="email-step">
+      <div class="email-day"><span class="day-bubble">35</span></div>
+      <div class="email-content">
+        <div class="email-subject">Ready to go deeper?</div>
+        <div class="email-desc">Warm upsell to next program. Positioned as natural next step, not a pitch.</div>
+        <span class="email-tag">Day 35 · 10am</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section class="section">
+  <div class="section-header">
+    <p class="section-label">What You Get</p>
+    <p class="section-title">Full Delivery Scope</p>
+  </div>
+  <div class="deliverable-grid">
+    <div class="del-row"><div class="del-check"></div><div class="del-text">8 course modules — fully structured & configured</div></div>
+    <div class="del-row"><div class="del-check"></div><div class="del-text">Video upload + thumbnail optimization per module</div></div>
+    <div class="del-row"><div class="del-check"></div><div class="del-text">Quiz/assessment built into each module</div></div>
+    <div class="del-row"><div class="del-check"></div><div class="del-text">8-email automation sequence written & wired</div></div>
+    <div class="del-row"><div class="del-check"></div><div class="del-text">Sales/checkout page configuration</div></div>
+    <div class="del-row"><div class="del-check"></div><div class="del-text">Student portal branding (colors, fonts, logo)</div></div>
+    <div class="del-row"><div class="del-check"></div><div class="del-text">Lead magnet landing page setup</div></div>
+    <div class="del-row"><div class="del-check"></div><div class="del-text">Pre-launch testing checklist (end-to-end)</div></div>
+    <div class="del-row"><div class="del-check"></div><div class="del-text">Mobile-responsive review across all pages</div></div>
+    <div class="del-row"><div class="del-check"></div><div class="del-text">Async Q&A throughout the engagement</div></div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section">
+  <div class="section-header">
+    <p class="section-label">Timeline</p>
+    <p class="section-title">14-Day Setup Sprint</p>
+  </div>
+  <div class="timeline">
+    <div class="tl-col">
+      <div class="tl-week">Week 1</div>
+      <div class="tl-title">Structure + Content</div>
+      <ul class="tl-items">
+        <li>Course architecture review</li>
+        <li>Module pages built</li>
+        <li>Video upload batch 1–4</li>
+        <li>Resource files added</li>
+      </ul>
+    </div>
+    <div class="tl-col">
+      <div class="tl-week">Week 2</div>
+      <div class="tl-title">Email + Pages</div>
+      <ul class="tl-items">
+        <li>Video upload batch 5–8</li>
+        <li>All quizzes wired</li>
+        <li>Email sequence built</li>
+        <li>Sales page set up</li>
+      </ul>
+    </div>
+    <div class="tl-col">
+      <div class="tl-week">Day 13</div>
+      <div class="tl-title">Review Round</div>
+      <ul class="tl-items">
+        <li>Full walkthrough loom</li>
+        <li>Feedback collected</li>
+        <li>Revisions applied</li>
+        <li>QA checklist run</li>
+      </ul>
+    </div>
+    <div class="tl-col">
+      <div class="tl-week">Day 14</div>
+      <div class="tl-title">Launch Ready</div>
+      <ul class="tl-items">
+        <li>Final test purchase</li>
+        <li>Email triggers verified</li>
+        <li>Access keys handed off</li>
+        <li>Support doc delivered</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section">
+  <div class="section-header">
+    <p class="section-label">Pricing</p>
+    <p class="section-title">Setup + Ongoing Options</p>
+  </div>
+  <div class="price-table">
+    <div class="price-row">
+      <div>
+        <div class="price-name">One-time setup</div>
+        <div class="price-desc">8 modules + email sequence + all pages · 14-day sprint</div>
+      </div>
+      <div class="price-val">$1,200</div>
+    </div>
+    <div class="price-row highlight">
+      <div>
+        <div class="price-name">Setup + monthly maintenance</div>
+        <div class="price-desc">Ongoing: content updates, new email flows, A/B tweaks, platform changes</div>
+      </div>
+      <div class="price-val">$600/wk</div>
+    </div>
+    <div class="price-row">
+      <div>
+        <div class="price-name">Additional module builds</div>
+        <div class="price-desc">Per module after initial 8, including video, quiz, and email trigger</div>
+      </div>
+      <div class="price-val">$120/module</div>
+    </div>
+  </div>
+</section>
+
+<footer class="cta">
+  <h3>Ready to hand this off?</h3>
+  <p>Send me your current course outline and any assets you have — I'll confirm the full scope within 24h and we can start immediately.</p>
+  <a href="https://calendly.com/soulinpsyabstract/30min" class="cta-link">Book a 30-min call</a>
+  <a href="mailto:sipa-core@sipa-os.org?subject=Kajabi Setup — Aelin AquaSoul" class="cta-link secondary">Email directly</a>
+</footer>

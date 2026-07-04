@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="canonical" href="https://omma.build/p/soul-in-psyabstract-sipa-ecosystem-overv-wifrzg">
+<meta property="og:url" content="https://omma.build/p/soul-in-psyabstract-sipa-ecosystem-overv-wifrzg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soul In PsyAbstract (SIPA) — Ecosystem Portal</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #030509;
+            --bg-card: rgba(8, 12, 22, 0.75);
+            --bg-card-hover: rgba(14, 20, 36, 0.9);
+            --border-glow: rgba(0, 242, 254, 0.15);
+            --border-glow-hover: rgba(0, 242, 254, 0.4);
+            --text-primary: #f3f4f6;
+            --text-secondary: #a1a1aa;
+            --text-muted: #52525b;
+            --accent-cyan: #00f2fe;
+            --accent-purple: #9d4edd;
+            --accent-green: #10b981;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            overflow: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 20%, rgba(157, 78, 221, 0.09) 0%, transparent 45%),
+                radial-gradient(circle at 10% 80%, rgba(0, 242, 254, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.04) 0%, transparent 40%);
+            background-attachment: fixed;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* App Container Layout */
+        .app-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        /* Sidebar Styling */
+        aside {
+            background: rgba(4, 6, 11, 0.95);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2.25rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        .logo-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .logo-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .logo-subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--accent-purple);
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .protocol-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 0.45rem 0.75rem;
+            border-radius: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--accent-green);
+            margin-top: 1.5rem;
+            width: fit-content;
+        }
+
+        .protocol-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; box-shadow: 0 0 12px var(--accent-green); }
+            100% { opacity: 0.4; }
+        }
+
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-top: 2rem;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            border-left: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .menu-item.active, .menu-item:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.03);
+            border-left-color: var(--accent-cyan);
+        }
+
+        .menu-item svg {
+            width: 18px;
+            height: 18px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .sidebar-footer {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1.25rem;
+        }
+
+        /* Main Workspace Window */
+        main {
+            height: 100vh;
+            overflow-y: auto;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            scroll-behavior: smooth;
+        }
+
+        /* Multi-tab View Sections */
+        .view-section {
+            display: none;
+            flex-direction: column;
+            gap: 2.5rem;
+            animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .view-section.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Majestic Central Hero Header styling */
+        .grand-hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(100% 100% at 50% 0%, rgba(10, 15, 30, 0.6) 0%, rgba(3, 5, 9, 0.95) 100%);
+            border: 1px solid rgba(0, 242, 254, 0.12);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Massive 3D Rotating Cognitive Core */
+        .central-core-container {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1500px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* High-tech cosmic background lines */
+        .grid-plane {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background-image: 
+                linear-gradient(rgba(0, 242, 254, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 242, 254, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center;
+            transform: rotateX(75deg) translateY(50px);
+            mask-image: radial-gradient(ellipse at center, black, transparent 65%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hologram-ring-new {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            transform-style: preserve-3d;
+        }
+
+        .hr-1 {
+            width: 440px;
+            height: 440px;
+            border: 1px dashed rgba(0, 242, 254, 0.2);
+            animation: spinRing 24s linear infinite;
+        }
+
+        .hr-2 {
+            width: 380px;
+            height: 380px;
+            border: 1px solid rgba(157, 78, 221, 0.25);
+            border-left-color: transparent;
+            border-right-color: transparent;
+            animation: spinRing 16s linear infinite reverse;
+        }
+
+        .hr-3 {
+            width: 300px;
+            height: 300px;
+            border: 2px solid rgba(0, 242, 254, 0.3);
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+            animation: spinRing 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        .brain-core-sphere {
+            position: relative;
+            width: 260px;
+            height: 260px;
+            transform-style: preserve-3d;
+            animation: hoverCore 6s ease-in-out infinite alternate;
+            cursor: grab;
+            z-index: 10;
+        }
+
+        .brain-core-sphere:active {
+            cursor: grabbing;
+        }
+
+        .inner-sphere-art {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 50%;
+            padding: 5px;
+            box-shadow: 
+                0 0 50px rgba(0, 242, 254, 0.35),
+                inset 0 0 30px rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s ease-out;
+        }
+
+        .inner-sphere-art img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            filter: saturate(1.15) contrast(1.1);
+        }
+
+        /* HUD readout systems around the core */
+        .hud-coordinate {
+            position: absolute;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--accent-cyan);
+            letter-spacing: 1px;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .coord-left { left: 10%; text-align: left; }
+        .coord-right { right: 10%; text-align: right; }
+
+        .founder-strip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.5rem 1.25rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(8px);
+        }
+
+        .founder-strip span {
+            color: var(--accent-cyan);
+            font-weight: 700;
+        }
+
+        .main-hero-title {
+            font-size: 3.2rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            max-width: 900px;
+            background: linear-gradient(to right, #ffffff, #a1a1aa, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .main-hero-desc {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            line-height: 1.6;
+            max-width: 720px;
+            margin-bottom: 2rem;
+        }
+
+        /* Functional Grid Layers */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--accent-cyan);
+            border-radius: 2px;
+        }
+
+        .section-meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent-purple);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .grid-4x {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .interactive-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 380px;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .interactive-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(0, 242, 254, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-glow-hover);
+            background: var(--bg-card-hover);
+            box-shadow: 0 15px 40px rgba(0, 242, 254, 0.12);
+        }
+
+        .interactive-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-header-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .layer-badge {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            background: rgba(0, 242, 254, 0.08);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            padding: 0.35rem 0.65rem;
+            border-radius: 6px;
+            width: fit-content;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .card-stats {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 1.25rem;
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+        }
+
+        .spec-label {
+            color: var(--text-muted);
+        }
+
+        .spec-val {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Partners integration line */
+        .partners-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            background: rgba(8, 12, 22, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .partner-node {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .partner-node strong {
+            color: var(--text-primary);
+            font-weight: 800;
+        }
+
+        .node-pulse {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-cyan);
+        }
+
+        /* ----------------------------------------------------------------- */
+        /* TAB 2: SIPA OS LAYER */
+        /* ----------------------------------------------------------------- */
+        .telemetry-dashboard {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 2rem;
+        }
+
+        .telemetry-graph-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .agent-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .agent-pill {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-smooth);
+        }
+
+        .agent-pill:hover {
+            border-color: rgba(0, 242, 254, 0.25);
+            background: rgba(0, 242, 254, 0.02);
+        }
+
+        .agent-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .agent-name {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .agent-task {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .agent-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-green);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .live-terminal {
+            background: #020306;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: #38bdf8;
+            height: 480px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .terminal-logs {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding-right: 0.5rem;
+        }
+
+        .log-line {
+            line-height: 1.4;
+        }
+
+        .log-timestamp {
+            color: var(--accent-purple);
+        }
+
+        /* ----------------------------------------------------------------- */
+        /* TAB 3: WEB3 ECONOMY */
+        /* ----------------------------------------------------------------- */
+        .tokenomics-interface {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .swap-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 24px;
+            padding: 2.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .token-input-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contract-pill {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .contract-pill:hover {
+            background: rgba(0, 242, 254, 0.06);
+            border-color: rgba(0, 242, 254, 0.3);
+        }
+
+        /* ----------------------------------------------------------------- */
+        /* TAB 4: INVESTMENT DECK */
+        /* ----------------------------------------------------------------- */
+        .investment-deck-view {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 2.5rem;
+        }
+
+        .deck-slide-container {
+            background: radial-gradient(120% 120% at 50% 0%, #0d1321 0%, #040711 100%);
+            border: 1px solid rgba(157, 78, 221, 0.3);
+            border-radius: 24px;
+            padding: 3rem;
+            min-height: 520px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide-indicator {
+            font-family: var(--font-mono);
+            color: var(--accent-cyan);
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .slide-content h3 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 50%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slide-bullets {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .slide-bullet {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .bullet-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            margin-top: 0.5rem;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .bullet-text strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .bullet-text p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .slide-nav {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .deck-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition-smooth);
+        }
+
+        .deck-btn:hover {
+            background: rgba(0, 242, 254, 0.1);
+            border-color: var(--accent-cyan);
+        }
+
+        .room-access-card {
+            background: linear-gradient(135deg, rgba(8, 12, 22, 0.9) 0%, rgba(15, 8, 25, 0.9) 100%);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            border-radius: 24px;
+            padding: 2.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* Core animations */
+        @keyframes hoverCore {
+            0% { transform: translateY(-5px) rotateY(0deg); }
+            100% { transform: translateY(12px) rotateY(45deg); }
+        }
+
+        @keyframes spinRing {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Utility classes */
+        .btn-glow {
+            background: linear-gradient(135deg, var(--accent-cyan) 0%, #00b4d8 100%);
+            color: #000;
+            border: none;
+            padding: 1rem 1.75rem;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-align: center;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.45);
+            transform: translateY(-2px);
+        }
+
+        /* Custom scrollbar */
+        main::-webkit-scrollbar {
+            width: 8px;
+        }
+        main::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+        }
+        main::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.08);
+            border-radius: 4px;
+        }
+        main::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.15);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside>
+            <div class="logo-section">
+                <div class="logo-title">SIPA Portal</div>
+                <div class="logo-subtitle">Soul In PsyAbstract</div>
+                <div class="protocol-badge">
+                    <span class="protocol-dot"></span>
+                    Protocol 0 Compliant
+                </div>
+
+                <nav class="sidebar-menu">
+                    <div class="menu-item active" onclick="switchTab('overview', this)">
+                        <svg viewBox="0 0 24 24"><path d="M4 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5zM14 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5zM4 16a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3zM14 14a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-5z"/></svg>
+                        Overview
+                    </div>
+                    <div class="menu-item" onclick="switchTab('sipa-os', this)">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        SIPA OS Layer
+                    </div>
+                    <div class="menu-item" onclick="switchTab('web3', this)">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Web3 Economy
+                    </div>
+                    <div class="menu-item" onclick="switchTab('deck', this)">
+                        <svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        Investment Deck
+                    </div>
+                </nav>
+            </div>
+
+            <div class="sidebar-footer">
+                <div>Eilat, Israel &bull; Live</div>
+                <div style="color: var(--accent-cyan); font-weight: 700;">Delaware LLC Transitioning</div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main>
+            
+            <!-- ------------------------------------------------------------- -->
+            <!-- TAB 1: OVERVIEW -->
+            <!-- ------------------------------------------------------------- -->
+            <div id="view-overview" class="view-section active">
+                
+                <!-- Majestic Central Brain Core in the Header -->
+                <section class="grand-hero">
+                    <div class="founder-strip">Founded by <span>Aelin AquaSoul</span> &bull; Eilat, Israel</div>
+                    <h1 class="main-hero-title">Laws &amp; Ontologies, Not Outputs</h1>
+                    <p class="main-hero-desc">
+                        A cybernetic governance ecosystem designed from inside the neurodivergent experience, merging decentralized networks, cognitive infrastructure, and certified luxury physical art.
+                    </p>
+
+                    <!-- Massive 3D Rotating Core -->
+                    <div class="central-core-container">
+                        <div class="grid-plane"></div>
+                        <div class="hologram-ring-new hr-1"></div>
+                        <div class="hologram-ring-new hr-2"></div>
+                        <div class="hologram-ring-new hr-3"></div>
+
+                        <!-- Left Coordinate HUD -->
+                        <div class="hud-coordinate coord-left" style="top: 25%;">
+                            <div style="color: var(--accent-cyan); font-weight: 800;">CORE STATS</div>
+                            <div>NODE STATUS: ACTIVE</div>
+                            <div>FREQUENCY: 8.42 Hz</div>
+                            <div>TELEMETRY: COMPLIANT</div>
+                        </div>
+
+                        <!-- Core Sphere -->
+                        <div class="brain-core-sphere" id="interactiveBrain">
+                            <div class="inner-sphere-art">
+                                <img src="https://img.recraft.ai/qzDiTlfsh4hvTlIoF8_25_zGPwbwwich-YxQ_zT6kmc/rs:fit:1024:1024:0/raw:1/plain/abs://external/images/cfa43df2-303e-45e8-9915-cdd24c7355fa" alt="SIPA Neural Mapping Design Core">
+                            </div>
+                        </div>
+
+                        <!-- Right Coordinate HUD -->
+                        <div class="hud-coordinate coord-right" style="top: 25%;">
+                            <div style="color: var(--accent-purple); font-weight: 800;">REGISTRATION</div>
+                            <div>USPTO: PTO-2042A</div>
+                            <div>REPUTATION: SECURE</div>
+                            <div>CERTIFICATE: AKOUN 2026</div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 2rem; font-family: var(--font-mono); font-size: 0.85rem; z-index: 10;">
+                        <span style="color: var(--accent-green)">&bull; GUARDIAN MONITOR ACTIVE</span>
+                        <span style="color: var(--text-muted)">|</span>
+                        <span style="color: var(--accent-cyan)">ACTIVE DEBT/EQUITY DISCUSSION</span>
+                    </div>
+                </section>
+
+                <!-- Ecosystem Layers -->
+                <section>
+                    <div class="section-header">
+                        <h2 class="section-title">The Four Ecosystem Layers</h2>
+                        <span class="section-meta">Closed-Loop Architecture</span>
+                    </div>
+
+                    <div class="grid-4x">
+                        <div class="interactive-card" onclick="document.querySelector('[onclick*=\'sipa-os\']').click()">
+                            <div class="card-header-group">
+                                <span class="layer-badge">Layer 1</span>
+                                <h3 class="card-title">SIPA OS</h3>
+                                <p class="card-desc">Distributed cognitive infrastructure encoding ADHD + BPD logic layers into active automated governance nodes.</p>
+                            </div>
+                            <div class="card-stats">
+                                <div class="spec-item"><span class="spec-label">Nodes</span><span class="spec-val">3 Active</span></div>
+                                <div class="spec-item"><span class="spec-label">Specialized Agents</span><span class="spec-val">40+ Deployed</span></div>
+                            </div>
+                        </div>
+
+                        <div class="interactive-card" onclick="document.querySelector('[onclick*=\'sipa-os\']').click()">
+                            <div class="card-header-group">
+                                <span class="layer-badge">Layer 2</span>
+                                <h3 class="card-title">SIPA AI Shell</h3>
+                                <p class="card-desc">B2B SaaS suite replacing compromised executive functions with Structure and Crisis mitigation architectures.</p>
+                            </div>
+                            <div class="card-stats">
+                                <div class="spec-item"><span class="spec-label">TAM</span><span class="spec-val">1.2B+ ND Individuals</span></div>
+                                <div class="spec-item"><span class="spec-label">Structure</span><span class="spec-val">SaaS / Freemium</span></div>
+                            </div>
+                        </div>
+
+                        <div class="interactive-card" onclick="document.querySelector('[onclick*=\'web3\']').click()">
+                            <div class="card-header-group">
+                                <span class="layer-badge">Layer 3</span>
+                                <h3 class="card-title">Web3 Economy</h3>
+                                <p class="card-desc">Dual-token utility layer built on Ethereum L2 Base, securing decentralized reputation and liquidity pools.</p>
+                            </div>
+                            <div class="card-stats">
+                                <div class="spec-item"><span class="spec-label">L2 Network</span><span class="spec-val">BASE Mainnet</span></div>
+                                <div class="spec-item"><span class="spec-label">Liquidity</span><span class="spec-val">Aerodrome Active</span></div>
+                            </div>
+                        </div>
+
+                        <div class="interactive-card" onclick="document.querySelector('[onclick*=\'web3\']').click()">
+                            <div class="card-header-group">
+                                <span class="layer-badge">Layer 4</span>
+                                <h3 class="card-title">Art Ecosystem</h3>
+                                <p class="card-desc">High-concept UV-reactive physical artworks linked with Akoun blockchain certificates of authenticity.</p>
+                            </div>
+                            <div class="card-stats">
+                                <div class="spec-item"><span class="spec-label">Status</span><span class="spec-val">Akoun Certified 2026</span></div>
+                                <div class="spec-item"><span class="spec-label">Art Assets</span><span class="spec-val">94 Ready</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Partners strip -->
+                <section class="partners-strip">
+                    <div class="partner-node"><span class="node-pulse"></span>AWS Activate</div>
+                    <div class="partner-node"><span class="node-pulse"></span>NVIDIA Inception</div>
+                    <div class="partner-node"><span class="node-pulse"></span>Red Hat Enterprise</div>
+                    <div class="partner-node"><span class="node-pulse"></span>Microsoft Azure</div>
+                </section>
+            </div>
+
+            <!-- ------------------------------------------------------------- -->
+            <!-- TAB 2: SIPA OS LAYER -->
+            <!-- ------------------------------------------------------------- -->
+            <div id="view-sipa-os" class="view-section">
+                <div class="section-header">
+                    <h2 class="section-title">SIPA OS &amp; AI Shell Telemetry</h2>
+                    <span class="section-meta">Operational Infrastructure Layer</span>
+                </div>
+
+                <div class="telemetry-dashboard">
+                    <!-- Left: Agent Matrix and Control Details -->
+                    <div class="telemetry-graph-card">
+                        <h3 class="card-title">Ecosystem Node Modules</h3>
+                        <p class="card-desc">Continuous telemetry signals from Layer 1 OS and SaaS emotional mapping engines.</p>
+                        
+                        <div class="agent-list">
+                            <div class="agent-pill">
+                                <div class="agent-meta">
+                                    <span class="agent-name">ADHD Executive Structure Engine</span>
+                                    <span class="agent-task">Direct cognitive support and continuous task prioritization</span>
+                                </div>
+                                <span class="agent-status-badge">42 Agents Active</span>
+                            </div>
+                            <div class="agent-pill">
+                                <div class="agent-meta">
+                                    <span class="agent-name">Emotional Radar Engine</span>
+                                    <span class="agent-task">Pre-emptive sentiment analysis and tone validation</span>
+                                </div>
+                                <span class="agent-status-badge">12 Channels Loaded</span>
+                            </div>
+                            <div class="agent-pill">
+                                <div class="agent-meta">
+                                    <span class="agent-name">BPD Crisis Protocol Controller</span>
+                                    <span class="agent-task">Emergency sentiment containment and safe execution fallbacks</span>
+                                </div>
+                                <span class="agent-status-badge" style="color: var(--accent-cyan); border-color: rgba(0,242,254,0.3); background: rgba(0,242,254,0.05)">Standby Status</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Live Active Log Stream -->
+                    <div class="live-terminal">
+                        <div class="terminal-header">
+                            <span>SIPA NODE MONITOR v1.02</span>
+                            <span>BASE L2 CONNECTED</span>
+                        </div>
+                        <div class="terminal-logs" id="terminalLogs">
+                            <div class="log-line"><span class="log-timestamp">[11:42:01]</span> Cognitive telemetry link established Eilat -> Base.</div>
+                            <div class="log-line"><span class="log-timestamp">[11:42:05]</span> Protocol 0 verified. Integrity score 99.8%.</div>
+                            <div class="log-line"><span class="log-timestamp">[11:42:12]</span> 3 active nodes matching. Telemetry stable.</div>
+                        </div>
+                        <div style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.75rem; font-size: 0.75rem; color: var(--text-muted);">
+                            Telemetry ping interval: 1200ms
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ------------------------------------------------------------- -->
+            <!-- TAB 3: WEB3 ECONOMY -->
+            <!-- ------------------------------------------------------------- -->
+            <div id="view-web3" class="view-section">
+                <div class="section-header">
+                    <h2 class="section-title">Web3 Decentralized Architecture</h2>
+                    <span class="section-meta">Base L2 Mainnet Integration</span>
+                </div>
+
+                <div class="tokenomics-interface">
+                    <div class="swap-card">
+                        <h3 class="card-title">Token Smart Contracts</h3>
+                        <p class="card-desc">SIPA utilizes a dual-token setup prioritizing liquid utility alongside reputation weight validation.</p>
+
+                        <!-- Contract Copy Boxes -->
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <label style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono)">SIPA UTILITY TOKEN</label>
+                            <div class="contract-pill" onclick="navigator.clipboard.writeText('0xb70b78fc3400294e8989bD0eaB734098B1700df3')">
+                                <span>0xb70b78fc3400294e8989bD0eaB734098B1700df3</span>
+                                <span style="color: var(--accent-cyan); font-weight: 700; font-size: 0.75rem;">COPY CONTRACT</span>
+                            </div>
+
+                            <label style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono)">SOUL NON-SPECULATIVE REPUTATION</label>
+                            <div class="contract-pill" onclick="navigator.clipboard.writeText('0xSOULReputationLayerMainnetBound')">
+                                <span>0xSOULReputationLayerMainnetBound</span>
+                                <span style="color: var(--accent-purple); font-weight: 700; font-size: 0.75rem;">SOULBOUND</span>
+                            </div>
+                        </div>
+
+                        <div class="token-input-box">
+                            <div>
+                                <div style="font-size: 1.25rem; font-weight: 800;">Aerodrome Liquidity</div>
+                                <div style="font-size: 0.8rem; color: var(--text-secondary)">Active pair pricing routing</div>
+                            </div>
+                            <span class="layer-badge" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-green); border-color: rgba(16,185,129,0.3)">Pool Operational</span>
+                        </div>
+                    </div>
+
+                    <!-- NFT Art verification integration -->
+                    <div class="swap-card" style="border-color: rgba(157, 78, 221, 0.25);">
+                        <h3 class="card-title">SIPA Art Ledger</h3>
+                        <p class="card-desc">Verifiably linking luxury physical works with decentralized cryptography ledger standards.</p>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="token-input-box" style="flex-direction: column; align-items: flex-start; gap: 0.5rem;">
+                                <span style="color: var(--text-muted); font-size: 0.75rem;">MINTED NFT PIECES</span>
+                                <span style="font-size: 1.5rem; font-weight: 800; color: var(--accent-cyan);">21 Assets</span>
+                            </div>
+                            <div class="token-input-box" style="flex-direction: column; align-items: flex-start; gap: 0.5rem;">
+                                <span style="color: var(--text-muted); font-size: 0.75rem;">COMPLETED ARTWORKS</span>
+                                <span style="font-size: 1.5rem; font-weight: 800; color: var(--accent-purple);">94 Physicals</span>
+                            </div>
+                        </div>
+
+                        <div class="contract-pill" style="justify-content: center; font-weight: 700; text-transform: uppercase; background: rgba(157, 78, 221, 0.1); border-color: rgba(157, 78, 221, 0.3);">
+                            Akoun Certified Registry &bull; 2026 Archive Verified
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ------------------------------------------------------------- -->
+            <!-- TAB 4: INVESTMENT DECK -->
+            <!-- ------------------------------------------------------------- -->
+            <div id="view-deck" class="view-section">
+                <div class="section-header">
+                    <h2 class="section-title">Strategic Investment Discussion</h2>
+                    <span class="section-meta">Institutional Portal</span>
+                </div>
+
+                <div class="investment-deck-view">
+                    <!-- Interactive Slide Deck -->
+                    <div class="deck-slide-container">
+                        <div class="slide-indicator" id="slideIndicator">SLIDE 1 of 3 &bull; THE ADDRESSABLE MARKET</div>
+                        
+                        <!-- Slide Content -->
+                        <div class="slide-content" id="slideContent">
+                            <h3>The Underserved 1.2 Billion</h3>
+                            <div class="slide-bullets">
+                                <div class="slide-bullet">
+                                    <span class="bullet-dot"></span>
+                                    <div class="bullet-text">
+                                        <strong>Severe Market Vacuum</strong>
+                                        <p>1.2 billion+ neurodivergent people globally have no reliable cognitive infrastructure platform built explicitly for their workflow needs.</p>
+                                    </div>
+                                </div>
+                                <div class="slide-bullet">
+                                    <span class="bullet-dot"></span>
+                                    <div class="bullet-text">
+                                        <strong>Rapid Market Expansion</strong>
+                                        <p>The global mental health application market cap is projected to reach $17.5B by the year 2030, with a compounding growth rate exceeding 18.8% CAGR.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation controls -->
+                        <div class="slide-nav">
+                            <button class="deck-btn" onclick="prevSlide()">Previous</button>
+                            <button class="deck-btn" onclick="nextSlide()" style="background: rgba(0, 242, 254, 0.1); border-color: var(--accent-cyan);">Next Slide</button>
+                        </div>
+                    </div>
+
+                    <!-- Action Sidebar / Request Deal Room -->
+                    <div class="room-access-card">
+                        <h3 class="card-title">Request Deal Room Access</h3>
+                        <p class="card-desc">Access deep financial modelling files, Delaware LLC structure documentation, and protocol patent reports.</p>
+
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <input type="text" placeholder="Institutional Email Address" style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); padding: 0.85rem 1.25rem; border-radius: 10px; color: #fff; font-family: var(--font-sans); font-size: 0.9rem;">
+                            <button class="btn-glow" onclick="alert('Access request logged. The investor relations team will respond within 4 hours.')">Request Documents</button>
+                        </div>
+
+                        <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">
+                            Secure end-to-end telemetry monitored by GUARDIAN
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Script to support interactive multi-tab switching and core rotation dynamics -->
+    <script>
+        // Multi-tab mechanism
+        function switchTab(tabId, el) {
+            // Remove active class from all menu items
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            // Add active class to clicked menu item
+            el.classList.add('active');
+
+            // Hide all tab view sections
+            document.querySelectorAll('.view-section').forEach(view => {
+                view.classList.remove('active');
+            });
+            // Show the target section
+            document.getElementById('view-' + tabId).classList.add('active');
+        }
+
+        // 3D core interaction
+        const brain = document.getElementById('interactiveBrain');
+        if(brain) {
+            brain.addEventListener('mousemove', (e) => {
+                const rect = brain.getBoundingClientRect();
+                const x = e.clientX - rect.left - (rect.width/2);
+                const y = e.clientY - rect.top - (rect.height/2);
+                
+                brain.style.animation = 'none';
+                brain.style.transform = `rotateY(${x * 0.4}deg) rotateX(${-y * 0.4}deg) scale(1.05)`;
+            });
+
+            brain.addEventListener('mouseleave', () => {
+                brain.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                brain.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
+                setTimeout(() => {
+                    brain.style.animation = 'hoverCore 6s ease-in-out infinite alternate';
+                }, 400);
+            });
+        }
+
+        // Live Log Generator simulation for SIPA OS tab
+        const logs = [
+            "Cognitive load analysis: nominal.",
+            "ADHD Structure Engine prioritizing active microservices.",
+            "Base L2 Contract validated for block 19842104.",
+            "BPD emotional mapping scanner running background diagnostics.",
+            "Telemetry sync completed Eilat Node 1.",
+            "Reputation score validated by SOUL protocol controller.",
+            "Forensic audits updated for USPTO PTO-2042A."
+        ];
+        const logsEl = document.getElementById('terminalLogs');
+        if(logsEl) {
+            setInterval(() => {
+                const timestamp = new Date().toTimeString().split(' ')[0];
+                const randLog = logs[Math.floor(Math.random() * logs.length)];
+                const logLine = document.createElement('div');
+                logLine.className = 'log-line';
+                logLine.innerHTML = `<span class="log-timestamp">[${timestamp}]</span> ${randLog}`;
+                logsEl.appendChild(logLine);
+                logsEl.scrollTop = logsEl.scrollHeight;
+                if(logsEl.childElementCount > 18) {
+                    logsEl.removeChild(logsEl.firstChild);
+                }
+            }, 2500);
+        }
+
+        // Interactive Deck Presentation Slides
+        let currentSlide = 0;
+        const slides = [
+            {
+                indicator: "SLIDE 1 of 3 &bull; THE ADDRESSABLE MARKET",
+                title: "The Underserved 1.2 Billion",
+                bullets: [
+                    {
+                        title: "Severe Market Vacuum",
+                        desc: "1.2 billion+ neurodivergent people globally have no reliable cognitive infrastructure platform built explicitly for their workflow needs."
+                    },
+                    {
+                        title: "Rapid Market Expansion",
+                        desc: "The global mental health application market cap is projected to reach $17.5B by the year 2030, with a compounding growth rate exceeding 18.8% CAGR."
+                    }
+                ]
+            },
+            {
+                indicator: "SLIDE 2 of 3 &bull; THE CLOSED-LOOP ECOSYSTEM",
+                title: "Convergent Architecture",
+                bullets: [
+                    {
+                        title: "Multi-Vertical Synergy",
+                        desc: "Not a single-product play. Core system components flow directly into one another: Layer 1 powers Layer 2 SaaS, funded by verifiably secure Layer 3 pools."
+                    },
+                    {
+                        title: "Art Validation Proofs",
+                        desc: "Artworks function as absolute physical security proofs with Akoun certification ledger values."
+                    }
+                ]
+            },
+            {
+                indicator: "SLIDE 3 of 3 &bull; PARTICIPATION STRATEGY",
+                title: "Seeking Strategic Financing",
+                bullets: [
+                    {
+                        title: "Ecosystem Scaling Target",
+                        desc: "Engaging structured corporate debt, direct seed-equity, and multi-vertical project financing options for Delaware transition."
+                    },
+                    {
+                        title: "Operational Safeguards",
+                        desc: "Continuous automated GUARDIAN infrastructure ensures active forensic verification compliance across global nodes."
+                    }
+                ]
+            }
+        ];
+
+        function renderSlide() {
+            const slide = slides[currentSlide];
+            document.getElementById('slideIndicator').innerHTML = slide.indicator;
+            
+            let htmlContent = `<h3>${slide.title}</h3><div class="slide-bullets">`;
+            slide.bullets.forEach(b => {
+                htmlContent += `
+                    <div class="slide-bullet">
+                        <span class="bullet-dot"></span>
+                        <div class="bullet-text">
+                            <strong>${b.title}</strong>
+                            <p>${b.desc}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            htmlContent += `</div>`;
+            document.getElementById('slideContent').innerHTML = htmlContent;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            renderSlide();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            renderSlide();
+        }
+    </script>
+<a href="https://omma.build/p/soul-in-psyabstract-sipa-ecosystem-overv-wifrzg" target="_blank" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:rgba(0,0,0,0.85);border:1px solid rgba(0,255,255,0.4);color:#00ffff;font-family:monospace;font-size:11px;letter-spacing:.1em;padding:8px 14px;border-radius:20px;text-decoration:none;backdrop-filter:blur(10px);box-shadow:0 0 20px rgba(0,255,255,0.2)">⬡ VIEW ON OMMA</a>
+</body>
+</html>

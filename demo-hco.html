@@ -1,0 +1,231 @@
+<meta charset="UTF-8"><title>HCO Behavioral Health — Content Strategy Sample</title>
+<style>
+  :root {
+    --bg: #F5F7FA;
+    --surface: #FFFFFF;
+    --teal: #0E7B6C;
+    --teal-light: #E6F4F1;
+    --teal-mid: #1A9C8A;
+    --text: #1C2B3A;
+    --muted: #607080;
+    --border: #DDE3EC;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.65; }
+
+  header { background: var(--teal); padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between; }
+  .hdr-left h1 { font-size: 1.05rem; font-weight: 700; color: white; letter-spacing: -0.01em; }
+  .hdr-left p { font-size: 0.78rem; color: rgba(255,255,255,0.65); margin-top: 0.2rem; letter-spacing: 0.04em; text-transform: uppercase; }
+  .hdr-badge { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: white; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0.875rem; border-radius: 100px; }
+
+  .main { max-width: 820px; margin: 0 auto; padding: 2.5rem 2rem 5rem; }
+
+  .intro-card { background: var(--teal-light); border: 1px solid rgba(14,123,108,0.2); border-radius: 8px; padding: 1.5rem 2rem; margin-bottom: 2.5rem; }
+  .intro-card p { font-size: 0.925rem; color: var(--teal); line-height: 1.65; }
+  .intro-card strong { font-weight: 700; }
+
+  .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .posts-stack { display: flex; flex-direction: column; gap: 1.125rem; margin-bottom: 2.5rem; }
+  .post-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .post-header { background: var(--teal); padding: 0.6rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+  .post-platform { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+  .post-type { font-size: 0.7rem; font-weight: 600; color: white; background: rgba(255,255,255,0.15); padding: 0.2rem 0.6rem; border-radius: 100px; }
+  .post-body { padding: 1.25rem 1.5rem; }
+  .post-text { font-size: 0.9rem; line-height: 1.7; margin-bottom: 0.875rem; white-space: pre-line; }
+  .post-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag { background: var(--teal-light); color: var(--teal); font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 100px; }
+  .note { font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 0.75rem; margin-top: 0.875rem; font-style: italic; }
+
+  .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem; margin-bottom: 2.5rem; }
+  .cal-day { text-align: center; }
+  .cal-day-name { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+  .cal-slot { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 0.5rem 0.25rem; min-height: 56px; font-size: 0.68rem; line-height: 1.4; color: var(--muted); }
+  .cal-slot.has-post { background: var(--teal-light); border-color: rgba(14,123,108,0.3); color: var(--teal); font-weight: 600; }
+  .cal-slot.peak { background: var(--teal); color: white; border-color: var(--teal); font-weight: 600; }
+
+  .ai-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; margin-bottom: 2.5rem; }
+  .ai-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--teal); margin-bottom: 1.25rem; }
+  .flow { display: flex; flex-direction: column; gap: 0.75rem; }
+  .flow-step { display: flex; gap: 1rem; align-items: flex-start; }
+  .flow-num { width: 26px; height: 26px; border-radius: 50%; background: var(--teal); color: white; font-size: 0.72rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+  .flow-text h4 { font-size: 0.875rem; font-weight: 700; margin-bottom: 0.15rem; }
+  .flow-text p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+  footer { background: var(--teal); padding: 1.25rem 2.5rem; display: flex; align-items: center; justify-content: space-between; }
+  .ft { font-size: 0.78rem; color: rgba(255,255,255,0.6); }
+  .ft-name { color: white; font-weight: 700; }
+</style>
+
+<header>
+  <div class="hdr-left">
+    <h1>HCO Behavioral Health — Content Strategy Sample</h1>
+    <p>Prepared by Aelin AquaSoul · Soul In PsyAbstract</p>
+  </div>
+  <div class="hdr-badge">Sample Package</div>
+</header>
+
+<div class="main">
+
+  <div class="intro-card">
+    <p>This package demonstrates my approach to mental health content marketing: <strong>trust-first messaging, educational framing, and AI-accelerated production</strong>. Each post is written to move someone from awareness to a booked appointment — without pressure tactics. The calendar and AI workflow show how this scales to a repeatable system.</p>
+  </div>
+
+  <div class="section-label">5 Ready-to-Post Content Samples</div>
+
+  <div class="posts-stack">
+
+    <div class="post-card">
+      <div class="post-header">
+        <span class="post-platform">Instagram / Facebook</span>
+        <span class="post-type">Educational</span>
+      </div>
+      <div class="post-body">
+        <p class="post-text">There's a moment most people recognize in hindsight:
+
+The one where they needed support but told themselves it wasn't "bad enough" yet.
+
+At HCO, we hear this often. And the truth is — you don't have to be in crisis to benefit from care.
+
+Whether it's managing ADHD, working through anxiety, or supporting a child through a hard season, early support changes outcomes.
+
+📍 Serving Baton Rouge and Louisiana families since 2014.
+🔗 Link in bio to learn more or schedule a call.</p>
+        <div class="post-meta">
+          <span class="tag">#MentalHealth</span>
+          <span class="tag">#BehavioralHealth</span>
+          <span class="tag">#BatonRouge</span>
+          <span class="tag">#YouDontHaveToWait</span>
+        </div>
+        <p class="note">AI workflow: drafted in 90 seconds with Claude prompt template, human-reviewed for clinical accuracy. Tone: warm, non-alarmist, locally grounded.</p>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-header">
+        <span class="post-platform">Facebook</span>
+        <span class="post-type">Referral / Trust</span>
+      </div>
+      <div class="post-body">
+        <p class="post-text">If you work in pediatrics, education, or family services in Baton Rouge — we'd love to connect.
+
+HCO Behavioral Health offers medication management for children and adolescents, and we're accepting new patients.
+
+Referring providers can reach us directly at [contact] — we prioritize timely intake and keep referring providers in the loop.
+
+Because kids can't wait months for support.</p>
+        <div class="post-meta">
+          <span class="tag">Referral Campaign</span>
+          <span class="tag">B2B Outreach</span>
+          <span class="tag">Pediatric</span>
+        </div>
+        <p class="note">Target audience: pediatricians, school counselors, social workers. Boosted with $15–25 FB ad spend to professional audience in Baton Rouge metro.</p>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-header">
+        <span class="post-platform">Instagram</span>
+        <span class="post-type">Myth-Busting</span>
+      </div>
+      <div class="post-body">
+        <p class="post-text">Myth: Medication management means you'll be on medication forever.
+
+Reality: It means you'll have a provider who actually monitors what's working, adjusts when it's not, and treats your child as an individual — not a protocol.
+
+At HCO, medication management is one tool in a larger care picture. We talk about goals, not just dosages.
+
+Questions? Our intake team is reachable at [link].</p>
+        <div class="post-meta">
+          <span class="tag">Myth-Busting</span>
+          <span class="tag">Education</span>
+          <span class="tag">#ChildMentalHealth</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-header">
+        <span class="post-platform">Instagram Reel / Short Video</span>
+        <span class="post-type">Story Script</span>
+      </div>
+      <div class="post-body">
+        <p class="post-text">HOOK (0–3s): "Three signs a child might need more support than we realize."
+
+BODY (3–25s):
+→ They're avoiding school more than usual
+→ Mood changes feel bigger than typical teen stuff
+→ They've stopped doing things they used to love
+
+CLOSE (25–30s): "These aren't red flags — they're check-in moments. HCO Behavioral Health, Baton Rouge. Link in bio."</p>
+        <div class="post-meta">
+          <span class="tag">Reel Script</span>
+          <span class="tag">30s Format</span>
+          <span class="tag">Hook-Body-CTA</span>
+        </div>
+        <p class="note">Video reels drive 3–4× more reach than static posts on IG. This script is optimized for text-on-screen format — no talking head required.</p>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-header">
+        <span class="post-platform">Facebook / Email</span>
+        <span class="post-type">Community Trust</span>
+      </div>
+      <div class="post-body">
+        <p class="post-text">12 years in Baton Rouge.
+
+We've seen families navigate some of the hardest seasons of their lives. Children who came to us struggling, and left with real tools.
+
+HCO Behavioral Health exists because quality mental health care should be accessible — not just available.
+
+If you're ready to take a first step, we make it easy. Reach out at [contact].
+
+We'll take it from there.</p>
+        <div class="post-meta">
+          <span class="tag">Brand Story</span>
+          <span class="tag">Trust-Building</span>
+          <span class="tag">12 Years</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-label">Sample 2-Week Content Calendar</div>
+
+  <div class="calendar-grid">
+    <div class="cal-day"><div class="cal-day-name">Mon</div><div class="cal-slot has-post">Educational post (IG/FB)</div></div>
+    <div class="cal-day"><div class="cal-day-name">Tue</div><div class="cal-slot">—</div></div>
+    <div class="cal-day"><div class="cal-day-name">Wed</div><div class="cal-slot has-post">Myth-busting (IG)</div></div>
+    <div class="cal-day"><div class="cal-day-name">Thu</div><div class="cal-day-name" style="margin-top:1.6rem"></div><div class="cal-slot">—</div></div>
+    <div class="cal-day"><div class="cal-day-name">Fri</div><div class="cal-slot peak">Reel drops (peak reach)</div></div>
+    <div class="cal-day"><div class="cal-day-name">Sat</div><div class="cal-slot">—</div></div>
+    <div class="cal-day"><div class="cal-day-name">Sun</div><div class="cal-slot has-post">Community story (FB)</div></div>
+    <div class="cal-day"><div class="cal-slot has-post">Referral post (FB)</div></div>
+    <div class="cal-day"><div class="cal-slot">—</div></div>
+    <div class="cal-day"><div class="cal-slot has-post">Awareness stat (IG)</div></div>
+    <div class="cal-day"><div class="cal-slot">—</div></div>
+    <div class="cal-day"><div class="cal-slot peak">CTA post (peak day)</div></div>
+    <div class="cal-day"><div class="cal-slot">—</div></div>
+    <div class="cal-day"><div class="cal-slot has-post">Week recap (FB)</div></div>
+  </div>
+
+  <div class="ai-card">
+    <h3>AI-Powered Content Workflow</h3>
+    <div class="flow">
+      <div class="flow-step"><div class="flow-num">1</div><div class="flow-text"><h4>Intake (30 min/week)</h4><p>I brief the AI system with your latest services, any news, and audience signals from the previous week's analytics.</p></div></div>
+      <div class="flow-step"><div class="flow-num">2</div><div class="flow-text"><h4>Draft Generation (automated)</h4><p>SIPA OS generates 8–10 draft posts per week using Claude + mental health content models. All drafts follow clinical tone guidelines.</p></div></div>
+      <div class="flow-step"><div class="flow-num">3</div><div class="flow-text"><h4>Human Review (15 min)</h4><p>I review, refine, and approve 4–5 posts for the week. Anything that doesn't pass the "would a clinician cringe?" test is rewritten.</p></div></div>
+      <div class="flow-step"><div class="flow-num">4</div><div class="flow-text"><h4>Scheduled & Tracked</h4><p>Posts go out via automated scheduler. Engagement, reach, and inquiry uplift tracked weekly. Strategy adjusts monthly.</p></div></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="ft"><span class="ft-name">Aelin AquaSoul</span> · Soul In PsyAbstract · sipa-os.org</div>
+  <div class="ft">Sample prepared for HCO Behavioral Health · 2026</div>
+</footer>

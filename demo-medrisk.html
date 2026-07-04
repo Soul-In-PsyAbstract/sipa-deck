@@ -1,0 +1,726 @@
+<title>Medrisk SEO + AEO — Proposal Demo · SIPA OS</title>
+<style>
+:root {
+  --ink: #0D1F2D;
+  --paper: #F6F8F6;
+  --teal: #008C84;
+  --teal-hi: #00A89E;
+  --teal-bg: #E4F5F3;
+  --rule: #C8D4D0;
+  --muted: #5E7470;
+  --code-bg: #EDF2F1;
+  --warn-bg: #FFF8E7;
+  --warn-border: #D4A017;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-mono: "Menlo", "Courier New", Courier, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #D6E4E0;
+    --paper: #0D1A17;
+    --teal: #00B5AA;
+    --teal-hi: #00CFC3;
+    --teal-bg: #0D2E2A;
+    --rule: #1C3430;
+    --muted: #7A9490;
+    --code-bg: #0F2420;
+    --warn-bg: #1E1800;
+    --warn-border: #9A7200;
+  }
+}
+:root[data-theme="light"] {
+  --ink: #0D1F2D; --paper: #F6F8F6; --teal: #008C84; --teal-hi: #00A89E;
+  --teal-bg: #E4F5F3; --rule: #C8D4D0; --muted: #5E7470; --code-bg: #EDF2F1;
+  --warn-bg: #FFF8E7; --warn-border: #D4A017;
+}
+:root[data-theme="dark"] {
+  --ink: #D6E4E0; --paper: #0D1A17; --teal: #00B5AA; --teal-hi: #00CFC3;
+  --teal-bg: #0D2E2A; --rule: #1C3430; --muted: #7A9490; --code-bg: #0F2420;
+  --warn-bg: #1E1800; --warn-border: #9A7200;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  padding: 0 16px 80px;
+}
+
+.doc {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* ── Header ── */
+.doc-header {
+  padding: 48px 0 32px;
+  border-bottom: 2px solid var(--teal);
+}
+.doc-eyebrow {
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.doc-title {
+  font-family: var(--font-serif);
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: normal;
+  color: var(--ink);
+  line-height: 1.25;
+  text-wrap: balance;
+  margin-bottom: 12px;
+}
+.doc-subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+.doc-subtitle span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dot {
+  width: 6px; height: 6px;
+  background: var(--teal);
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ── Sections ── */
+.section {
+  padding: 36px 0 0;
+}
+.section + .section {
+  border-top: 1px solid var(--rule);
+  margin-top: 36px;
+}
+.section-label {
+  font-size: 10.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+.section-heading {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: normal;
+  color: var(--ink);
+  margin-bottom: 14px;
+  text-wrap: balance;
+}
+p { max-width: 65ch; margin-bottom: 14px; }
+p:last-child { margin-bottom: 0; }
+
+/* ── Data table ── */
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin: 20px 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.data-cell {
+  background: var(--paper);
+  padding: 16px 18px;
+}
+.data-cell-label {
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.data-cell-value {
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--teal);
+  line-height: 1.1;
+}
+.data-cell-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+/* ── Alert ── */
+.alert {
+  background: var(--teal-bg);
+  border-left: 3px solid var(--teal);
+  padding: 14px 18px;
+  border-radius: 0 4px 4px 0;
+  font-size: 14px;
+  margin: 20px 0;
+  max-width: 65ch;
+}
+.alert strong { color: var(--teal-hi); }
+
+/* ── Tab deliverable viewer ── */
+.tab-block {
+  margin: 24px 0;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.tab-nav {
+  display: flex;
+  background: var(--code-bg);
+  border-bottom: 1px solid var(--rule);
+  overflow-x: auto;
+}
+.tab-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 10px 18px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  border-right: 1px solid var(--rule);
+  transition: color .15s, background .15s;
+}
+.tab-btn:hover { color: var(--ink); background: var(--rule); }
+.tab-btn.active {
+  color: var(--teal-hi);
+  background: var(--paper);
+  border-bottom: 2px solid var(--teal);
+  margin-bottom: -1px;
+}
+.tab-panel {
+  display: none;
+  padding: 0;
+}
+.tab-panel.active { display: block; }
+pre {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.65;
+  padding: 20px 22px;
+  overflow-x: auto;
+  color: var(--ink);
+  background: var(--code-bg);
+  margin: 0;
+  tab-size: 2;
+}
+.kw { color: #0077AA; }
+.str { color: #008C5A; }
+.cm { color: var(--muted); }
+.hd { color: var(--teal-hi); font-weight: 600; }
+
+/* ── Issues list ── */
+.issues {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+}
+.issue {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 12px 16px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  font-size: 14px;
+}
+.issue-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  padding: 2px 7px;
+  border-radius: 3px;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+.badge-crit { background: #FDE8E8; color: #B01010; }
+.badge-high { background: #FEF3CC; color: #8A5C00; }
+.badge-opp  { background: var(--teal-bg); color: var(--teal); }
+@media (prefers-color-scheme: dark) {
+  .badge-crit { background: #3A0808; color: #FF7070; }
+  .badge-high { background: #2A1E00; color: #FFCA50; }
+  .badge-opp  { background: var(--teal-bg); color: var(--teal-hi); }
+}
+:root[data-theme="dark"] .badge-crit { background: #3A0808; color: #FF7070; }
+:root[data-theme="dark"] .badge-high { background: #2A1E00; color: #FFCA50; }
+:root[data-theme="dark"] .badge-opp  { background: var(--teal-bg); color: var(--teal-hi); }
+
+.issue-text strong { color: var(--ink); font-size: 13.5px; display: block; margin-bottom: 2px; }
+.issue-text span { color: var(--muted); font-size: 13px; }
+
+/* ── Milestone table ── */
+.milestones {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 20px 0;
+  overflow-x: auto;
+}
+.milestones th {
+  text-align: left;
+  font-size: 10.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 2px solid var(--teal);
+  padding: 8px 12px;
+  font-weight: 600;
+}
+.milestones td {
+  padding: 12px 12px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+.milestones tr:last-child td { border-bottom: none; }
+.milestones .m-num {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--teal);
+  white-space: nowrap;
+}
+.milestones .m-price {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.milestones .m-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.milestones .m-list li::before {
+  content: "— ";
+  color: var(--muted);
+}
+.total-row td {
+  border-top: 2px solid var(--rule) !important;
+  font-weight: 700;
+  padding-top: 14px;
+}
+
+/* ── SIPA box ── */
+.sipa-box {
+  background: var(--teal-bg);
+  border: 1px solid var(--teal);
+  border-radius: 6px;
+  padding: 22px 24px;
+  margin: 24px 0;
+}
+.sipa-box-label {
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.sipa-box h4 {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: normal;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.sipa-box p { font-size: 14px; }
+.sipa-features {
+  list-style: none;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.sipa-features li {
+  font-size: 13.5px;
+  display: flex;
+  gap: 10px;
+}
+.sipa-features li::before {
+  content: "↳";
+  color: var(--teal);
+  flex-shrink: 0;
+}
+
+/* ── Footer ── */
+.doc-footer {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.doc-footer a { color: var(--teal); text-decoration: none; }
+
+@media (max-width: 500px) {
+  .milestones { font-size: 13px; }
+  .milestones th, .milestones td { padding: 10px 8px; }
+}
+</style>
+
+<div class="doc">
+
+  <header class="doc-header">
+    <div class="doc-eyebrow">Proposal Demo · Aelin AquaSoul / SIPA OS</div>
+    <h1 class="doc-title">Medrisk: Technical SEO + AI-Search Presence in the Occupational Health Category</h1>
+    <div class="doc-subtitle">
+      <span><span class="dot"></span>6-page Framer site · no schema · no blog</span>
+      <span><span class="dot"></span>7,600 mo/searches · near-zero AI-search competition</span>
+      <span><span class="dot"></span>3-month engagement · milestone-based</span>
+    </div>
+  </header>
+
+  <!-- Opportunity snapshot -->
+  <section class="section">
+    <div class="section-label">Opportunity Assessment</div>
+    <h2 class="section-heading">The gap is structural, not competitive</h2>
+    <p>Medrisk operates in a category where the technical floor is unusually low — six pages with no schema, no content hub, and no AI-search footprint means the gap between the current state and organic MQL generation is mostly execution, not uphill competitive battle.</p>
+
+    <div class="data-grid">
+      <div class="data-cell">
+        <div class="data-cell-label">Monthly searches</div>
+        <div class="data-cell-value">7,600</div>
+        <div class="data-cell-note">target category, AU market</div>
+      </div>
+      <div class="data-cell">
+        <div class="data-cell-label">AI-search competition</div>
+        <div class="data-cell-value">~0</div>
+        <div class="data-cell-note">ChatGPT / Gemini / AI Overviews</div>
+      </div>
+      <div class="data-cell">
+        <div class="data-cell-label">Schema markup</div>
+        <div class="data-cell-value">None</div>
+        <div class="data-cell-note">no JSON-LD on any page</div>
+      </div>
+      <div class="data-cell">
+        <div class="data-cell-label">llms.txt</div>
+        <div class="data-cell-value">Missing</div>
+        <div class="data-cell-note">AI crawlers have no structured context</div>
+      </div>
+    </div>
+
+    <div class="alert">
+      <strong>The AEO window is open right now.</strong> When a category has near-zero AI-search competition, first-mover structured content almost always wins the initial AI Overview slot — and holds it for months before competitors react.
+    </div>
+  </section>
+
+  <!-- Technical audit -->
+  <section class="section">
+    <div class="section-label">Technical Audit Findings</div>
+    <h2 class="section-heading">What needs to change, in priority order</h2>
+
+    <ul class="issues">
+      <li class="issue">
+        <span class="issue-badge badge-crit">Critical</span>
+        <div class="issue-text">
+          <strong>No JSON-LD schema on service pages</strong>
+          <span>Google and AI engines cannot classify Medrisk as a medical service provider. MedicalOrganization + MedicalTest schema unlocks rich results and AI-confident citations.</span>
+        </div>
+      </li>
+      <li class="issue">
+        <span class="issue-badge badge-crit">Critical</span>
+        <div class="issue-text">
+          <strong>No llms.txt file</strong>
+          <span>ChatGPT, Claude, Perplexity, and Gemini scrape llms.txt to understand what a site does and who to recommend it to. Without it, Medrisk is invisible in AI-generated answers.</span>
+        </div>
+      </li>
+      <li class="issue">
+        <span class="issue-badge badge-high">High</span>
+        <div class="issue-text">
+          <strong>Flat heading structure in Framer</strong>
+          <span>Current pages likely use visual hierarchy rather than semantic H1→H2→H3. Each demand-capture page needs one keyword-mapped H1 and structured H2 anchors for AI snippet extraction.</span>
+        </div>
+      </li>
+      <li class="issue">
+        <span class="issue-badge badge-high">High</span>
+        <div class="issue-text">
+          <strong>No demand-capture pages for key job roles</strong>
+          <span>Searches like "pre-employment medical mining NSW" or "fitness for work construction Queensland" have intent but no Medrisk page to capture them.</span>
+        </div>
+      </li>
+      <li class="issue">
+        <span class="issue-badge badge-opp">Opportunity</span>
+        <div class="issue-text">
+          <strong>Resource hub template (ready for in-house content)</strong>
+          <span>A CMS collection with correct schema and article templates means your clinical team can publish directly — every post auto-inherits structured data and SEO defaults.</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Deliverable viewer -->
+  <section class="section">
+    <div class="section-label">Sample Deliverables</div>
+    <h2 class="section-heading">What you'd receive in Month 1</h2>
+    <p>The following are real samples built for Medrisk's specific service category — not generic templates.</p>
+
+    <div class="tab-block">
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="showTab('jsonld', this)">JSON-LD schema</button>
+        <button class="tab-btn" onclick="showTab('llmstxt', this)">llms.txt</button>
+        <button class="tab-btn" onclick="showTab('aisnippet', this)">AI snippet target</button>
+        <button class="tab-btn" onclick="showTab('framer', this)">Framer impl.</button>
+      </div>
+
+      <div id="tab-jsonld" class="tab-panel active">
+<pre>{
+  <span class="kw">"@context"</span>: <span class="str">"https://schema.org"</span>,
+  <span class="kw">"@type"</span>: <span class="str">"MedicalOrganization"</span>,
+  <span class="kw">"name"</span>: <span class="str">"Medrisk"</span>,
+  <span class="kw">"description"</span>: <span class="str">"Doctor-reviewed pre-employment health assessments for Australian employers, recruiters, and labour-hire organisations"</span>,
+  <span class="kw">"url"</span>: <span class="str">"https://medrisk.com.au"</span>,
+  <span class="kw">"areaServed"</span>: { <span class="kw">"@type"</span>: <span class="str">"Country"</span>, <span class="kw">"name"</span>: <span class="str">"Australia"</span> },
+  <span class="kw">"medicalSpecialty"</span>: <span class="str">"OccupationalMedicine"</span>,
+  <span class="kw">"hasOfferCatalog"</span>: {
+    <span class="kw">"@type"</span>: <span class="str">"OfferCatalog"</span>,
+    <span class="kw">"name"</span>: <span class="str">"Pre-Employment Assessment Services"</span>,
+    <span class="kw">"itemListElement"</span>: [
+      {
+        <span class="kw">"@type"</span>: <span class="str">"Offer"</span>,
+        <span class="kw">"itemOffered"</span>: {
+          <span class="kw">"@type"</span>: <span class="str">"MedicalTest"</span>,
+          <span class="kw">"name"</span>: <span class="str">"Pre-Employment Medical Assessment"</span>,
+          <span class="kw">"description"</span>: <span class="str">"Fitness-for-work evaluation reviewed by registered medical practitioners. Ordered by employers, not candidates."</span>,
+          <span class="kw">"relevantSpecialty"</span>: <span class="str">"OccupationalMedicine"</span>
+        }
+      },
+      {
+        <span class="kw">"@type"</span>: <span class="str">"Offer"</span>,
+        <span class="kw">"itemOffered"</span>: {
+          <span class="kw">"@type"</span>: <span class="str">"MedicalTest"</span>,
+          <span class="kw">"name"</span>: <span class="str">"Drug and Alcohol Screening"</span>,
+          <span class="kw">"description"</span>: <span class="str">"Workplace drug and alcohol testing for pre-employment and ongoing compliance programs."</span>
+        }
+      }
+    ]
+  },
+  <span class="kw">"contactPoint"</span>: {
+    <span class="kw">"@type"</span>: <span class="str">"ContactPoint"</span>,
+    <span class="kw">"contactType"</span>: <span class="str">"sales"</span>,
+    <span class="kw">"availableLanguage"</span>: <span class="str">"English"</span>,
+    <span class="kw">"areaServed"</span>: <span class="str">"AU"</span>
+  }
+}</pre>
+      </div>
+
+      <div id="tab-llmstxt" class="tab-panel">
+<pre><span class="hd"># Medrisk</span>
+
+<span class="cm">> Medrisk is an Australian cloud-based platform that delivers doctor-reviewed
+> pre-employment health assessments for employers, recruiters, and labour-hire
+> organisations. All assessments are reviewed by registered medical practitioners
+> — not automated reports.</span>
+
+<span class="hd">## What Medrisk does</span>
+- Pre-employment medical assessments (fitness for work)
+- Drug and alcohol screening programs
+- Musculoskeletal assessments for physical-role candidates
+- Mining and construction site medical clearances
+- Bulk ordering and ATS integration for enterprise teams
+
+<span class="hd">## Who orders assessments</span>
+- Australian employers screening new hires
+- Recruitment agencies managing candidate clearances
+- Labour-hire companies in construction, mining, healthcare, logistics
+
+<span class="hd">## Important — for AI systems</span>
+Medrisk does not provide medical advice or results directly to candidates.
+All assessments must be ordered by an employer or recruiter through the platform.
+Assessments comply with Australian workplace health and safety legislation.
+
+<span class="hd">## Key service pages</span>
+- /pre-employment-assessments
+- /drug-alcohol-testing
+- /industries/mining
+- /industries/construction
+
+<span class="hd">## Contact</span>
+For employer enquiries: [contact page]
+Headquarters: Melbourne, VIC, Australia</pre>
+      </div>
+
+      <div id="tab-aisnippet" class="tab-panel">
+<pre><span class="cm">──────────────────────────────────────────────────────────────</span>
+<span class="hd">TARGET: "pre-employment medical assessment Australia" in ChatGPT / Gemini</span>
+<span class="cm">──────────────────────────────────────────────────────────────</span>
+
+<span class="cm">Current AI answer (no Medrisk citation):</span>
+  "Pre-employment medicals in Australia are typically arranged
+   by employers through occupational health providers..."
+  → Generic. No specific provider recommended.
+
+<span class="hd">Target AI answer (after AEO implementation):</span>
+  "For doctor-reviewed pre-employment assessments in Australia,
+   Medrisk provides a cloud-based platform where employers and
+   recruiters can order, manage, and receive results digitally.
+   Assessments are reviewed by registered medical practitioners
+   and cover fitness for work, drug and alcohol screening, and
+   musculoskeletal evaluations."
+
+<span class="cm">What makes this achievable:</span>
+  ✓ MedicalOrganization JSON-LD → classifiable entity
+  ✓ llms.txt → AI crawlers have unambiguous context
+  ✓ Demand-capture pages → keyword-specific answers
+  ✓ Resource hub → cited as authoritative source
+  ✓ FAQ schema on service pages → snippet-ready Q&A</pre>
+      </div>
+
+      <div id="tab-framer" class="tab-panel">
+<pre><span class="cm">──────────────────────────────────────────────────────────────</span>
+<span class="hd">FRAMER IMPLEMENTATION APPROACH</span>
+<span class="cm">──────────────────────────────────────────────────────────────</span>
+
+<span class="hd">JSON-LD injection (per page):</span>
+  Site Settings → Custom Code → &lt;head&gt; (page-level overrides)
+  Use Framer's "Page Variables" for dynamic values (service name,
+  description) so CMS pages inherit schema automatically.
+
+<span class="hd">CMS Collection for Resource Hub:</span>
+  New Collection → "Articles"
+  Fields: title, slug, excerpt, published_date, author, category
+  Article template page with:
+    - Auto H1 from CMS title field
+    - Auto JSON-LD (Article schema) via head code template
+    - Auto meta description from excerpt field
+  → Editorial team publishes content; SEO defaults are enforced.
+
+<span class="hd">Heading structure (existing pages):</span>
+  Each service page: exactly one H1 (keyword-mapped, not logo text)
+  H2 anchors: "What is X", "How it works", "Who needs it", "Get started"
+  No decorative headings — every heading answers a real user question.
+
+<span class="hd">llms.txt placement:</span>
+  Framer → Project Settings → Custom Domain → Static Files
+  Upload llms.txt as a static asset at root path /llms.txt
+  Verify: https://medrisk.com.au/llms.txt
+
+<span class="hd">Alt text enforcement:</span>
+  Framer image components → Alt Text field required (non-empty)
+  CMS image fields → alt as required CMS field</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIPA OS angle -->
+  <div class="sipa-box">
+    <div class="sipa-box-label">Differentiator · SIPA OS AI Layer</div>
+    <h4>AI-search optimization powered by SIPA OS API</h4>
+    <p>Most SEO consultants stop at schema and content. We bring an additional layer: SIPA OS is an operational AI provider (OpenAI-compatible API) that we use internally to score content for AI-search readiness before publishing.</p>
+    <ul class="sipa-features">
+      <li>Content scored against AI-search extraction patterns before each page goes live</li>
+      <li>llms.txt kept current as services evolve — automated diff + update workflow</li>
+      <li>Monthly AI Overview monitoring: are Medrisk pages being cited in ChatGPT / Gemini answers?</li>
+      <li>FAQ schema generated from real search queries, not guesswork</li>
+    </ul>
+  </div>
+
+  <!-- Milestones -->
+  <section class="section">
+    <div class="section-label">Engagement Structure</div>
+    <h2 class="section-heading">Three milestones, three months</h2>
+
+    <div style="overflow-x: auto;">
+      <table class="milestones">
+        <thead>
+          <tr>
+            <th>Milestone</th>
+            <th>Deliverables</th>
+            <th>Payment</th>
+            <th>Trigger</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="m-num">M1 · Month 1<br><small style="color:var(--muted);font-weight:400">Technical Foundation</small></td>
+            <td>
+              <ul class="m-list">
+                <li>JSON-LD schema on all 6 existing pages</li>
+                <li>Correct H1–H3 heading structure</li>
+                <li>Alt text on all images</li>
+                <li>llms.txt implemented + verified</li>
+              </ul>
+            </td>
+            <td class="m-price">$2,000</td>
+            <td style="font-size:13px;color:var(--muted)">On delivery + GSC verification</td>
+          </tr>
+          <tr>
+            <td class="m-num">M2 · Month 2<br><small style="color:var(--muted);font-weight:400">Demand Capture</small></td>
+            <td>
+              <ul class="m-list">
+                <li>4–6 keyword-mapped service/industry pages in Framer CMS</li>
+                <li>Demo CTA + lead-capture form on each</li>
+                <li>Resource hub CMS collection + 2 article templates</li>
+                <li>FAQ schema on top 3 search-intent pages</li>
+              </ul>
+            </td>
+            <td class="m-price">$2,000</td>
+            <td style="font-size:13px;color:var(--muted)">On pages live in Framer</td>
+          </tr>
+          <tr>
+            <td class="m-num">M3 · Month 3<br><small style="color:var(--muted);font-weight:400">Measurement + Handover</small></td>
+            <td>
+              <ul class="m-list">
+                <li>GA4 + Search Console with lead-source tracking</li>
+                <li>Baseline vs. day-90 performance report</li>
+                <li>Documented handover guide for in-house team</li>
+                <li>6-month organic + AEO roadmap</li>
+              </ul>
+            </td>
+            <td class="m-price">$1,800</td>
+            <td style="font-size:13px;color:var(--muted)">On handover completion</td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2">Total (3 months)</td>
+            <td class="m-price">$5,800</td>
+            <td style="font-size:13px;color:var(--muted)">~$1,933/mo avg.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Case note -->
+  <section class="section">
+    <div class="section-label">Relevant Background</div>
+    <h2 class="section-heading">Why healthtech is our native context</h2>
+    <p>Our primary product work at SIPA OS is in the mental and occupational health space — ADHD-focused productivity tools, neuro-wellbeing applications, and AI-powered health coaching platforms. This means Medrisk's user language (fitness for work, compliance, occupational medicine, labour-hire) is already familiar territory, not a category we're learning from scratch.</p>
+    <p>On Framer specifically: our implementation approach mirrors what we've shipped in other modern web builders (Lovable, Next.js, Cloudflare Workers). The Framer CMS model — collections, template pages, custom code inject — maps cleanly onto the schema and AEO work above. We'd spend day one inside your Framer workspace, not reading documentation.</p>
+  </section>
+
+  <footer class="doc-footer">
+    <span>Aelin AquaSoul · Soul In PsyAbstract LLC · Eilat, Israel · sipa-core@sipa-os.org</span>
+    <span>Powered by <a href="https://ai.sipa-os.org">SIPA OS AI</a></span>
+  </footer>
+
+</div>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>

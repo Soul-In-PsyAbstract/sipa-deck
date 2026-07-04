@@ -1,0 +1,191 @@
+<meta charset="UTF-8"><title>Cloudflare × Webflow — Technical Brief</title>
+<style>
+  :root {
+    --bg: #0C1321;
+    --surface: #111C2E;
+    --surface2: #162035;
+    --cf: #F6821F;
+    --cf-dim: rgba(246,130,31,0.15);
+    --cf-border: rgba(246,130,31,0.25);
+    --green: #3DD68C;
+    --blue: #60A5FA;
+    --purple: #C084FC;
+    --text: #E2E8F0;
+    --muted: #7B8FAD;
+    --border: rgba(255,255,255,0.08);
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --mono: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.25rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; background: var(--bg); z-index: 10;
+  }
+  .logo { display: flex; align-items: center; gap: 0.75rem; }
+  .logo-icon { width: 32px; height: 32px; background: var(--cf); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+  .logo-text { font-weight: 700; font-size: 0.95rem; letter-spacing: -0.01em; }
+  .logo-sub { color: var(--muted); font-size: 0.8rem; margin-left: 0.25rem; }
+  .badge { background: var(--cf-dim); border: 1px solid var(--cf-border); color: var(--cf); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.3rem 0.75rem; border-radius: 100px; }
+
+  .hero { padding: 4rem 2.5rem 3rem; max-width: 780px; }
+  .hero-tag { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cf); margin-bottom: 0.75rem; }
+  .hero h1 { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; text-wrap: balance; margin-bottom: 1rem; }
+  .hero h1 span { color: var(--cf); }
+  .hero p { color: var(--muted); font-size: 1.05rem; line-height: 1.65; max-width: 600px; }
+
+  .main { max-width: 900px; padding: 0 2.5rem 5rem; margin: 0 auto; }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; margin-bottom: 1.5rem; }
+  .card-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
+  .card-title::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--cf); }
+
+  .capability-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+  .cap { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem; }
+  .cap-icon { font-size: 1.25rem; margin-bottom: 0.625rem; }
+  .cap h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.35rem; }
+  .cap p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+  pre { background: #090F1A; border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; overflow-x: auto; font-family: var(--mono); font-size: 0.8rem; line-height: 1.7; margin-bottom: 1rem; }
+  .kw { color: var(--purple); }
+  .fn { color: var(--blue); }
+  .str { color: var(--green); }
+  .cm { color: #4A5E7A; font-style: italic; }
+  .num { color: #FB923C; }
+  .var { color: #E2E8F0; }
+
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-item { display: flex; gap: 1.25rem; padding-bottom: 1.5rem; position: relative; }
+  .tl-item:not(:last-child)::before { content: ''; position: absolute; left: 11px; top: 24px; bottom: 0; width: 1px; background: var(--border); }
+  .tl-dot { width: 24px; height: 24px; border-radius: 50%; background: var(--cf-dim); border: 1.5px solid var(--cf-border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.65rem; font-weight: 700; color: var(--cf); font-variant-numeric: tabular-nums; margin-top: 2px; }
+  .tl-content h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .tl-content p { font-size: 0.825rem; color: var(--muted); line-height: 1.5; }
+
+  .meta { display: flex; flex-wrap: wrap; gap: 0.625rem; margin-top: 1.5rem; }
+  .meta-tag { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; padding: 0.3rem 0.75rem; border-radius: 4px; }
+  .meta-tag.highlight { background: var(--cf-dim); border-color: var(--cf-border); color: var(--cf); }
+
+  footer { border-top: 1px solid var(--border); padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between; }
+  .ft-left { font-size: 0.8rem; color: var(--muted); }
+  .ft-link { color: var(--cf); text-decoration: none; font-size: 0.8rem; font-weight: 600; }
+</style>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">☁</div>
+    <div>
+      <span class="logo-text">Cloudflare × Webflow Specialist</span>
+      <span class="logo-sub">· Aelin AquaSoul</span>
+    </div>
+  </div>
+  <div class="badge">Technical Brief</div>
+</header>
+
+<div class="hero">
+  <div class="hero-tag">Proposal · Wow House Studio</div>
+  <h1>Bulk Webflow Updates at Scale<br>via <span>Cloudflare Workers</span></h1>
+  <p>I build CF Workers that interface with Webflow's CMS API to execute precise, high-volume updates across thousands of pages — with full audit logging and zero downtime.</p>
+</div>
+
+<div class="main">
+
+  <div class="card">
+    <div class="card-title">Core Capabilities</div>
+    <div class="capability-grid">
+      <div class="cap"><div class="cap-icon">⚡</div><h3>CF Workers at Scale</h3><p>6+ production Workers deployed. Routing logic, KV storage, rate limiting, bulk operations across large content trees.</p></div>
+      <div class="cap"><div class="cap-icon">🔗</div><h3>Webflow CMS API</h3><p>Bulk PATCH/DELETE operations, collection item management, staged rollouts with rollback capability.</p></div>
+      <div class="cap"><div class="cap-icon">🔍</div><h3>Precision at Scale</h3><p>Pagination handling, exponential backoff, idempotency keys. No duplicate writes, no missed pages.</p></div>
+      <div class="cap"><div class="cap-icon">📊</div><h3>Audit & Reporting</h3><p>Every change logged with timestamp, item ID, old/new value. Delivered as TSV or JSON on completion.</p></div>
+    </div>
+    <div class="meta">
+      <span class="meta-tag highlight">Cloudflare Workers</span>
+      <span class="meta-tag highlight">Webflow CMS API</span>
+      <span class="meta-tag">KV Storage</span>
+      <span class="meta-tag">Rate Limiting</span>
+      <span class="meta-tag">Bulk Operations</span>
+      <span class="meta-tag">Audit Logging</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Sample Worker — Webflow Bulk Field Update</div>
+<pre><span class="cm">// CF Worker: Bulk-update a custom field across all Webflow course pages</span>
+<span class="cm">// Handles pagination, rate limits, and audit log → KV</span>
+
+<span class="kw">export default</span> {
+  <span class="kw">async</span> <span class="fn">fetch</span>(<span class="var">request</span>, <span class="var">env</span>) {
+    <span class="kw">const</span> { <span class="var">searchParams</span> } = <span class="kw">new</span> <span class="fn">URL</span>(<span class="var">request</span>.<span class="var">url</span>);
+    <span class="kw">const</span> <span class="var">fieldSlug</span>  = <span class="var">searchParams</span>.<span class="fn">get</span>(<span class="str">'field'</span>);
+    <span class="kw">const</span> <span class="var">newValue</span>   = <span class="var">searchParams</span>.<span class="fn">get</span>(<span class="str">'value'</span>);
+    <span class="kw">const</span> <span class="var">dryRun</span>     = <span class="var">searchParams</span>.<span class="fn">get</span>(<span class="str">'dry'</span>) === <span class="str">'1'</span>;
+
+    <span class="kw">const</span> <span class="var">items</span>   = <span class="kw">await</span> <span class="fn">fetchAllItems</span>(<span class="var">env</span>.<span class="var">WF_TOKEN</span>, <span class="var">env</span>.<span class="var">COLLECTION_ID</span>);
+    <span class="kw">const</span> <span class="var">log</span>     = [];
+    <span class="kw">let</span>   <span class="var">updated</span> = <span class="num">0</span>;
+
+    <span class="kw">for</span> (<span class="kw">const</span> <span class="var">item</span> <span class="kw">of</span> <span class="var">items</span>) {
+      <span class="kw">if</span> (<span class="var">item</span>.<span class="var">fieldData</span>[<span class="var">fieldSlug</span>] === <span class="var">newValue</span>) <span class="kw">continue</span>;
+
+      <span class="kw">if</span> (!<span class="var">dryRun</span>) {
+        <span class="kw">await</span> <span class="fn">patchItem</span>(<span class="var">env</span>.<span class="var">WF_TOKEN</span>, <span class="var">item</span>.<span class="var">id</span>, { [<span class="var">fieldSlug</span>]: <span class="var">newValue</span> });
+        <span class="kw">await</span> <span class="fn">sleep</span>(<span class="num">120</span>); <span class="cm">// Webflow: 60 req/min rate limit</span>
+      }
+
+      <span class="var">log</span>.<span class="fn">push</span>({ <span class="var">id</span>: <span class="var">item</span>.<span class="var">id</span>, <span class="var">slug</span>: <span class="var">item</span>.<span class="var">fieldData</span>.<span class="var">slug</span>,
+                  <span class="var">old</span>: <span class="var">item</span>.<span class="var">fieldData</span>[<span class="var">fieldSlug</span>], <span class="var">new</span>: <span class="var">newValue</span> });
+      <span class="var">updated</span>++;
+    }
+
+    <span class="kw">await</span> <span class="var">env</span>.<span class="var">AUDIT_KV</span>.<span class="fn">put</span>(
+      <span class="str">`update-${</span><span class="kw">new</span> <span class="fn">Date</span>().<span class="fn">toISOString</span>()<span class="str">}`</span>,
+      <span class="fn">JSON</span>.<span class="fn">stringify</span>({ <span class="var">field</span>: <span class="var">fieldSlug</span>, <span class="var">updated</span>, <span class="var">dryRun</span>, <span class="var">log</span> })
+    );
+
+    <span class="kw">return</span> <span class="fn">Response</span>.<span class="fn">json</span>({ <span class="var">ok</span>: <span class="kw">true</span>, <span class="var">updated</span>, <span class="var">dryRun</span>, <span class="var">sampled</span>: <span class="var">log</span>.<span class="fn">slice</span>(<span class="num">0</span>, <span class="num">5</span>) });
+  }
+};</pre>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Engagement Timeline — 2 Weeks</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">1</div>
+        <div class="tl-content">
+          <h4>Day 1–2 · Audit & Dry Run</h4>
+          <p>Map all affected collection items. Run Worker in dry-run mode. Confirm scope, field names, and edge cases before touching production.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">2</div>
+        <div class="tl-content">
+          <h4>Day 3–8 · Staged Rollout</h4>
+          <p>Execute updates in batches of 500. Verify each batch against audit log before proceeding. Slack/email updates every 500 items.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">3</div>
+        <div class="tl-content">
+          <h4>Day 9–10 · QA & Verification</h4>
+          <p>Spot-check 50 random pages. Cross-reference Webflow CMS vs audit log. Document any exceptions.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">4</div>
+        <div class="tl-content">
+          <h4>Day 11–14 · Handoff</h4>
+          <p>Deliver final audit TSV, Worker source, and KV export. CF Worker stays deployed and reusable for future bulk operations.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="ft-left">Aelin AquaSoul · sipa-os.org · sipa-core@sipa-os.org</div>
+  <a class="ft-link" href="https://calendly.com/soulinpsyabstract/30min">Book 30-min call →</a>
+</footer>

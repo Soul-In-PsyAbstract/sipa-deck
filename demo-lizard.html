@@ -1,0 +1,160 @@
+<meta charset="UTF-8"><title>ProVent Home Services — Web Design Demo</title>
+<style>
+  :root {
+    --navy: #112240;
+    --navy-mid: #1E3A5F;
+    --ember: #FF6B2C;
+    --ember-light: #FF8C54;
+    --off-white: #F7F9FC;
+    --surface: #FFFFFF;
+    --muted: #5C6B7A;
+    --border: #DDE4EF;
+    --text: #1A2332;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); color: var(--text); background: var(--off-white); line-height: 1.6; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--navy); padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between; height: 60px;
+  }
+  .nav-logo { color: white; font-weight: 700; font-size: 1rem; letter-spacing: -0.02em; display: flex; align-items: center; gap: 0.5rem; }
+  .nav-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ember); }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.875rem; font-weight: 500; }
+  .nav-cta { background: var(--ember); color: white; border: none; padding: 0.5rem 1.25rem; border-radius: 4px; font-weight: 600; font-size: 0.875rem; cursor: pointer; }
+
+  .hero { background: var(--navy); padding: 5rem 2rem 7rem; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ''; position: absolute; top: -40%; right: -10%; width: 600px; height: 600px;
+    border-radius: 50%; border: 1px solid rgba(255,107,44,0.08); pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 56px;
+    background: var(--off-white); clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .hero-inner { max-width: 660px; margin: 0 auto; text-align: center; position: relative; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(255,107,44,0.12); border: 1px solid rgba(255,107,44,0.25);
+    color: var(--ember-light); padding: 0.3rem 0.85rem; border-radius: 100px;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+  }
+  .hero h1 { color: white; font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; text-wrap: balance; margin-bottom: 1.25rem; }
+  .hero h1 em { color: var(--ember); font-style: normal; }
+  .hero-sub { color: rgba(255,255,255,0.65); font-size: 1.05rem; margin-bottom: 2rem; }
+  .hero-actions { display: flex; gap: 0.875rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--ember); color: white; border: none; padding: 0.875rem 1.875rem; border-radius: 4px; font-weight: 700; font-size: 0.975rem; cursor: pointer; }
+  .btn-outline { background: transparent; color: white; border: 1.5px solid rgba(255,255,255,0.25); padding: 0.875rem 1.875rem; border-radius: 4px; font-weight: 600; font-size: 0.975rem; cursor: pointer; }
+
+  .stats { background: var(--ember); padding: 1.25rem 2rem; }
+  .stats-inner { max-width: 860px; margin: 0 auto; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 0.75rem; }
+  .stat { text-align: center; color: white; }
+  .stat-num { font-size: 1.625rem; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -0.03em; display: block; line-height: 1; }
+  .stat-label { font-size: 0.725rem; letter-spacing: 0.07em; text-transform: uppercase; opacity: 0.82; margin-top: 0.2rem; }
+
+  .section { padding: 4rem 2rem; }
+  .section-inner { max-width: 880px; margin: 0 auto; }
+  .eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ember); margin-bottom: 0.4rem; }
+  .section h2 { font-size: clamp(1.5rem, 3vw, 2.125rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; text-wrap: balance; margin-bottom: 2.5rem; color: var(--navy); }
+
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.125rem; }
+  .service-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 1.625rem; }
+  .service-icon { width: 42px; height: 42px; background: rgba(255,107,44,0.09); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 0.875rem; }
+  .service-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--navy); }
+  .service-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.55; }
+
+  .testimonials { background: var(--navy); padding: 4rem 2rem; }
+  .testimonials .eyebrow { color: var(--ember-light); }
+  .testimonials h2 { color: white; margin-bottom: 2rem; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; letter-spacing: -0.03em; text-wrap: balance; }
+  .t-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+  .t-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: 6px; padding: 1.5rem; }
+  .stars { color: var(--ember); font-size: 0.85rem; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+  .t-text { color: rgba(255,255,255,0.82); font-size: 0.875rem; line-height: 1.6; margin-bottom: 1rem; }
+  .t-author { font-size: 0.75rem; font-weight: 700; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .cta-wrap { background: var(--off-white); padding: 5rem 2rem; text-align: center; }
+  .cta-inner { max-width: 520px; margin: 0 auto; }
+  .cta-inner h2 { font-size: clamp(1.5rem, 3vw, 2.125rem); font-weight: 800; letter-spacing: -0.03em; color: var(--navy); margin-bottom: 0.875rem; text-wrap: balance; }
+  .cta-inner p { color: var(--muted); font-size: 1rem; margin-bottom: 1.75rem; }
+  .phone { display: block; font-size: 1.875rem; font-weight: 800; color: var(--ember); text-decoration: none; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; margin-bottom: 0.875rem; }
+
+  footer { background: #09111E; padding: 1.75rem 2rem; text-align: center; }
+  .ft { font-size: 0.78rem; color: rgba(255,255,255,0.25); letter-spacing: 0.04em; }
+  .ft-demo { font-size: 0.68rem; color: rgba(255,107,44,0.4); margin-top: 0.3rem; letter-spacing: 0.09em; text-transform: uppercase; }
+</style>
+
+<nav>
+  <div class="nav-logo"><div class="nav-dot"></div>ProVent Home Services</div>
+  <div class="nav-links">
+    <a href="#">Services</a>
+    <a href="#">Reviews</a>
+    <a href="#">About</a>
+  </div>
+  <button class="nav-cta">Call Now</button>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">⚡ Same-Day Service Available</div>
+    <h1>Charlotte's Most Trusted <em>HVAC & Plumbing</em> Team</h1>
+    <p class="hero-sub">Fast diagnosis. Honest pricing. No surprise invoices. Serving 1,200+ Charlotte homeowners since 2011.</p>
+    <div class="hero-actions">
+      <button class="btn-primary">Book Free Estimate</button>
+      <button class="btn-outline">Call (704) 555-0198</button>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat"><span class="stat-num">1,240+</span><div class="stat-label">Homes Served</div></div>
+    <div class="stat"><span class="stat-num">4.9★</span><div class="stat-label">Google Rating</div></div>
+    <div class="stat"><span class="stat-num">2 hr</span><div class="stat-label">Avg Response</div></div>
+    <div class="stat"><span class="stat-num">$0</span><div class="stat-label">Diagnostic Fee</div></div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="eyebrow">Services</div>
+    <h2>What We Fix, Install & Maintain</h2>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-icon">❄️</div><h3>AC Repair & Installation</h3><p>All makes and models. Emergency repairs, efficiency upgrades, full replacements with 10-year parts warranty.</p></div>
+      <div class="service-card"><div class="service-icon">🔥</div><h3>Heating & Furnace</h3><p>Gas, electric, heat pump — we service everything. Annual tune-ups, emergency breakdowns, full replacements.</p></div>
+      <div class="service-card"><div class="service-icon">🔧</div><h3>Plumbing</h3><p>Leak detection, water heater install, drain clearing. Licensed plumbers on call 7 days a week, no weekend surcharge.</p></div>
+      <div class="service-card"><div class="service-icon">📋</div><h3>Preventive Maintenance</h3><p>Annual plans from $89/year. Catch small issues before they become $2,000 emergencies.</p></div>
+      <div class="service-card"><div class="service-icon">💧</div><h3>Air Quality</h3><p>Humidifiers, UV purifiers, filter upgrades. Especially useful for allergy sufferers in the Charlotte area.</p></div>
+      <div class="service-card"><div class="service-icon">⚡</div><h3>Smart Thermostat</h3><p>Nest, Ecobee, Honeywell install and programming. Cut heating and cooling costs by up to 23%.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-inner">
+    <div class="eyebrow">Reviews</div>
+    <h2>Homeowners Who Know Us by Name</h2>
+    <div class="t-grid">
+      <div class="t-card"><div class="stars">★★★★★</div><p class="t-text">"AC died on a Friday at 5pm. They were here by 8pm and running before midnight. Didn't charge extra for the evening. Used them three times since."</p><div class="t-author">Sarah M. — Myers Park</div></div>
+      <div class="t-card"><div class="stars">★★★★★</div><p class="t-text">"Honest diagnosis. Another company said full replacement — ProVent fixed a capacitor for $180. That's why I refer everyone I know."</p><div class="t-author">David K. — Ballantyne</div></div>
+      <div class="t-card"><div class="stars">★★★★★</div><p class="t-text">"On the annual plan for 4 years. Caught two issues early and saved me from much bigger bills. Technicians are always professional and on time."</p><div class="t-author">Angela T. — NoDa</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-wrap">
+  <div class="cta-inner">
+    <h2>Something Not Working Right?</h2>
+    <p>We answer the phone, give you a real estimate before we start, and show up when we say we will.</p>
+    <a class="phone" href="tel:+17045550198">(704) 555-0198</a>
+    <button class="btn-primary" style="font-size:1rem;padding:0.875rem 2.25rem;">Schedule Online</button>
+  </div>
+</section>
+
+<footer>
+  <div class="ft">© 2026 ProVent Home Services · Charlotte, NC · License #HC.12348</div>
+  <div class="ft-demo">Demo · Designed for Lizard Marketing · Aelin AquaSoul · sipa-os.org</div>
+</footer>

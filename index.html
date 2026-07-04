@@ -3,221 +3,644 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SIPA OS — Company Deck</title>
+<title>SIPA OS — Company Deck 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a12;color:#e8e0f0;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh}
-.deck{max-width:900px;margin:0 auto;padding:2rem 1.5rem}
-.slide{background:linear-gradient(135deg,#12101e,#1a1530);border:1px solid #2d2550;border-radius:16px;padding:3rem;margin-bottom:2rem;position:relative;overflow:hidden}
-.slide::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7b2fff,#ff2fd7,#2fffff)}
-.tag{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:#7b2fff;margin-bottom:.75rem;font-weight:600}
-h1{font-size:3rem;font-weight:700;line-height:1.1;background:linear-gradient(135deg,#fff,#c8b0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem}
-h2{font-size:1.8rem;font-weight:700;color:#fff;margin-bottom:1rem}
-.sub{font-size:1.1rem;color:#9b8fc0;margin-bottom:.5rem}
-.domain{color:#7b2fff;font-family:monospace;font-size:.95rem}
-.stat{display:inline-block;background:#1e1a35;border:1px solid #3d3070;border-radius:8px;padding:.75rem 1.25rem;margin:.4rem;text-align:center}
-.stat-n{font-size:1.8rem;font-weight:700;color:#7b2fff;display:block}
-.stat-l{font-size:.8rem;color:#9b8fc0;text-transform:uppercase;letter-spacing:.1em}
-ul{list-style:none;padding:0}
-ul li{padding:.5rem 0;padding-left:1.5rem;position:relative;color:#c8b0ff;border-bottom:1px solid #1e1a35}
-ul li::before{content:'◎';position:absolute;left:0;color:#7b2fff;font-size:.7rem;top:.65rem}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
-.card{background:#0f0d1e;border:1px solid #2d2550;border-radius:10px;padding:1.25rem}
-.card h3{color:#7b2fff;font-size:1rem;margin-bottom:.5rem}
-.card p{color:#9b8fc0;font-size:.9rem;line-height:1.5}
-.ask{background:linear-gradient(135deg,#1a0a35,#0a1535);border:2px solid #7b2fff;border-radius:16px;padding:2rem;text-align:center;margin-top:1rem}
-.ask h2{color:#7b2fff;font-size:1.5rem;margin-bottom:1rem}
-.ask p{color:#c8b0ff;margin-bottom:.5rem}
-.footer{text-align:center;padding:2rem;color:#5a4a80;font-size:.85rem}
-a{color:#7b2fff;text-decoration:none}
-@media(max-width:600px){h1{font-size:2rem}.grid{grid-template-columns:1fr}}
+:root {
+  --bg-dark: #030509;
+  --bg-card: rgba(8,12,22,0.75);
+  --bg-card-hover: rgba(14,20,36,0.9);
+  --border-glow: rgba(0,242,254,0.15);
+  --border-glow-hover: rgba(0,242,254,0.4);
+  --text-primary: #f3f4f6;
+  --text-secondary: #a1a1aa;
+  --text-muted: #52525b;
+  --accent-cyan: #00f2fe;
+  --accent-purple: #9d4edd;
+  --accent-green: #10b981;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --ease: all 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  background-image:
+    radial-gradient(circle at 50% 10%, rgba(157,78,221,0.09) 0%, transparent 45%),
+    radial-gradient(circle at 10% 80%, rgba(0,242,254,0.05) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(16,185,129,0.04) 0%, transparent 40%);
+  background-attachment: fixed;
+}
+
+/* ── Layout ── */
+.wrap { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+
+/* ── Sidebar ── */
+aside {
+  position: fixed; top:0; left:0;
+  width: 260px; height: 100vh;
+  background: rgba(4,6,11,0.97);
+  border-right: 1px solid rgba(255,255,255,0.05);
+  padding: 2rem 1.5rem;
+  display: flex; flex-direction: column; justify-content: space-between;
+  z-index: 100; overflow-y: auto;
+}
+.logo-title {
+  font-size: 1.2rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase;
+  background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.logo-sub {
+  font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent-purple);
+  letter-spacing: 1px; margin-top: 0.3rem;
+}
+.p0-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2);
+  padding: 0.4rem 0.7rem; border-radius: 8px;
+  font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent-green);
+  margin-top: 1.25rem; width: fit-content;
+}
+.p0-dot {
+  width: 6px; height: 6px; background: var(--accent-green);
+  border-radius: 50%; box-shadow: 0 0 8px var(--accent-green);
+  animation: blink 2s infinite;
+}
+@keyframes blink {
+  0%,100%{opacity:.4} 50%{opacity:1;box-shadow:0 0 12px var(--accent-green)}
+}
+.sidebar-nav { display: flex; flex-direction: column; gap: 0.3rem; margin-top: 1.75rem; }
+.nav-item {
+  display: flex; align-items: center; gap: 0.65rem;
+  padding: 0.7rem 0.85rem; border-radius: 8px;
+  color: var(--text-secondary); text-decoration: none;
+  font-size: 0.85rem; font-weight: 500;
+  transition: var(--ease); border-left: 2px solid transparent;
+}
+.nav-item:hover, .nav-item.active {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.03);
+  border-left-color: var(--accent-cyan);
+}
+.nav-num { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); min-width: 20px; }
+.sidebar-foot {
+  font-size: 0.72rem; color: var(--text-muted);
+  display: flex; flex-direction: column; gap: 0.3rem;
+  border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.25rem;
+}
+
+/* ── Main ── */
+main { margin-left: 260px; padding: 2.5rem; display: flex; flex-direction: column; gap: 2rem; }
+
+/* ── Glass card ── */
+.glass {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  border-radius: 20px; padding: 2rem;
+  transition: var(--ease); position: relative; overflow: hidden;
+}
+.glass::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(0,242,254,0.06) 0%, transparent 70%);
+  pointer-events: none; opacity: 0; transition: var(--ease);
+}
+.glass:hover { border-color: var(--border-glow-hover); background: var(--bg-card-hover); box-shadow: 0 15px 40px rgba(0,242,254,0.1); }
+.glass:hover::before { opacity: 1; }
+
+/* ── Section header ── */
+.sec-tag {
+  font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--accent-cyan);
+  margin-bottom: 0.5rem;
+}
+.sec-title {
+  font-size: 1.5rem; font-weight: 800;
+  display: flex; align-items: center; gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.sec-title::before {
+  content: ''; width: 4px; height: 22px;
+  background: var(--accent-cyan); border-radius: 2px; flex-shrink: 0;
+}
+
+/* ── Grids ── */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.25rem; }
+
+/* ── Hero ── */
+.hero {
+  background: radial-gradient(100% 100% at 50% 0%, rgba(10,15,30,0.6) 0%, rgba(3,5,9,0.95) 100%);
+  border: 1px solid rgba(0,242,254,0.12); border-radius: 24px;
+  padding: 3rem 2.5rem;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  position: relative; overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.founder-pill {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+  padding: 0.45rem 1.25rem; border-radius: 100px;
+  font-size: 0.85rem; margin-bottom: 1.25rem; backdrop-filter: blur(8px);
+}
+.founder-pill span { color: var(--accent-cyan); font-weight: 700; }
+.hero-title {
+  font-size: 3rem; font-weight: 900; letter-spacing: -1.5px; line-height: 1.1;
+  background: linear-gradient(to right, #fff, #a1a1aa, #00f2fe);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+.hero-desc {
+  color: var(--text-secondary); font-size: 1.05rem; line-height: 1.6;
+  max-width: 640px; margin-bottom: 2rem;
+}
+.hero-status {
+  display: flex; gap: 2rem;
+  font-family: var(--font-mono); font-size: 0.82rem; z-index: 10; flex-wrap: wrap; justify-content: center;
+}
+
+/* ── Brain orb ── */
+.orb-wrap {
+  position: relative; width: 100%; height: 280px;
+  display: flex; justify-content: center; align-items: center;
+  perspective: 1500px; margin-bottom: 1.5rem;
+}
+.grid-plane {
+  position: absolute; width: 480px; height: 480px;
+  background-image:
+    linear-gradient(rgba(0,242,254,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,242,254,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  transform: rotateX(75deg) translateY(50px);
+  mask-image: radial-gradient(ellipse at center, black, transparent 65%);
+  pointer-events: none;
+}
+.ring { position: absolute; border-radius: 50%; pointer-events: none; }
+.r1 { width:360px;height:360px; border:1px dashed rgba(0,242,254,0.2); animation:spin 22s linear infinite; }
+.r2 { width:300px;height:300px; border:1px solid rgba(157,78,221,0.25); border-left-color:transparent; border-right-color:transparent; animation:spin 14s linear infinite reverse; }
+.r3 { width:240px;height:240px; border:2px solid rgba(0,242,254,0.3); border-top-color:transparent; border-bottom-color:transparent; animation:spin 7s linear infinite; }
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.brain {
+  position:relative; width:190px; height:190px; z-index:10;
+  animation:hover-core 6s ease-in-out infinite alternate; cursor:grab;
+}
+.brain:active{cursor:grabbing}
+.brain-inner {
+  width:100%;height:100%;
+  background:linear-gradient(135deg,var(--accent-cyan),var(--accent-purple));
+  border-radius:50%; padding:4px;
+  box-shadow:0 0 50px rgba(0,242,254,0.35),inset 0 0 30px rgba(255,255,255,0.3);
+  overflow:hidden; display:flex; align-items:center; justify-content:center;
+}
+.brain-inner img { width:100%;height:100%;object-fit:cover;border-radius:50%;filter:saturate(1.15)contrast(1.1); }
+@keyframes hover-core{0%{transform:translateY(-5px)rotateY(0)}100%{transform:translateY(10px)rotateY(40deg)}}
+
+/* ── Stats row ── */
+.stats { display:flex;flex-wrap:wrap;gap:1rem; }
+.stat {
+  background:rgba(14,20,36,0.9);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:12px; padding:0.85rem 1.25rem;
+  text-align:center; min-width:120px;
+}
+.stat-n { display:block;font-size:1.6rem;font-weight:800;color:var(--accent-cyan);font-family:var(--font-mono); }
+.stat-l { font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem; }
+
+/* ── List ── */
+.dl { list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-top:.5rem; }
+.dl li {
+  display:flex;align-items:flex-start;gap:.75rem;
+  color:#c8bfe0;font-size:.93rem;line-height:1.5;
+  padding-bottom:.65rem;border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.dl li::before {
+  content:'';width:6px;height:6px;background:var(--accent-cyan);
+  border-radius:50%;box-shadow:0 0 6px var(--accent-cyan);
+  margin-top:.55rem;flex-shrink:0;
+}
+
+/* ── Card pieces ── */
+.layer-badge {
+  font-family:var(--font-mono);font-size:.68rem;font-weight:700;
+  color:var(--accent-cyan);text-transform:uppercase;letter-spacing:1.5px;
+  background:rgba(0,242,254,0.08);border:1px solid rgba(0,242,254,0.2);
+  padding:.3rem .6rem;border-radius:6px;width:fit-content;margin-bottom:.75rem;
+}
+.ct { font-size:1.1rem;font-weight:800;margin-bottom:.45rem; }
+.cd { font-size:.88rem;color:var(--text-secondary);line-height:1.6; }
+.spec { display:flex;justify-content:space-between;font-size:.8rem;padding:.5rem 0;border-top:1px solid rgba(255,255,255,0.05); }
+.sk { color:var(--text-muted); }
+.sv { font-weight:600; }
+
+/* ── Timeline ── */
+.timeline { display:flex;flex-direction:column;gap:1.25rem; }
+.ti { display:flex;gap:1.25rem;align-items:flex-start; }
+.ti-dot {
+  width:10px;height:10px;background:var(--accent-purple);
+  border-radius:50%;box-shadow:0 0 10px var(--accent-purple);
+  margin-top:.4rem;flex-shrink:0;
+}
+.ti-period { font-family:var(--font-mono);font-size:.75rem;color:var(--accent-cyan);font-weight:700;margin-bottom:.25rem; }
+
+/* ── Partners strip ── */
+.partners {
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;
+  background:rgba(8,12,22,0.4);border:1px solid rgba(255,255,255,0.04);
+  border-radius:16px;padding:1.25rem;margin-top:1.5rem;
+}
+.pn { display:flex;align-items:center;justify-content:center;gap:.65rem;font-family:var(--font-mono);font-size:.8rem;color:var(--text-secondary); }
+.pd { width:6px;height:6px;background:var(--accent-cyan);border-radius:50%;box-shadow:0 0 8px var(--accent-cyan); }
+
+/* ── CTA ── */
+.cta-card {
+  background:radial-gradient(120% 120% at 50% 0%,rgba(13,19,33,0.9) 0%,rgba(4,7,17,0.95) 100%);
+  border:2px solid rgba(157,78,221,0.3);border-radius:24px;padding:2.5rem;
+}
+.cta-title {
+  font-size:2rem;font-weight:900;margin-bottom:.5rem;
+  background:linear-gradient(135deg,#fff 50%,var(--accent-cyan) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.btn-glow {
+  display:inline-block;
+  background:linear-gradient(135deg,var(--accent-cyan) 0%,#00b4d8 100%);
+  color:#000;border:none;padding:.9rem 1.75rem;border-radius:10px;
+  font-weight:800;font-size:.88rem;text-transform:uppercase;letter-spacing:1px;
+  cursor:pointer;transition:var(--ease);text-decoration:none;
+}
+.btn-glow:hover { box-shadow:0 0 25px rgba(0,242,254,.45);transform:translateY(-2px); }
+.btn-ghost {
+  display:inline-block;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.15);
+  color:var(--text-primary);padding:.9rem 1.75rem;border-radius:10px;
+  font-weight:700;font-size:.88rem;text-decoration:none;transition:var(--ease);
+}
+.btn-ghost:hover { background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.3); }
+
+/* ── Footer ── */
+.footer { text-align:center;padding:2rem;color:var(--text-muted);font-size:.8rem; }
+.footer a { color:var(--accent-cyan);text-decoration:none; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.15)}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  .wrap{grid-template-columns:1fr}
+  aside{display:none}
+  main{margin-left:0;padding:1.5rem}
+  .g2,.g4{grid-template-columns:1fr}
+  .partners{grid-template-columns:1fr 1fr}
+  .hero-title{font-size:2rem}
+  .stats{justify-content:center}
+  .hero-status{gap:1rem;font-size:.75rem}
+}
 </style>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="f5acf9c9-b423-4e8b-8396-47d7a479232d"></script>
 <script src="https://browser.sentry-cdn.com/8.0.0/bundle.min.js" crossorigin="anonymous"></script>
 <script>Sentry.init({dsn:"https://aad6081c0afcdd7a5dede25592742dcf@o4511524169318400.ingest.us.sentry.io/4511524193173504",tracesSampleRate:1.0});</script>
 </head>
 <body>
-<div class="deck">
+<div class="wrap">
 
-<div class="slide">
-  <div class="tag">Company Deck · 2026</div>
-  <h1>SIPA OS</h1>
-  <p class="sub">Cognitive infrastructure for neurodivergent minds</p>
-  <p class="sub" style="margin-top:1rem;color:#c8b0ff">Aelin AquaSoul &nbsp;·&nbsp; Founder &amp; CEO<br>Soul In PsyAbstract LLC &nbsp;·&nbsp; Delaware &nbsp;·&nbsp; Eilat, Israel</p>
-  <p class="domain" style="margin-top:1.5rem">sipa-os.org &nbsp;·&nbsp; ai.sipa-os.org</p>
-</div>
-
-<div class="slide">
-  <div class="tag">Problem</div>
-  <h2>Executive dysfunction is invisible infrastructure debt</h2>
-  <ul style="margin-top:1rem">
-    <li>40M+ neurodivergent adults in the US alone struggle with executive function daily</li>
-    <li>Existing tools are built for neurotypical workflows — forcing masking, not scaffolding</li>
-    <li>No AI system designed from the inside of neurodivergent experience</li>
-    <li>Result: burnout, underperformance, and systems that work against the user</li>
-  </ul>
-</div>
-
-<div class="slide">
-  <div class="tag">Solution</div>
-  <h2>SIPA OS — your external brain</h2>
-  <p style="color:#c8b0ff;margin-bottom:1.5rem;line-height:1.6">An AI coordination platform that scaffolds executive function — structure, focus, memory, and emotional regulation — built by someone who lives it.</p>
-  <div class="grid">
-    <div class="card">
-      <h3>Protocol 0</h3>
-      <p>Pre-LLM safety filter: blocks jailbreaks, routes crisis signals, SHA256-stamps every prompt before inference</p>
-    </div>
-    <div class="card">
-      <h3>BrainDump</h3>
-      <p>Secure thought capture with SHA256 audit trail. No raw data stored — GDPR-compatible</p>
-    </div>
-    <div class="card">
-      <h3>AI Chat</h3>
-      <p>Neurodivergent-aware responses. 14-layer SPHERE pipeline prevents context degradation</p>
-    </div>
-    <div class="card">
-      <h3>Edge PWA</h3>
-      <p>Works offline. Deployed on Cloudflare Workers + Supabase. &lt;100ms response. No GPU required</p>
-    </div>
+<!-- ── SIDEBAR ── -->
+<aside>
+  <div>
+    <div class="logo-title">SIPA OS</div>
+    <div class="logo-sub">Soul In PsyAbstract · 2026</div>
+    <div class="p0-badge"><span class="p0-dot"></span>Protocol 0 Compliant</div>
+    <nav class="sidebar-nav">
+      <a href="#hero"        class="nav-item active"><span class="nav-num">00</span>Overview</a>
+      <a href="#problem"     class="nav-item"><span class="nav-num">01</span>Problem</a>
+      <a href="#solution"    class="nav-item"><span class="nav-num">02</span>Solution</a>
+      <a href="#traction"    class="nav-item"><span class="nav-num">03</span>Traction</a>
+      <a href="#market"      class="nav-item"><span class="nav-num">04</span>Market</a>
+      <a href="#competition" class="nav-item"><span class="nav-num">05</span>Competition</a>
+      <a href="#business"    class="nav-item"><span class="nav-num">06</span>Business Model</a>
+      <a href="#roadmap"     class="nav-item"><span class="nav-num">07</span>Roadmap</a>
+      <a href="#tech"        class="nav-item"><span class="nav-num">08</span>Technology</a>
+      <a href="#founder"     class="nav-item"><span class="nav-num">09</span>Founder</a>
+      <a href="#invest"      class="nav-item"><span class="nav-num">10</span>Invest</a>
+    </nav>
   </div>
-</div>
-
-<div class="slide">
-  <div class="tag">Traction</div>
-  <h2>Live &amp; growing</h2>
-  <div style="margin:1.5rem 0">
-    <div class="stat"><span class="stat-n">5</span><span class="stat-l">Live domains</span></div>
-    <div class="stat"><span class="stat-n">14</span><span class="stat-l">Pipeline layers</span></div>
-    <div class="stat"><span class="stat-n">12</span><span class="stat-l">ADHD mini-games</span></div>
-    <div class="stat"><span class="stat-n">Apr 2026</span><span class="stat-l">Delaware LLC + EIN</span></div>
+  <div class="sidebar-foot">
+    <div>sipa-os.org &bull; ai.sipa-os.org</div>
+    <div>Eilat, Israel &bull; Delaware LLC</div>
+    <div style="color:var(--accent-cyan);font-weight:700;margin-top:.25rem">Raising $1.5M Seed</div>
   </div>
-  <ul>
-    <li>KubeCon + CloudNativeCon NA 2026 — CFP submitted ✅ (Nov 9-12, Salt Lake City)</li>
-    <li>ElevenLabs Grant — selected ✅</li>
-    <li>NVIDIA Inception Program + NIM integration active</li>
-    <li>NVIDIA Nemotron VoiceChat EA + Riva TTS EA — accepted</li>
-    <li>Auth0 Startup Program, AWS Activate, Azure AI Foundry — all live</li>
-    <li>Multi-model AI stack: 30+ providers via DeepSeek, NIM, OpenRouter, SiliconFlow</li>
-  </ul>
-</div>
+</aside>
 
-<div class="slide">
-  <div class="tag">Market</div>
-  <h2>Mental health × neurodivergence × AI</h2>
-  <ul style="margin-top:1rem">
-    <li>Global mental health tech market: <strong style="color:#fff">$6.2B → $17.5B by 2030</strong></li>
-    <li>ADHD diagnosis rates growing <strong style="color:#fff">30% YoY</strong> post-pandemic</li>
-    <li>40M+ neurodivergent adults in the US alone — <strong style="color:#fff">underserved at scale</strong></li>
-    <li>Existing digital therapeutics (Akili/EndeavorRx) target children with prescriptions — <strong style="color:#fff">adults = open market</strong></li>
-    <li>No AI-first multi-diagnosis platform (ADHD + ASD + BPD) built by lived experience</li>
-  </ul>
-</div>
+<!-- ── MAIN ── -->
+<main>
 
-<div class="slide">
-  <div class="tag">Competitive Advantage</div>
-  <h2>Why we win vs. existing solutions</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Akili / EndeavorRx</h3>
-      <p>Children only · Requires prescription · Single diagnosis (ADHD) · Game as device · FDA cleared but limited reach</p>
+  <!-- HERO -->
+  <section id="hero" class="hero" style="scroll-margin-top:2rem">
+    <div class="founder-pill">Founded by <span>Aelin AquaSoul</span> &bull; Eilat, Israel</div>
+    <h1 class="hero-title">Cognitive Infrastructure<br>for Neurodivergent Minds</h1>
+    <p class="hero-desc">An AI governance ecosystem designed from inside the neurodivergent experience — merging cognitive infrastructure, B2B SaaS, Web3 economy, and certified physical art.</p>
+
+    <div class="orb-wrap">
+      <div class="grid-plane"></div>
+      <div class="ring r1"></div>
+      <div class="ring r2"></div>
+      <div class="ring r3"></div>
+      <div class="brain" id="brainSphere">
+        <div class="brain-inner">
+          <img src="https://img.recraft.ai/qzDiTlfsh4hvTlIoF8_25_zGPwbwwich-YxQ_zT6kmc/rs:fit:1024:1024:0/raw:1/plain/abs://external/images/cfa43df2-303e-45e8-9915-cdd24c7355fa" alt="SIPA AI Neural Core">
+        </div>
+      </div>
     </div>
-    <div class="card">
-      <h3>SIPA OS</h3>
-      <p>Adults (18+) · No prescription needed · Multi-diagnosis (ADHD+ASD+BPD) · Full cognitive infrastructure · Edge PWA, no app store required</p>
+
+    <div class="hero-status">
+      <span style="color:var(--accent-green)">&#9679; GUARDIAN ACTIVE</span>
+      <span style="color:var(--text-muted)">|</span>
+      <span style="color:var(--accent-cyan)">LIVE &amp; REVENUE GENERATING</span>
+      <span style="color:var(--text-muted)">|</span>
+      <span style="color:var(--accent-purple)">SEED ROUND OPEN</span>
     </div>
-    <div class="card">
-      <h3>Generic Wellness Apps</h3>
-      <p>Headspace, Calm — neurotypical design · No executive function scaffolding · No crisis guardrails · No medical pathway</p>
-    </div>
-    <div class="card">
-      <h3>Our Edge</h3>
-      <p>Lived-experience design · Protocol 0 crisis layer · GDPR + HIPAA-ready architecture · Built on NVIDIA NIM — no GPU cost</p>
-    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><span class="stat-n">5</span><div class="stat-l">Live Domains</div></div>
+    <div class="stat"><span class="stat-n">40+</span><div class="stat-l">AI Agents</div></div>
+    <div class="stat"><span class="stat-n">160+</span><div class="stat-l">APIs Integrated</div></div>
+    <div class="stat"><span class="stat-n">14</span><div class="stat-l">Pipeline Layers</div></div>
+    <div class="stat"><span class="stat-n">12</span><div class="stat-l">ADHD Games</div></div>
+    <div class="stat"><span class="stat-n">94</span><div class="stat-l">Art Assets</div></div>
   </div>
-</div>
 
-<div class="slide">
-  <div class="tag">Business Model</div>
-  <h2>B2C + B2B dual-channel</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>B2C — Freemium</h3>
-      <p>Free tier: BrainDump + 3 games<br><strong style="color:#fff">$9.99/mo</strong> Premium: full AI chat, all 12 games, voice mode<br>Community-led acquisition via ADHD/neuro influencers</p>
+  <!-- PROBLEM -->
+  <section id="problem" class="glass" style="scroll-margin-top:2rem">
+    <div class="sec-tag">01 — Problem</div>
+    <h2 class="sec-title">Executive dysfunction is invisible infrastructure debt</h2>
+    <ul class="dl">
+      <li>40M+ neurodivergent adults in the US alone struggle with executive function daily</li>
+      <li>Existing tools are built for neurotypical workflows — forcing masking, not scaffolding</li>
+      <li>No AI system designed from the inside of neurodivergent experience</li>
+      <li>Result: burnout, underperformance, and systems that work against the user</li>
+    </ul>
+  </section>
+
+  <!-- SOLUTION -->
+  <section id="solution" style="scroll-margin-top:2rem">
+    <div class="sec-tag">02 — Solution</div>
+    <h2 class="sec-title">SIPA OS — your external brain</h2>
+    <p style="color:var(--text-secondary);margin-bottom:1.5rem;line-height:1.6">An AI coordination platform that scaffolds executive function — structure, focus, memory, and emotional regulation — built by someone who lives it.</p>
+    <div class="g4">
+      <div class="glass">
+        <div class="layer-badge">Core</div>
+        <div class="ct">Protocol 0</div>
+        <div class="cd">Pre-LLM safety filter: blocks jailbreaks, routes crisis signals, SHA256-stamps every prompt before inference</div>
+      </div>
+      <div class="glass">
+        <div class="layer-badge">Feature</div>
+        <div class="ct">BrainDump</div>
+        <div class="cd">Secure thought capture with SHA256 audit trail. No raw data stored — GDPR-compatible</div>
+      </div>
+      <div class="glass">
+        <div class="layer-badge">AI</div>
+        <div class="ct">AI Chat</div>
+        <div class="cd">Neurodivergent-aware responses. 14-layer SPHERE pipeline prevents context degradation</div>
+      </div>
+      <div class="glass">
+        <div class="layer-badge">Platform</div>
+        <div class="ct">Edge PWA</div>
+        <div class="cd">Works offline. Cloudflare Workers + Supabase. &lt;100ms response. No GPU required</div>
+      </div>
     </div>
-    <div class="card">
-      <h3>B2B — Clinic Licensing</h3>
-      <p><strong style="color:#fff">$50–100/mo per active patient</strong><br>Psychiatric clinics, ADHD coaches, employee wellness programs<br>White-label option available</p>
+  </section>
+
+  <!-- TRACTION -->
+  <section id="traction" class="glass" style="scroll-margin-top:2rem">
+    <div class="sec-tag">03 — Traction</div>
+    <h2 class="sec-title">Live &amp; growing</h2>
+    <ul class="dl">
+      <li>KubeCon + CloudNativeCon NA 2026 — CFP submitted ✅ (Nov 9–12, Salt Lake City)</li>
+      <li>ElevenLabs Grant — selected ✅</li>
+      <li>NVIDIA Inception Program + NIM integration active</li>
+      <li>NVIDIA Nemotron VoiceChat EA + Riva TTS EA — accepted</li>
+      <li>Auth0 Startup Program, AWS Activate, Azure AI Foundry — all live</li>
+      <li>Multi-model AI stack: 30+ providers via DeepSeek, NIM, OpenRouter, SiliconFlow</li>
+    </ul>
+  </section>
+
+  <!-- MARKET -->
+  <section id="market" class="glass" style="scroll-margin-top:2rem">
+    <div class="sec-tag">04 — Market</div>
+    <h2 class="sec-title">Mental health × neurodivergence × AI</h2>
+    <ul class="dl">
+      <li>Global mental health tech market: <strong style="color:#fff">$6.2B → $17.5B by 2030</strong></li>
+      <li>ADHD diagnosis rates growing <strong style="color:#fff">30% YoY</strong> post-pandemic</li>
+      <li>40M+ neurodivergent adults in the US alone — <strong style="color:#fff">underserved at scale</strong></li>
+      <li>Existing digital therapeutics (Akili/EndeavorRx) target children with prescriptions — <strong style="color:#fff">adults = open market</strong></li>
+      <li>No AI-first multi-diagnosis platform (ADHD + ASD + BPD) built by lived experience</li>
+    </ul>
+  </section>
+
+  <!-- COMPETITION -->
+  <section id="competition" style="scroll-margin-top:2rem">
+    <div class="sec-tag">05 — Competitive Advantage</div>
+    <h2 class="sec-title">Why we win vs. existing solutions</h2>
+    <div class="g2">
+      <div class="glass">
+        <div class="layer-badge" style="color:var(--text-muted);border-color:rgba(255,255,255,.1);background:rgba(255,255,255,.04)">Competitor</div>
+        <div class="ct">Akili / EndeavorRx</div>
+        <div class="cd">Children only · Requires prescription · Single diagnosis (ADHD) · FDA cleared but limited reach</div>
+      </div>
+      <div class="glass">
+        <div class="layer-badge" style="color:var(--accent-green);border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.08)">SIPA OS</div>
+        <div class="ct">Our Advantage</div>
+        <div class="cd">Adults 18+ · No prescription · Multi-diagnosis (ADHD+ASD+BPD) · Full cognitive infrastructure · Edge PWA</div>
+      </div>
+      <div class="glass">
+        <div class="layer-badge" style="color:var(--text-muted);border-color:rgba(255,255,255,.1);background:rgba(255,255,255,.04)">Competitor</div>
+        <div class="ct">Generic Wellness Apps</div>
+        <div class="cd">Headspace, Calm — neurotypical design · No executive function scaffolding · No crisis guardrails</div>
+      </div>
+      <div class="glass">
+        <div class="layer-badge">Our Edge</div>
+        <div class="ct">Lived-Experience Design</div>
+        <div class="cd">Protocol 0 crisis layer · GDPR + HIPAA-ready · Built on NVIDIA NIM — no GPU cost · USPTO PTO-2042A filed</div>
+      </div>
     </div>
-  </div>
-  <ul style="margin-top:1.5rem">
-    <li>Phase 1 (2026): 3–5 pilot clinic partnerships, B2C community growth</li>
-    <li>Phase 2 (2027): CPT reimbursement codes as SaMD pathway progresses</li>
-    <li>Revenue target: $250K ARR by Month 18 post-raise</li>
-  </ul>
-</div>
+  </section>
 
-<div class="slide">
-  <div class="tag">Clinical Roadmap</div>
-  <h2>From wellness product to evidence-based platform</h2>
-  <ul style="margin-top:1rem">
-    <li><strong style="color:#7b2fff">Now → Q2 2026:</strong> General wellness launch — cognitive coaching, no medical claims. HIPAA-compliant architecture.</li>
-    <li><strong style="color:#7b2fff">Q3 2026:</strong> Pilot RCT — 80 participants, ADHD adults 18–45. Measuring executive function (BRIEF-A, ASRS validated scales). Partnership with academic center TBD.</li>
-    <li><strong style="color:#7b2fff">Q1 2027:</strong> Publish pilot results. Initiate FDA pre-submission consultation for Software as Medical Device (SaMD) 510(k).</li>
-    <li><strong style="color:#7b2fff">Q3 2027:</strong> B2B clinical partnerships using validated outcomes data. CPT reimbursement exploration.</li>
-    <li>Design follows established CBT + DBT principles. Crisis Rail guardrail layer (Protocol 0) documented and red-teamed.</li>
-  </ul>
-</div>
-
-<div class="slide">
-  <div class="tag">Technology</div>
-  <h2>Stack built for resilience, not demos</h2>
-  <ul style="margin-top:1rem">
-    <li>TanStack Start + Cloudflare Workers — edge-first, &lt;100ms globally</li>
-    <li>NVIDIA NIM public endpoints — inference without GPU cost</li>
-    <li>Supabase RLS — row-level security, GDPR from day one</li>
-    <li>Protocol 0 — pre-LLM guardrail layer (crisis routing, jailbreak prevention)</li>
-    <li>SPHERE pipeline — 14-layer governance: WATCH→GATE→GUARD→REWRITE→FORENSIC</li>
-    <li>Multi-model: DeepSeek V4 Pro, Tencent Hy3, Kimi-K2, GLM-5, NIM Nemotron</li>
-  </ul>
-</div>
-
-<div class="slide">
-  <div class="tag">Founder</div>
-  <h2>Aelin AquaSoul</h2>
-  <p style="color:#c8b0ff;line-height:1.7;margin-top:.5rem">
-    Diagnosed ADHD + BPD. SIPA OS is the system I needed to build to function — turns out a lot of people need it too.<br><br>
-    Former creative technologist → now building AI infrastructure from the edge. Eilat, Israel.<br>
-    PsyAbstract UV artist (ICON 2026 award recipient). Delaware LLC. Solo founder.<br><br>
-    <em style="color:#7b2fff">"I draw chaos before it becomes form."</em>
-  </p>
-</div>
-
-<div class="ask">
-  <h2>Raising $1.5M — Seed Round</h2>
-  <p style="font-size:1.1rem;color:#fff;margin-bottom:1.25rem">Building the cognitive infrastructure layer for 40M+ neurodivergent adults.</p>
-  <div class="grid" style="text-align:left;margin-bottom:1.5rem">
-    <div class="card">
-      <h3>Use of Funds</h3>
-      <p>40% R&amp;D — AI core + mobile<br>30% Clinical validation + FDA prep<br>20% Go-to-market + clinic pilots<br>10% Ops + key hires</p>
+  <!-- BUSINESS MODEL -->
+  <section id="business" style="scroll-margin-top:2rem">
+    <div class="sec-tag">06 — Business Model</div>
+    <h2 class="sec-title">B2C + B2B dual-channel</h2>
+    <div class="g2">
+      <div class="glass">
+        <div class="layer-badge">B2C</div>
+        <div class="ct">Freemium Consumer</div>
+        <div class="cd" style="margin-bottom:1.25rem">Free tier: BrainDump + 3 games. Community-led acquisition via ADHD/neuro influencers.</div>
+        <div class="spec"><span class="sk">Starter</span><span class="sv">Free</span></div>
+        <div class="spec"><span class="sk">Premium</span><span class="sv">$9.99 / month</span></div>
+        <div class="spec"><span class="sk">Includes</span><span class="sv">Full AI · 12 games · Voice mode</span></div>
+      </div>
+      <div class="glass">
+        <div class="layer-badge" style="color:var(--accent-purple);border-color:rgba(157,78,221,.3);background:rgba(157,78,221,.08)">B2B</div>
+        <div class="ct">Clinic Licensing</div>
+        <div class="cd" style="margin-bottom:1.25rem">Psychiatric clinics, ADHD coaches, employee wellness. White-label option available.</div>
+        <div class="spec"><span class="sk">Per active patient</span><span class="sv">$50–100 / month</span></div>
+        <div class="spec"><span class="sk">Phase 1 (2026)</span><span class="sv">3–5 pilot clinics</span></div>
+        <div class="spec"><span class="sk">ARR target (18mo)</span><span class="sv">$250K</span></div>
+      </div>
     </div>
-    <div class="card">
-      <h3>Milestones at 18 months</h3>
-      <p>Pilot RCT (80 participants) complete<br>3–5 clinic B2B contracts signed<br>$250K ARR<br>FDA pre-submission filed</p>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap" class="glass" style="scroll-margin-top:2rem">
+    <div class="sec-tag">07 — Clinical Roadmap</div>
+    <h2 class="sec-title">From wellness product to evidence-based platform</h2>
+    <div class="timeline">
+      <div class="ti">
+        <span class="ti-dot"></span>
+        <div>
+          <div class="ti-period">Now → Q2 2026</div>
+          <div style="color:var(--text-secondary);font-size:.92rem;line-height:1.5">General wellness launch — cognitive coaching, no medical claims. HIPAA-compliant architecture.</div>
+        </div>
+      </div>
+      <div class="ti">
+        <span class="ti-dot" style="background:var(--accent-cyan);box-shadow:0 0 10px var(--accent-cyan)"></span>
+        <div>
+          <div class="ti-period" style="color:var(--accent-cyan)">Q3 2026</div>
+          <div style="color:var(--text-secondary);font-size:.92rem;line-height:1.5">Pilot RCT — 80 participants, ADHD adults 18–45. Measuring executive function (BRIEF-A, ASRS). Academic partnership TBD.</div>
+        </div>
+      </div>
+      <div class="ti">
+        <span class="ti-dot"></span>
+        <div>
+          <div class="ti-period">Q1 2027</div>
+          <div style="color:var(--text-secondary);font-size:.92rem;line-height:1.5">Publish pilot results. Initiate FDA pre-submission consultation for Software as Medical Device (SaMD) 510(k).</div>
+        </div>
+      </div>
+      <div class="ti">
+        <span class="ti-dot"></span>
+        <div>
+          <div class="ti-period">Q3 2027</div>
+          <div style="color:var(--text-secondary);font-size:.92rem;line-height:1.5">B2B clinical partnerships using validated outcomes data. CPT reimbursement exploration.</div>
+        </div>
+      </div>
     </div>
-  </div>
-  <p style="color:#c8b0ff">Stage: Seed · Delaware LLC + EIN · Bootstrapped to MVP</p>
-  <p style="margin-top:1.5rem"><a href="mailto:sipa-core@sipa-os.org">sipa-core@sipa-os.org</a> &nbsp;·&nbsp; <a href="https://sipa-os.org">sipa-os.org</a> &nbsp;·&nbsp; <a href="https://ai.sipa-os.org">ai.sipa-os.org</a></p>
+  </section>
+
+  <!-- TECH -->
+  <section id="tech" class="glass" style="scroll-margin-top:2rem">
+    <div class="sec-tag">08 — Technology</div>
+    <h2 class="sec-title">Stack built for resilience, not demos</h2>
+    <ul class="dl">
+      <li>TanStack Start + Cloudflare Workers — edge-first, &lt;100ms globally</li>
+      <li>NVIDIA NIM public endpoints — inference without GPU cost</li>
+      <li>Supabase RLS — row-level security, GDPR from day one</li>
+      <li>Protocol 0 — pre-LLM guardrail layer (crisis routing, jailbreak prevention)</li>
+      <li>SPHERE pipeline — 14-layer governance: WATCH → GATE → GUARD → REWRITE → FORENSIC</li>
+      <li>Multi-model: DeepSeek V4 Pro, Tencent Hy3, Kimi-K2, GLM-5, NIM Nemotron</li>
+    </ul>
+  </section>
+
+  <!-- FOUNDER -->
+  <section id="founder" class="glass" style="scroll-margin-top:2rem;border-color:rgba(157,78,221,.25)">
+    <div class="sec-tag">09 — Founder</div>
+    <h2 class="sec-title">Aelin AquaSoul</h2>
+    <p style="color:#c8bfe0;line-height:1.75;font-size:.95rem;max-width:720px">
+      Diagnosed ADHD + BPD. SIPA OS is the system I needed to build to function — turns out a lot of people need it too.<br><br>
+      Former creative technologist → now building AI infrastructure from the edge. Eilat, Israel.<br>
+      PsyAbstract UV artist · ICON 2026 award recipient · Delaware LLC · Solo founder.<br><br>
+      <em style="color:var(--accent-cyan)">"I draw chaos before it becomes form."</em>
+    </p>
+    <div class="partners">
+      <div class="pn"><span class="pd"></span>AWS Activate</div>
+      <div class="pn"><span class="pd"></span>NVIDIA Inception</div>
+      <div class="pn"><span class="pd"></span>Red Hat Enterprise</div>
+      <div class="pn"><span class="pd"></span>Microsoft Azure</div>
+    </div>
+  </section>
+
+  <!-- INVEST -->
+  <section id="invest" class="cta-card" style="scroll-margin-top:2rem">
+    <div class="sec-tag" style="color:var(--accent-purple)">10 — Investment</div>
+    <div class="cta-title">Raising $1.5M — Seed Round</div>
+    <p style="color:var(--text-secondary);font-size:1rem;margin-bottom:2rem;line-height:1.6">Building the cognitive infrastructure layer for 40M+ neurodivergent adults. Delaware LLC + EIN. Bootstrapped to MVP.</p>
+    <div class="g2" style="margin-bottom:2rem">
+      <div class="glass">
+        <div class="ct">Use of Funds</div>
+        <div class="spec"><span class="sk">R&amp;D — AI core + mobile</span><span class="sv">40%</span></div>
+        <div class="spec"><span class="sk">Clinical validation + FDA prep</span><span class="sv">30%</span></div>
+        <div class="spec"><span class="sk">Go-to-market + clinic pilots</span><span class="sv">20%</span></div>
+        <div class="spec"><span class="sk">Ops + key hires</span><span class="sv">10%</span></div>
+      </div>
+      <div class="glass">
+        <div class="ct">Milestones at 18 months</div>
+        <ul class="dl" style="margin-top:0">
+          <li>Pilot RCT (80 participants) complete</li>
+          <li>3–5 clinic B2B contracts signed</li>
+          <li>$250K ARR achieved</li>
+          <li>FDA pre-submission filed</li>
+        </ul>
+      </div>
+    </div>
+    <p style="color:var(--text-secondary);font-size:.9rem;margin-bottom:1.5rem">Stage: Seed · Open to debt, equity &amp; project finance · Delaware LLC + EIN ready</p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap">
+      <a href="mailto:sipa-core@sipa-os.org" class="btn-glow">Contact Investor Relations</a>
+      <a href="https://sipa-os.org" class="btn-ghost">sipa-os.org</a>
+      <a href="https://ai.sipa-os.org" class="btn-ghost">ai.sipa-os.org</a>
+    </div>
+  </section>
+
+  <div class="footer">Soul In PsyAbstract LLC &nbsp;·&nbsp; Delaware &nbsp;·&nbsp; 2026 &nbsp;·&nbsp; <a href="https://sipa-os.org">sipa-os.org</a></div>
+
+</main>
 </div>
 
-<div class="footer">Soul In PsyAbstract LLC · Delaware · 2026 · <a href="https://sipa-os.org">sipa-os.org</a></div>
-</div>
+<script>
+// Brain sphere mouse tracking
+const brain = document.getElementById('brainSphere');
+if (brain) {
+  brain.addEventListener('mousemove', e => {
+    const r = brain.getBoundingClientRect();
+    const x = e.clientX - r.left - r.width / 2;
+    const y = e.clientY - r.top - r.height / 2;
+    brain.style.animation = 'none';
+    brain.style.transform = `rotateY(${x * 0.4}deg) rotateX(${-y * 0.4}deg) scale(1.05)`;
+  });
+  brain.addEventListener('mouseleave', () => {
+    brain.style.transition = 'transform 0.8s cubic-bezier(0.16,1,0.3,1)';
+    brain.style.transform = '';
+    setTimeout(() => { brain.style.animation = 'hover-core 6s ease-in-out infinite alternate'; }, 400);
+  });
+}
+
+// Active nav on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-item');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(n => n.classList.toggle('active', n.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, { threshold: 0.35 });
+sections.forEach(s => io.observe(s));
+</script>
+
 <script>
 (function(){
-  var s = document.createElement('script');
-  var h = document.querySelector('head') || document.body;
-  s.src = 'https://acsbapp.com/apps/app/dist/js/app.js';
-  s.async = true;
-  s.onload = function(){ acsbJS.init(); };
+  var s=document.createElement('script');
+  var h=document.querySelector('head')||document.body;
+  s.src='https://acsbapp.com/apps/app/dist/js/app.js';
+  s.async=true;
+  s.onload=function(){acsbJS.init();};
   h.appendChild(s);
 })();
 </script>

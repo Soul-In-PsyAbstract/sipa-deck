@@ -1,0 +1,191 @@
+<meta charset="UTF-8"><title>Dr. Saori's Office — Landing Page Demo</title>
+<style>
+  :root {
+    --sand: #F9F5EF;
+    --clay: #4A3728;
+    --warm: #8B6B52;
+    --accent: #C4875A;
+    --accent-light: #F2E8DE;
+    --surface: #FFFFFF;
+    --text: #2C1F14;
+    --muted: #7A6355;
+    --border: #E8DDD4;
+    --font-display: Georgia, 'Times New Roman', serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-body); background: var(--sand); color: var(--text); line-height: 1.65; }
+
+  nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2.5rem; height: 64px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
+  .nav-logo { font-family: var(--font-display); font-size: 1.1rem; color: var(--clay); letter-spacing: 0.01em; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 0.85rem; color: var(--muted); text-decoration: none; font-weight: 500; }
+  .nav-book { background: var(--accent); color: white; border: none; padding: 0.5rem 1.25rem; border-radius: 3px; font-size: 0.85rem; font-weight: 600; cursor: pointer; letter-spacing: 0.02em; }
+
+  .hero { background: var(--surface); padding: 5.5rem 2.5rem 5rem; }
+  .hero-inner { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .hero-text {}
+  .hero-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(1.875rem, 3.5vw, 2.625rem); font-weight: normal; line-height: 1.2; color: var(--clay); text-wrap: balance; margin-bottom: 1.25rem; }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub { font-size: 1rem; color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
+  .hero-cta { background: var(--accent); color: white; border: none; padding: 0.9rem 2rem; border-radius: 3px; font-size: 0.95rem; font-weight: 600; cursor: pointer; letter-spacing: 0.02em; display: inline-block; }
+  .hero-trust { margin-top: 1.25rem; font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; }
+  .hero-trust::before { content: '✓'; color: var(--accent); font-weight: 700; }
+
+  .hero-visual { background: var(--accent-light); border-radius: 4px; padding: 2.5rem; }
+  .quote-mark { font-family: var(--font-display); font-size: 4rem; color: var(--accent); line-height: 0.8; margin-bottom: 0.75rem; opacity: 0.4; }
+  .pull-quote { font-family: var(--font-display); font-size: 1.05rem; line-height: 1.65; color: var(--clay); font-style: italic; }
+  .quote-attr { font-size: 0.78rem; color: var(--muted); margin-top: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .services { padding: 4.5rem 2.5rem; }
+  .services-inner { max-width: 860px; margin: 0 auto; }
+  .sec-eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+  .sec-title { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: normal; color: var(--clay); margin-bottom: 2.5rem; text-wrap: balance; }
+  .svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+  .svc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 2rem; }
+  .svc-icon { font-size: 1.5rem; margin-bottom: 0.875rem; }
+  .svc-card h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: normal; color: var(--clay); margin-bottom: 0.5rem; }
+  .svc-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+
+  .about { background: var(--clay); padding: 5rem 2.5rem; }
+  .about-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+  .about-eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(196,135,90,0.8); margin-bottom: 0.75rem; }
+  .about h2 { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: normal; color: white; margin-bottom: 1.25rem; text-wrap: balance; }
+  .about p { font-size: 0.975rem; color: rgba(255,255,255,0.7); line-height: 1.75; margin-bottom: 1rem; }
+  .credential-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 2rem; }
+  .cred { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.65); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; padding: 0.35rem 0.875rem; border-radius: 100px; }
+
+  .testimonials-section { padding: 4.5rem 2.5rem; background: var(--accent-light); }
+  .t-inner { max-width: 860px; margin: 0 auto; }
+  .t-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.125rem; }
+  .t-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1.75rem; }
+  .t-stars { color: var(--accent); font-size: 0.8rem; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+  .t-text { font-family: var(--font-display); font-size: 0.925rem; font-style: italic; color: var(--clay); line-height: 1.65; margin-bottom: 1rem; }
+  .t-name { font-size: 0.75rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; }
+
+  .booking { padding: 5rem 2.5rem; background: var(--surface); text-align: center; }
+  .bk-inner { max-width: 520px; margin: 0 auto; }
+  .bk-inner h2 { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.125rem); font-weight: normal; color: var(--clay); margin-bottom: 1rem; text-wrap: balance; }
+  .bk-inner p { color: var(--muted); font-size: 0.975rem; margin-bottom: 2rem; line-height: 1.7; }
+  .bk-btn { background: var(--accent); color: white; border: none; padding: 1rem 2.5rem; border-radius: 3px; font-size: 1rem; font-weight: 600; cursor: pointer; letter-spacing: 0.02em; }
+  .bk-note { font-size: 0.8rem; color: var(--muted); margin-top: 1rem; }
+
+  footer { background: var(--clay); padding: 1.75rem 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .ft { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+  .ft-demo { font-size: 0.68rem; color: rgba(196,135,90,0.5); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  @media (max-width: 640px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+  }
+</style>
+
+<nav>
+  <div class="nav-logo">Dr. Saori's Office</div>
+  <div class="nav-links">
+    <a href="#">Services</a>
+    <a href="#">About</a>
+    <a href="#">FAQ</a>
+  </div>
+  <button class="nav-book">Book a Session</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Performance & Divorce Coaching</div>
+      <h1>Move Through This Chapter with <em>Clarity</em></h1>
+      <p class="hero-sub">Dr. Saori works with high-achieving individuals navigating divorce, major transitions, and performance challenges — with evidence-based coaching rooted in psychology.</p>
+      <button class="hero-cta">Book a Free Consultation</button>
+      <p class="hero-trust">Confidential. No commitment required for the first session.</p>
+    </div>
+    <div class="hero-visual">
+      <div class="quote-mark">"</div>
+      <p class="pull-quote">I don't help people move on. I help them move forward — with a clear sense of who they are on the other side.</p>
+      <div class="quote-attr">— Dr. Saori</div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="services-inner">
+    <div class="sec-eyebrow">How I Work With You</div>
+    <p class="sec-title">Coaching for the hardest chapters.</p>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="svc-icon">⚖️</div>
+        <h3>Divorce Coaching</h3>
+        <p>Navigating separation with a clear head. Decisions about custody, assets, and life structure — made from a grounded place, not a reactive one.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🎯</div>
+        <h3>Performance Enhancement</h3>
+        <p>For executives, founders, and professionals who want to perform at their best without burning through their reserves. Stress, focus, and consistency.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🔄</div>
+        <h3>Life Transition Coaching</h3>
+        <p>Major shifts — divorce, career change, relocation, empty nest — don't have to feel like a loss of identity. We rebuild the framework.</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🤝</div>
+        <h3>Divorce Mediation</h3>
+        <p>A neutral, structured path through contested decisions. Dr. Saori facilitates resolution without the adversarial dynamic of litigation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="about-inner">
+    <div class="about-eyebrow">About Dr. Saori</div>
+    <h2>Psychology-trained. Practically focused.</h2>
+    <p>Dr. Saori brings academic depth and real-world directness to every coaching engagement. Based in San Diego, she works with clients across the US via video and in-person sessions.</p>
+    <p>Her approach: less processing for its own sake, more structure for forward movement. Clients leave sessions with clarity, not just catharsis.</p>
+    <div class="credential-row">
+      <span class="cred">Licensed Psychologist</span>
+      <span class="cred">Certified Divorce Coach</span>
+      <span class="cred">Certified Mediator</span>
+      <span class="cred">San Diego, CA</span>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials-section">
+  <div class="t-inner">
+    <div class="sec-eyebrow" style="text-align:center; margin-bottom: 0.5rem;">Client Experiences</div>
+    <p class="sec-title" style="text-align:center; margin-bottom: 2rem;">What the work looks like</p>
+    <div class="t-grid">
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"I came in reactive and scattered. Dr. Saori helped me get ahead of decisions instead of behind them. My divorce settlement reflected that."</p>
+        <div class="t-name">Executive, San Diego</div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"She doesn't tell you what to do. She asks the exact question that makes the answer obvious. Every single session."</p>
+        <div class="t-name">Founder, Remote</div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"The mediation process with Dr. Saori saved us 8 months of litigation. We came to a fair agreement because she kept things human."</p>
+        <div class="t-name">Attorney & Client, LA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="booking">
+  <div class="bk-inner">
+    <h2>Ready to Start?</h2>
+    <p>The first consultation is free, 30 minutes, and low-pressure. You'll leave with a clearer picture of whether coaching is right for you right now.</p>
+    <button class="bk-btn">Schedule Free Consultation</button>
+    <p class="bk-note">Available via Zoom and in-person in San Diego</p>
+  </div>
+</section>
+
+<footer>
+  <div class="ft">© 2026 Dr. Saori's Office · San Diego, CA</div>
+  <div class="ft-demo">Demo · Built for Dr Saori's Office · Aelin AquaSoul · sipa-os.org</div>
+</footer>
