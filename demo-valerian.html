@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design System Proposal · Valerian — Aelin AquaSoul</title>
+<style>
+:root {
+  --bg:      #F0EEF8;
+  --bg-r:    #FAFAF D;
+  --ink:     #1B1A2E;
+  --ink-2:   #4A485F;
+  --ink-3:   #9691A8;
+  --accent:  #6B5DD3;
+  --accent-l:#E8E5F8;
+  --rule:    #DDD9EE;
+  --card:    #FFFFFF;
+  --bg-r:    #F8F7FD;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:      #13121F;
+    --bg-r:    #1C1B2C;
+    --ink:     #EDEAF8;
+    --ink-2:   #A8A4C0;
+    --ink-3:   #6B6880;
+    --rule:    #2A2840;
+    --card:    #1C1B2C;
+    --accent-l:#221F3A;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:#13121F; --bg-r:#1C1B2C; --ink:#EDEAF8; --ink-2:#A8A4C0;
+  --ink-3:#6B6880; --rule:#2A2840; --card:#1C1B2C; --accent-l:#221F3A;
+}
+:root[data-theme="light"] {
+  --bg:#F0EEF8; --bg-r:#F8F7FD; --ink:#1B1A2E; --ink-2:#4A485F;
+  --ink-3:#9691A8; --rule:#DDD9EE; --card:#FFFFFF; --accent-l:#E8E5F8;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 48px;border-bottom:1px solid var(--rule);background:var(--bg)}
+.logo{font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-0.01em}
+.logo span{color:var(--accent)}
+.nav-r{display:flex;align-items:center;gap:20px;font-size:13px;color:var(--ink-3)}
+.badge{background:var(--accent);color:#fff;padding:4px 12px;border-radius:100px;font-size:12px;font-weight:500}
+
+/* HERO */
+.hero{max-width:1080px;margin:0 auto;padding:72px 48px 56px}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:16px}
+h1{font-size:clamp(32px,4vw,52px);font-weight:700;letter-spacing:-.025em;line-height:1.1;color:var(--ink);margin-bottom:20px;text-wrap:balance}
+h1 .hl{color:var(--accent)}
+.hero-sub{font-size:18px;color:var(--ink-2);max-width:560px;line-height:1.65;margin-bottom:36px}
+.hero-meta{display:flex;gap:24px;flex-wrap:wrap}
+.meta-item{font-size:13px;color:var(--ink-3)}.meta-item strong{color:var(--ink-2);font-weight:600}
+
+/* PROCESS STRIP */
+.process{background:var(--bg-r);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:0 48px}
+.process-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.phase{padding:28px 24px;border-right:1px solid var(--rule);position:relative}
+.phase:last-child{border-right:none}
+.phase-n{font-size:11px;font-family:monospace;color:var(--ink-3);letter-spacing:.1em;margin-bottom:8px}
+.phase h3{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.phase p{font-size:13px;color:var(--ink-2);line-height:1.5}
+.phase-active{background:var(--accent-l)}
+.phase-active .phase-n{color:var(--accent)}
+.phase-active h3{color:var(--accent)}
+
+/* MAIN CONTENT */
+.content{max-width:1080px;margin:0 auto;padding:64px 48px}
+
+/* SECTION */
+.sec-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+.sec-title{font-size:28px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:8px}
+.sec-sub{font-size:16px;color:var(--ink-2);margin-bottom:40px;max-width:520px;line-height:1.6}
+.divider{height:1px;background:var(--rule);margin:56px 0}
+
+/* DESIGN SYSTEM TOKENS */
+.token-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+.token-block h4{font-size:13px;font-weight:600;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px}
+
+/* COLOR SWATCHES */
+.swatches{display:flex;gap:8px;flex-wrap:wrap}
+.swatch{border-radius:8px;overflow:hidden;flex:1;min-width:60px}
+.swatch-color{height:56px}
+.swatch-label{background:var(--card);border:1px solid var(--rule);padding:6px 8px;font-size:11px;font-family:monospace;color:var(--ink-2);border-top:none}
+
+/* TYPE SCALE */
+.type-scale{display:flex;flex-direction:column;gap:12px}
+.type-row{display:flex;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid var(--rule)}
+.type-row:last-child{border-bottom:none}
+.type-meta{font-size:11px;font-family:monospace;color:var(--ink-3);min-width:100px;flex-shrink:0}
+.type-sample{color:var(--ink)}
+
+/* WIREFRAME */
+.wireframe-wrap{background:var(--card);border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin-top:8px}
+.wf-bar{background:var(--rule);padding:10px 16px;display:flex;align-items:center;gap:8px}
+.wf-dot{width:10px;height:10px;border-radius:50%;background:var(--ink-3);opacity:.4}
+.wf-stage{padding:24px;display:grid;grid-template-columns:200px 1fr;gap:16px;min-height:280px}
+.wf-nav{background:var(--bg);border:1px solid var(--rule);border-radius:6px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.wf-nav-item{height:10px;background:var(--rule);border-radius:3px;width:80%}
+.wf-nav-item.active{background:var(--accent);opacity:.4;width:90%}
+.wf-nav-item:nth-child(2){width:65%}
+.wf-nav-item:nth-child(4){width:55%}
+.wf-main{display:flex;flex-direction:column;gap:12px}
+.wf-hero-block{background:var(--accent-l);border:1px solid var(--rule);border-radius:6px;padding:20px;flex:0 0 100px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
+.wf-h{height:12px;background:var(--accent);opacity:.3;border-radius:2px;width:70%}
+.wf-h.sm{height:8px;width:45%;opacity:.2}
+.wf-h.btn{width:28%;height:28px;border-radius:4px;background:var(--accent);opacity:.25}
+.wf-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.wf-card{background:var(--bg);border:1px solid var(--rule);border-radius:6px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.wf-c-img{height:40px;background:var(--rule);border-radius:4px}
+.wf-c-t{height:8px;background:var(--rule);border-radius:2px;width:80%}
+.wf-c-t.sm{height:6px;width:60%;opacity:.6}
+.wf-annotation{position:relative}
+.annotation-tag{display:inline-block;background:var(--accent);color:#fff;font-size:10px;padding:2px 8px;border-radius:3px;margin-top:8px;font-family:monospace}
+
+/* COMPONENT SHOWCASE */
+.components{display:flex;flex-direction:column;gap:32px}
+.comp-row{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.comp-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);min-width:100px;padding-top:8px}
+
+/* Buttons */
+.demo-btn{padding:10px 20px;border-radius:7px;font-size:14px;font-weight:500;cursor:default;display:inline-flex;align-items:center;gap:8px;border:none;font-family:inherit}
+.demo-btn.primary{background:var(--accent);color:#fff}
+.demo-btn.secondary{background:transparent;border:1.5px solid var(--accent);color:var(--accent)}
+.demo-btn.ghost{background:transparent;border:1.5px solid var(--rule);color:var(--ink-2)}
+.demo-btn.sm{padding:7px 14px;font-size:13px}
+.demo-btn.lg{padding:13px 26px;font-size:15px}
+
+/* Input */
+.demo-input{padding:10px 14px;border-radius:7px;border:1.5px solid var(--rule);background:var(--card);color:var(--ink);font-size:14px;font-family:inherit;outline:none;min-width:200px}
+.demo-input.focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(107,93,211,.12)}
+
+/* Card */
+.demo-card{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:20px;max-width:220px}
+.demo-card .card-tag{font-size:11px;color:var(--accent);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.demo-card h5{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.demo-card p{font-size:13px;color:var(--ink-2);line-height:1.5}
+
+/* APPROACH */
+.approach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.approach-card{padding:24px;background:var(--card);border:1px solid var(--rule);border-radius:10px}
+.approach-card .icon{font-size:22px;margin-bottom:12px}
+.approach-card h4{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.approach-card p{font-size:13px;color:var(--ink-2);line-height:1.55}
+
+/* AI COLLAB */
+.ai-block{background:var(--accent-l);border:1.5px solid var(--accent);border-radius:10px;padding:28px 32px;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;margin-top:8px}
+.ai-chat{display:flex;flex-direction:column;gap:10px}
+.msg{padding:10px 14px;border-radius:8px;font-size:13px;line-height:1.5;max-width:320px}
+.msg.human{background:var(--accent);color:#fff;align-self:flex-end;border-radius:8px 8px 2px 8px}
+.msg.ai{background:var(--card);color:var(--ink-2);border:1px solid var(--rule);border-radius:8px 8px 8px 2px}
+.ai-text h4{font-size:17px;font-weight:600;color:var(--ink);margin-bottom:10px}
+.ai-text p{font-size:14px;color:var(--ink-2);line-height:1.6}
+
+/* FOOTER */
+footer{border-top:1px solid var(--rule);padding:32px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;max-width:100%}
+.footer-l{font-size:13px;color:var(--ink-3)}
+.footer-l a{color:var(--ink-2);text-decoration:none}
+.footer-r{font-size:12px;color:var(--ink-3)}
+
+@media(max-width:768px){
+  nav,footer{padding:16px 24px}
+  .hero,.content{padding-left:24px;padding-right:24px}
+  .process{padding:0 24px}
+  .process-inner{grid-template-columns:1fr 1fr}
+  .token-grid,.approach-grid{grid-template-columns:1fr}
+  .ai-block{grid-template-columns:1fr}
+  .wf-stage{grid-template-columns:1fr}
+  .wf-nav{display:none}
+  h1{font-size:32px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Aelin AquaSoul <span>·</span> Soul In PsyAbstract</div>
+  <div class="nav-r">
+    <span>Lead Designer proposal · Valerian</span>
+    <span class="badge">$45–55/hr</span>
+  </div>
+</nav>
+
+<div class="hero">
+  <p class="eyebrow">Design systems · Creative direction · AI-assisted workflow</p>
+  <h1>Systems first.<br><span class="hl">Aesthetics earned.</span></h1>
+  <p class="hero-sub">I design from discovery to handoff — building visual languages that production teams can execute across ten pages without asking questions. Claude is my thinking partner, not my ghostwriter.</p>
+  <div class="hero-meta">
+    <div class="meta-item"><strong>Rate</strong> $45–55/hr</div>
+    <div class="meta-item"><strong>Availability</strong> 20 hrs/wk</div>
+    <div class="meta-item"><strong>Timezone</strong> IST (GMT+3, Eilat)</div>
+    <div class="meta-item"><strong>Tools</strong> Figma · Relume · Claude · Notion</div>
+  </div>
+</div>
+
+<div class="process">
+  <div class="process-inner">
+    <div class="phase">
+      <div class="phase-n">PHASE 01</div>
+      <h3>Discovery</h3>
+      <p>Creative brief from client call. Sitemap. Content hierarchy before any visual decision.</p>
+    </div>
+    <div class="phase phase-active">
+      <div class="phase-n">PHASE 02</div>
+      <h3>Wireframe</h3>
+      <p>Page-by-page structure reflecting UX flow, conversion intent, WordPress production constraints.</p>
+    </div>
+    <div class="phase">
+      <div class="phase-n">PHASE 03</div>
+      <h3>Design System</h3>
+      <p>Full visual language: type, color, photography direction, iconography, spacing tokens.</p>
+    </div>
+    <div class="phase">
+      <div class="phase-n">PHASE 04</div>
+      <h3>Handoff + QA</h3>
+      <p>Documented components production teams replicate without follow-up questions.</p>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- WIREFRAME SAMPLE -->
+  <p class="sec-label">Wireframe approach</p>
+  <h2 class="sec-title">Structure before aesthetics</h2>
+  <p class="sec-sub">Wireframe approval is the strategic gate. No visual decisions until hierarchy, flow, and accessibility are signed off.</p>
+
+  <div class="wireframe-wrap">
+    <div class="wf-bar">
+      <div class="wf-dot"></div><div class="wf-dot"></div><div class="wf-dot"></div>
+      <span style="font-size:12px;color:var(--ink-3);margin-left:8px;font-family:monospace">client-portal · wireframe · lo-fi · v2</span>
+    </div>
+    <div class="wf-stage">
+      <div class="wf-nav">
+        <div class="wf-nav-item active"></div>
+        <div class="wf-nav-item"></div>
+        <div class="wf-nav-item"></div>
+        <div class="wf-nav-item"></div>
+        <div class="wf-nav-item"></div>
+      </div>
+      <div class="wf-main">
+        <div class="wf-hero-block">
+          <div class="wf-h"></div>
+          <div class="wf-h sm"></div>
+          <div class="wf-h btn"></div>
+          <div class="annotation-tag">H1 · primary CTA · above fold</div>
+        </div>
+        <div class="wf-cards">
+          <div class="wf-card"><div class="wf-c-img"></div><div class="wf-c-t"></div><div class="wf-c-t sm"></div></div>
+          <div class="wf-card"><div class="wf-c-img"></div><div class="wf-c-t"></div><div class="wf-c-t sm"></div></div>
+          <div class="wf-card"><div class="wf-c-img"></div><div class="wf-c-t"></div><div class="wf-c-t sm"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- DESIGN SYSTEM -->
+  <p class="sec-label">Design system</p>
+  <h2 class="sec-title">Built to replicate, not rebuild</h2>
+  <p class="sec-sub">Every visual decision becomes a token. A production designer takes page one and faithfully replicates it across the entire project.</p>
+
+  <div class="token-grid">
+    <div class="token-block">
+      <h4>Color tokens</h4>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#1B1A2E"></div>
+          <div class="swatch-label">--ink<br>#1B1A2E</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#6B5DD3"></div>
+          <div class="swatch-label">--accent<br>#6B5DD3</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#E8E5F8"></div>
+          <div class="swatch-label">--accent-l<br>#E8E5F8</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#F0EEF8;border:1px solid #DDD9EE"></div>
+          <div class="swatch-label">--bg<br>#F0EEF8</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="token-block">
+      <h4>Type scale</h4>
+      <div class="type-scale">
+        <div class="type-row">
+          <span class="type-meta">display / 52px</span>
+          <span class="type-sample" style="font-size:28px;font-weight:700;letter-spacing:-.02em;line-height:1">System first</span>
+        </div>
+        <div class="type-row">
+          <span class="type-meta">heading / 24px</span>
+          <span class="type-sample" style="font-size:20px;font-weight:600;letter-spacing:-.01em">Section heading</span>
+        </div>
+        <div class="type-row">
+          <span class="type-meta">body / 16px</span>
+          <span class="type-sample" style="font-size:15px;color:var(--ink-2)">Running body text, line-height 1.65</span>
+        </div>
+        <div class="type-row">
+          <span class="type-meta">label / 11px</span>
+          <span class="type-sample" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)">SECTION LABEL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- COMPONENTS -->
+  <p class="sec-label">Component library</p>
+  <h2 class="sec-title">Documented, named, reusable</h2>
+  <p class="sec-sub">Components are specific enough that a production designer can replicate them without asking what font size the button uses.</p>
+
+  <div class="components">
+    <div class="comp-row">
+      <span class="comp-label">Buttons</span>
+      <button class="demo-btn primary">Primary action</button>
+      <button class="demo-btn secondary">Secondary</button>
+      <button class="demo-btn ghost">Ghost</button>
+      <button class="demo-btn primary sm">Small</button>
+      <button class="demo-btn primary lg">Large CTA</button>
+    </div>
+    <div class="comp-row">
+      <span class="comp-label">Inputs</span>
+      <input class="demo-input" placeholder="Default state" readonly>
+      <input class="demo-input focus" value="Focus state" readonly>
+    </div>
+    <div class="comp-row">
+      <span class="comp-label">Cards</span>
+      <div class="demo-card">
+        <div class="card-tag">Feature</div>
+        <h5>Component name</h5>
+        <p>Short description of what this card pattern is used for across the product.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- AI COLLABORATION -->
+  <p class="sec-label">AI collaboration</p>
+  <h2 class="sec-title">Claude as thinking partner</h2>
+  <p class="sec-sub">AI accelerates concepting and brief analysis. Human taste, strategy, and judgment drive every decision.</p>
+
+  <div class="ai-block">
+    <div class="ai-chat">
+      <div class="msg human">Review this brief for a B2B client portal. What hierarchy risks do you see?</div>
+      <div class="msg ai">The brief assumes users arrive knowing their goal — but onboarding data suggests 40% don't. Recommend a "guided mode" path before the dashboard. Also: the pricing page buries the enterprise tier below three SMB options. That ordering signals priority to the wrong segment.</div>
+      <div class="msg human">Good. Now suggest three headline options for the hero — factual, no cleverness.</div>
+    </div>
+    <div class="ai-text">
+      <h4>Human expertise first. AI where it helps.</h4>
+      <p>I use Claude to stress-test briefs, generate copy options for client review, and identify hierarchy issues before a wireframe exists. Creative direction, visual judgment, and client relationship are mine.</p>
+      <p style="margin-top:12px;font-size:13px;color:var(--ink-3)">This is exactly the balanced AI relationship Valerian describes.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- WHY ME -->
+  <p class="sec-label">Why this works</p>
+  <h2 class="sec-title">What I bring to Valerian projects</h2>
+
+  <div class="approach-grid">
+    <div class="approach-card">
+      <div class="icon">◎</div>
+      <h4>Systems thinking</h4>
+      <p>Every engagement produces a design system, not just a page. Typography, color, spacing, and pattern decisions are documented so production scales cleanly.</p>
+    </div>
+    <div class="approach-card">
+      <div class="icon">◈</div>
+      <h4>WordPress-native design</h4>
+      <p>I design with production in mind — knowing the difference between a page template and an archive, when FacetWP changes layout constraints, when a form decision has dev cost.</p>
+    </div>
+    <div class="approach-card">
+      <div class="icon">◇</div>
+      <h4>Async-first, clear handoffs</h4>
+      <p>Briefs, component specs, and revision notes are written so a production designer can execute without a live call. I QA against brief before anything reaches your client.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-l">Prepared by <a href="https://sipa-os.org">Aelin AquaSoul · Soul In PsyAbstract · sipa-os.org</a></div>
+  <div class="footer-r">Proposal for Valerian (Ben Daron) · Jul 2026</div>
+</footer>
+
+</body>
+</html>

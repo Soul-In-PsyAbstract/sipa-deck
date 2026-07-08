@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aelin AquaSoul — Creative Portfolio</title>
+<style>
+  :root {
+    --ground: #F1F2EF;
+    --ink: #1A1B18;
+    --subtle: #7A7B74;
+    --rule: #DCDDD8;
+    --surface: #E5E6E2;
+    --accent: #7B9B94;
+    --cat-pkg: #7B9B94;
+    --cat-corp: #A0784A;
+    --cat-saas: #5B7FA6;
+    --cat-health: #8B7BA8;
+    --cat-edu: #6A9B7B;
+    --cat-mkt: #9B8A6A;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #131411;
+      --ink: #E5E6E0;
+      --subtle: #7A7B74;
+      --rule: #252620;
+      --surface: #1D1E1A;
+      --accent: #7B9B94;
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #F1F2EF;
+    --ink: #1A1B18;
+    --subtle: #7A7B74;
+    --rule: #DCDDD8;
+    --surface: #E5E6E2;
+    --accent: #7B9B94;
+  }
+  :root[data-theme="dark"] {
+    --ground: #131411;
+    --ink: #E5E6E0;
+    --subtle: #7A7B74;
+    --rule: #252620;
+    --surface: #1D1E1A;
+    --accent: #7B9B94;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: 'Helvetica Neue', 'Arial Nova', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 3.5rem 4rem 2.5rem;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .studio-name {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 200;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .studio-name em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .studio-line {
+    width: 2rem;
+    height: 2px;
+    background: var(--accent);
+    margin: 0.7rem 0 0.5rem;
+  }
+  .studio-desc {
+    font-size: 0.8rem;
+    color: var(--subtle);
+    max-width: 420px;
+    line-height: 1.6;
+  }
+  .header-stats {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .stat-row {
+    display: flex;
+    gap: 2rem;
+    justify-content: flex-end;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .stat-n {
+    font-size: 1.8rem;
+    font-weight: 200;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .stat-l {
+    font-size: 0.55rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    margin-top: 0.2rem;
+  }
+
+  /* ── FILTERS ── */
+  .filters {
+    padding: 1.2rem 4rem;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter-label {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    margin-right: 0.5rem;
+  }
+  .filter-btn {
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--rule);
+    background: transparent;
+    color: var(--subtle);
+    font-family: inherit;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--ink);
+  }
+  .filter-btn.active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--ground);
+  }
+
+  /* ── GRID ── */
+  .grid-wrap {
+    padding: 2.5rem 4rem 4rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.18s, box-shadow 0.18s;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px -8px rgba(26,27,24,0.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    .card:hover { box-shadow: 0 8px 32px -8px rgba(0,0,0,0.4); }
+  }
+  .card[data-hidden="true"] {
+    display: none;
+  }
+  .card-top {
+    height: 5px;
+    flex-shrink: 0;
+  }
+  .card-body {
+    padding: 1.2rem 1.3rem 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .card-cat {
+    font-size: 0.55rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .card-title {
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .card-sub {
+    font-size: 0.78rem;
+    color: var(--subtle);
+    line-height: 1.4;
+    flex: 1;
+  }
+  .card-footer {
+    padding: 0.7rem 1.3rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-link {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .card-arrow {
+    font-size: 0.85rem;
+    color: var(--accent);
+    transition: transform 0.15s;
+  }
+  .card:hover .card-arrow {
+    transform: translateX(3px);
+  }
+
+  /* ── EMPTY STATE ── */
+  .empty {
+    display: none;
+    grid-column: 1 / -1;
+    padding: 3rem;
+    text-align: center;
+    color: var(--subtle);
+    font-size: 0.85rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 1.5rem 4rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer p { font-size: 0.7rem; color: var(--subtle); }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 680px) {
+    header { padding: 2rem; }
+    .filters { padding: 1rem 2rem; }
+    .grid-wrap { padding: 2rem; }
+    footer { padding: 1.5rem 2rem; }
+    .stat-row { gap: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="studio-name">Aelin <em>AquaSoul</em></div>
+    <div class="studio-line"></div>
+    <p class="studio-desc">Creative direction, digital identity, and product design. Packaging systems, corporate identity, SaaS landing pages, healthcare platforms, and executive materials — delivered as working demos.</p>
+  </div>
+  <div class="header-stats">
+    <div class="stat-row">
+      <div class="stat">
+        <span class="stat-n" id="total-count">14</span>
+        <span class="stat-l">Projects</span>
+      </div>
+      <div class="stat">
+        <span class="stat-n">6</span>
+        <span class="stat-l">Categories</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="filters">
+  <span class="filter-label">Filter</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="packaging">Packaging</button>
+  <button class="filter-btn" data-filter="corporate">Corporate Identity</button>
+  <button class="filter-btn" data-filter="saas">SaaS / Product</button>
+  <button class="filter-btn" data-filter="healthcare">Healthcare</button>
+  <button class="filter-btn" data-filter="education">Education</button>
+  <button class="filter-btn" data-filter="marketing">Marketing</button>
+</div>
+
+<div class="grid-wrap">
+  <div class="grid" id="grid">
+
+    <a class="card" href="demo-hlvrn.html" target="_blank" data-cat="packaging">
+      <div class="card-top" style="background:var(--cat-pkg);"></div>
+      <div class="card-body">
+        <span class="card-cat" style="color:var(--cat-pkg);">Packaging</span>
+        <div class="card-title">hlvrn</div>
+        <p class="card-sub">Premium electrolyte brand — minimal wellness packaging system for pouch and stick packs. Spain.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-link">View Demo</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" href="demo-jerichow.html" target="_blank" data-cat="corporate">
+      <div class="card-top" style="background:var(--cat-corp);"></div>
+      <div class="card-body">
+        <span class="card-cat" style="color:var(--cat-corp);">Corporate Identity</span>
+        <div class="card-title">Jerichow Advisory</div>
+        <p class="card-sub">Executive Profile + OnePager + template system for a German management consulting firm. Gelnhausen.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-link">View Demo</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" href="demo-ai-saas.html" target="_blank" data-cat="saas">
+      <div class="card-top" style="background:var(--cat-saas);"></div>
+      <div class="card-body">
+        <span class="card-cat" style="color:var(--cat-saas);">SaaS / Product</span>
+        <div class="card-title">AXIOM AI Platform</div>
+        <p class="card-sub">Premium AI SaaS landing page — enterprise positioning, feature showcase, pricing architecture.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-link">View Demo</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" href="demo-drsaori.html" target="_blank" data-cat="healthcare">
+      <div class="card-top" style="background:var(--cat-health);"></div>
+      <div class="card-body">
+        <span class="card-cat" style="color:var(--cat-health);">Healthcare</span>
+        <div class="card-title">Dr. Saori</div>
+        <p class="card-sub">Medical practice identity and digital presence — clean clinical aesthetic with warmth.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-link">View Demo</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" href="demo-hco.html" target="_blank" data-cat="healthcare">
+      <div class="card-top" style="background:var(--cat-health);"></div>
+      <div class="card-body">
+        <span class="card-cat" style="color:var(--cat-health);">Healthcare</span>
+        <div class="card-title">HCO</div>
+        <p class="card-sub">Healthcare organization brand system — institutional identity designed for trust and clarity.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-link">View Demo</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" href="demo-inument.html" target="_blank" data-cat="corporate">
+      <div class="card-top" style="background:var(--cat-corp);"></div>
+      <div class="card-body">
+        <span class="card-cat" style="color:var(--cat-corp);">Corporate Identity</span>
+        <div class="card-title">Inument</div>
+        <p class="card-sub">Brand identity and digital presence — refined corporate visual system.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-link">View Demo</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" href="demo-kajabi.html" target="_blank" data-cat="corporate">
+      <div class="card-top" style="background:#B87B6A;"></div>
+      <div class="card-body">
+        <span class="card-cat" style="color:#B87B6A;">Corporate Identity</span>
+        <div class="card-title">Renée Colour</div>
+        <p class="card-sub">Creator brand identity on Kajabi — warm, editorial aesthetic for a colour consultation practice.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-link">View Demo</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" href="demo-lizard.html" target="_blank" data-cat="marketing">
+      <div class="card-top" style="background:var(--cat-mkt);"></div>
+      <div class="card-body">
+        <span class="card-cat" style="color:var(--cat-mkt);">Marketing</span>
+        <div class="card-title">Lizard Marketing</div>
+        <p class="card-sub">Marketing agency brand and website — bold positioning, high-energy creative direction.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-link">View Demo</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" href="demo-medrisk.html" target="_blank" data-cat="healthcare">
+      <div class="card-top" style="background:var(--cat-health);"></div>
+      <div class="card-body">
+        <span class="card-cat" style="color:var(--cat-health);">Healthcare</span>
+        <div class="card-title">Medrisk</div>
+        <p class="card-sub">Medical risk platform — data-forward design language for a clinical analytics product.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-link">View Demo</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" href="demo-nema-vand.html" target="_blank" data-cat="corporate">
+      <div class="card-top" style="background:var(--cat-corp);"></div>
+      <div class="card-body">
+        <span class="card-cat" style="color:var(--cat-corp);">Corporate Identity</span>
+        <div class="card-title">Nema Vand</div>
+        <p class="card-sub">Brand identity system — visual language and digital presence for a consultancy.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-link">View Demo</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" href="demo-sans.html" target="_blank" data-cat="saas">
+      <div class="card-top" style="background:var(--cat-saas);"></div>
+      <div class="card-body">
+        <span class="card-cat" style="color:var(--cat-saas);">SaaS / Product</span>
+        <div class="card-title">SANS</div>
+        <p class="card-sub">Cybersecurity platform digital presence — precision, authority, and technical depth.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-link">View Demo</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" href="demo-testprep.html" target="_blank" data-cat="education">
+      <div class="card-top" style="background:var(--cat-edu);"></div>
+      <div class="card-body">
+        <span class="card-cat" style="color:var(--cat-edu);">Education</span>
+        <div class="card-title">Test Prep Insight</div>
+        <p class="card-sub">Education platform — clear, structured UX for a test preparation service.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-link">View Demo</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" href="demo-wowhouse.html" target="_blank" data-cat="corporate">
+      <div class="card-top" style="background:#B87B6A;"></div>
+      <div class="card-body">
+        <span class="card-cat" style="color:#B87B6A);">Corporate Identity</span>
+        <div class="card-title">Wow House Studio</div>
+        <p class="card-sub">Creative studio identity — expressive brand system for a design and production house.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-link">View Demo</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" href="etta-renders.html" target="_blank" data-cat="packaging">
+      <div class="card-top" style="background:var(--cat-pkg);"></div>
+      <div class="card-body">
+        <span class="card-cat" style="color:var(--cat-pkg);">Packaging</span>
+        <div class="card-title">Etta Renders</div>
+        <p class="card-sub">Product visualization renders — premium 3D-style packaging mockups and visual assets.</p>
+      </div>
+      <div class="card-footer">
+        <span class="card-link">View Demo</span>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <div class="empty" id="empty-state">No projects in this category.</div>
+
+  </div>
+</div>
+
+<footer>
+  <p><strong>Aelin AquaSoul</strong> · Soul In PsyAbstract · <a href="https://sipa-os.org">sipa-os.org</a></p>
+  <p>Creative Direction · Brand Identity · Digital Design · <a href="mailto:sipa-core@sipa-os.org">sipa-core@sipa-os.org</a></p>
+</footer>
+
+<script>
+  const btns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.card');
+  const empty = document.getElementById('empty-state');
+  const counter = document.getElementById('total-count');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      let visible = 0;
+      cards.forEach(card => {
+        const match = f === 'all' || card.dataset.cat === f;
+        card.dataset.hidden = match ? 'false' : 'true';
+        if (match) visible++;
+      });
+      empty.style.display = visible === 0 ? 'block' : 'none';
+      counter.textContent = visible;
+    });
+  });
+</script>
+
+</body>
+</html>

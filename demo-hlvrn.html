@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hlvrn — Packaging Direction · Aelin AquaSoul</title>
+<style>
+  :root {
+    --ground: #F5F7F5;
+    --ink: #131514;
+    --sage: #7B9B94;
+    --mist: #D8E2DF;
+    --deep: #2E4A45;
+    --subtle: #8A9693;
+    --surface: #ECF0EE;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #111614;
+      --ink: #E8EDEA;
+      --sage: #7B9B94;
+      --mist: #263530;
+      --deep: #A8C5BE;
+      --subtle: #607872;
+      --surface: #1A211F;
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #F5F7F5;
+    --ink: #131514;
+    --sage: #7B9B94;
+    --mist: #D8E2DF;
+    --deep: #2E4A45;
+    --subtle: #8A9693;
+    --surface: #ECF0EE;
+  }
+  :root[data-theme="dark"] {
+    --ground: #111614;
+    --ink: #E8EDEA;
+    --sage: #7B9B94;
+    --mist: #263530;
+    --deep: #A8C5BE;
+    --subtle: #607872;
+    --surface: #1A211F;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: 'Helvetica Neue', 'Arial Nova', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .label {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--subtle);
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 3rem 4rem 2rem;
+    border-bottom: 1px solid var(--mist);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .brand-eyebrow {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 0.5rem;
+  }
+  header h1 {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 200;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  header h1 em {
+    font-style: normal;
+    color: var(--sage);
+  }
+  .header-meta {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .header-meta p {
+    font-size: 0.8rem;
+    color: var(--subtle);
+    line-height: 1.5;
+  }
+
+  /* ── MAIN GRID ── */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    min-height: 70vh;
+  }
+
+  /* ── MOCKUP PANEL ── */
+  .mockup-panel {
+    padding: 3rem 3rem 3rem 4rem;
+    border-right: 1px solid var(--mist);
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .pouch-wrap {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-end;
+  }
+
+  /* CSS Pouch */
+  .pouch {
+    width: 120px;
+    height: 180px;
+    background: var(--deep);
+    border-radius: 8px 8px 14px 14px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-shrink: 0;
+    box-shadow: 0 12px 40px -8px rgba(20,40,35,0.18);
+  }
+  .pouch::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    background: rgba(0,0,0,0.15);
+    border-radius: 8px 8px 0 0;
+  }
+  .pouch-brand {
+    font-size: 1.05rem;
+    font-weight: 200;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(245,247,245,0.92);
+    position: relative;
+    z-index: 1;
+  }
+  .pouch-sub {
+    font-size: 0.48rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(180,200,196,0.7);
+    position: relative;
+    z-index: 1;
+  }
+  .pouch-line {
+    width: 32px;
+    height: 1px;
+    background: rgba(180,200,196,0.35);
+    position: relative;
+    z-index: 1;
+  }
+  .pouch-count {
+    font-size: 0.42rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(180,200,196,0.55);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* CSS Stick packs */
+  .sticks {
+    display: flex;
+    gap: 5px;
+    align-items: flex-end;
+  }
+  .stick {
+    width: 20px;
+    height: 130px;
+    background: var(--surface);
+    border: 1px solid var(--mist);
+    border-radius: 3px 3px 4px 4px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 0;
+    flex-shrink: 0;
+  }
+  .stick::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 28px;
+    background: var(--deep);
+    opacity: 0.08;
+    border-radius: 0 0 3px 3px;
+  }
+  .stick-brand {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 0.44rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--deep);
+    opacity: 0.7;
+    transform: rotate(180deg);
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  .stick-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--sage);
+    opacity: 0.6;
+  }
+
+  .mockup-note {
+    font-size: 0.78rem;
+    color: var(--subtle);
+    line-height: 1.5;
+    max-width: 320px;
+  }
+
+  /* ── SYSTEM PANEL ── */
+  .system-panel {
+    padding: 3rem 4rem 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--mist);
+  }
+
+  /* Color swatches */
+  .palette {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: center;
+  }
+  .swatch-block {
+    width: 52px;
+    height: 52px;
+    border-radius: 4px;
+  }
+  .swatch-label {
+    font-size: 0.52rem;
+    letter-spacing: 0.06em;
+    color: var(--subtle);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* Type scale */
+  .type-scale {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .ts-row {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    gap: 1rem;
+    align-items: baseline;
+  }
+  .ts-meta {
+    font-size: 0.52rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    line-height: 1;
+  }
+
+  /* Deliverables */
+  .deliverables {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  .deliverable-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+    color: var(--ink);
+    font-weight: 300;
+  }
+  .deliverable-item::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--sage);
+    flex-shrink: 0;
+    margin-top: 0.45em;
+  }
+
+  /* ── PROCESS STRIP ── */
+  .process-strip {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--mist);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .process-step {
+    padding: 0 1.5rem 0 0;
+    border-right: 1px solid var(--mist);
+  }
+  .process-step:last-child { border-right: none; padding-right: 0; }
+  .process-step:not(:first-child) { padding-left: 1.5rem; }
+  .step-num {
+    font-size: 0.56rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 0.4rem;
+  }
+  .step-title {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+  .step-desc {
+    font-size: 0.74rem;
+    color: var(--subtle);
+    line-height: 1.45;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 1.5rem 4rem;
+    border-top: 1px solid var(--mist);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer p {
+    font-size: 0.72rem;
+    color: var(--subtle);
+    letter-spacing: 0.03em;
+  }
+  footer a {
+    color: var(--sage);
+    text-decoration: none;
+  }
+
+  @media (max-width: 780px) {
+    header { padding: 2rem; }
+    .main-grid { grid-template-columns: 1fr; }
+    .mockup-panel { padding: 2rem; border-right: none; border-bottom: 1px solid var(--mist); }
+    .system-panel { padding: 2rem; }
+    .process-strip { grid-template-columns: 1fr 1fr; gap: 1.5rem; padding: 2rem; }
+    .process-step { border-right: none; padding: 0; }
+    footer { padding: 1.5rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <p class="brand-eyebrow">Packaging Direction · hlvrn</p>
+    <h1>Premium hydration,<br><em>refined</em> to the detail.</h1>
+  </div>
+  <div class="header-meta">
+    <p class="label">Prepared by</p>
+    <p style="font-size:0.85rem;font-weight:400;color:var(--ink);margin-top:0.2rem;">Aelin AquaSoul</p>
+    <p style="font-size:0.75rem;color:var(--subtle);">Soul In PsyAbstract</p>
+  </div>
+</header>
+
+<div class="main-grid">
+
+  <!-- Packaging mockup -->
+  <div class="mockup-panel">
+    <p class="label">Packaging mockup</p>
+    <div class="pouch-wrap">
+      <div class="pouch">
+        <span class="pouch-brand">hlvrn</span>
+        <div class="pouch-line"></div>
+        <span class="pouch-sub">Daily Electrolytes</span>
+        <span class="pouch-count">30 stick packs</span>
+      </div>
+      <div class="sticks">
+        <div class="stick"><span class="stick-brand">hlvrn</span><div class="stick-dot"></div></div>
+        <div class="stick"><span class="stick-brand">hlvrn</span><div class="stick-dot"></div></div>
+        <div class="stick"><span class="stick-brand">hlvrn</span><div class="stick-dot"></div></div>
+        <div class="stick" style="opacity:0.5;"><span class="stick-brand">hlvrn</span><div class="stick-dot"></div></div>
+        <div class="stick" style="opacity:0.25;"><span class="stick-brand">hlvrn</span><div class="stick-dot"></div></div>
+      </div>
+    </div>
+    <p class="mockup-note">Direction: deep mineral ground, minimal wordmark, one restrained typographic hierarchy — the pouch reads premium at a distance, precise up close. The stick pack system matches with tight condensed treatment on a clean surface field.</p>
+
+    <div>
+      <p class="section-title">Deliverables</p>
+      <div class="deliverables">
+        <div class="deliverable-item">Final pouch design</div>
+        <div class="deliverable-item">Final stick pack design</div>
+        <div class="deliverable-item">Print-ready files</div>
+        <div class="deliverable-item">High-quality mockups</div>
+        <div class="deliverable-item">Source files (AI)</div>
+        <div class="deliverable-item">Revision rounds</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Brand system -->
+  <div class="system-panel">
+
+    <div>
+      <p class="section-title">Colour System</p>
+      <div class="palette">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#2E4A45;"></div>
+          <div class="swatch-label">Mineral<br>#2E4A45</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#F5F7F5;border:1px solid #D8E2DF;"></div>
+          <div class="swatch-label">Spring<br>#F5F7F5</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#7B9B94;"></div>
+          <div class="swatch-label">Sage<br>#7B9B94</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#D8E2DF;"></div>
+          <div class="swatch-label">Mist<br>#D8E2DF</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#131514;"></div>
+          <div class="swatch-label">Ink<br>#131514</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="section-title">Typography Scale</p>
+      <div class="type-scale">
+        <div class="ts-row">
+          <span class="ts-meta">Display</span>
+          <span style="font-size:2rem;font-weight:200;letter-spacing:-0.04em;color:var(--ink);line-height:1;">hlvrn</span>
+        </div>
+        <div class="ts-row">
+          <span class="ts-meta">Heading</span>
+          <span style="font-size:1rem;font-weight:300;letter-spacing:0.01em;color:var(--ink);">Daily Electrolytes</span>
+        </div>
+        <div class="ts-row">
+          <span class="ts-meta">Label</span>
+          <span style="font-size:0.58rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--subtle);">30 stick packs · 7g each</span>
+        </div>
+        <div class="ts-row">
+          <span class="ts-meta">Micro</span>
+          <span style="font-size:0.5rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:var(--subtle);">No artificial flavours · Vegan</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="section-title">Aesthetic Direction</p>
+      <p style="font-size:0.84rem;line-height:1.65;color:var(--ink);max-width:380px;">Timeless over trendy. The hlvrn visual system borrows from precision-grade cosmetics and clinical supplements — not sports performance. Every element earns its place: no gradients, no pattern fill, no superfluous detail. The packaging should feel as considered at 10cm as at 10 metres.</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="process-strip">
+  <div class="process-step">
+    <p class="step-num">Stage 01</p>
+    <p class="step-title">File review</p>
+    <p class="step-desc">Assess existing branding, palette, typography direction. Identify what to keep and what to sharpen.</p>
+  </div>
+  <div class="process-step">
+    <p class="step-num">Stage 02</p>
+    <p class="step-title">Refinement pass</p>
+    <p class="step-desc">Improve hierarchy, spacing, visual weight. Develop stick pack system to match pouch.</p>
+  </div>
+  <div class="process-step">
+    <p class="step-num">Stage 03</p>
+    <p class="step-title">Premium mockups</p>
+    <p class="step-desc">High-quality renders before manufacturing. Review every detail before approving production files.</p>
+  </div>
+  <div class="process-step">
+    <p class="step-num">Stage 04</p>
+    <p class="step-title">Production files</p>
+    <p class="step-desc">Print-ready AI source files, CMYK, bleed and marks. Ready for your manufacturing partner.</p>
+  </div>
+</div>
+
+<footer>
+  <p>Prepared by <strong>Aelin AquaSoul</strong> · Soul In PsyAbstract · <a href="https://sipa-os.org">sipa-os.org</a></p>
+  <p>Proposal · hlvrn Packaging System · July 2026</p>
+</footer>
+
+</body>
+</html>

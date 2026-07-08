@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Strategy Work Sample · Tessera (Web3 Social Platform) — Aelin AquaSoul</title>
+<style>
+:root {
+  --bg:     #F5F6F8;
+  --bg-r:   #FFFFFF;
+  --ink:    #16192B;
+  --ink-2:  #4B5266;
+  --ink-3:  #8A90A3;
+  --accent: #4F46E5;
+  --a-soft: #EDECFD;
+  --green:  #178A56;
+  --g-soft: #E1F5EA;
+  --orange: #B15C1E;
+  --o-soft: #FCEEE1;
+  --rule:   #E3E5EC;
+  --card:   #FFFFFF;
+  --now:    #4F46E5;
+  --next:   #178A56;
+  --later:  #8A90A3;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:#12141F; --bg-r:#1B1E2E; --ink:#EDEEF5; --ink-2:#A4A9BC;
+    --ink-3:#5B6178; --rule:#2B2F44; --card:#1B1E2E;
+    --a-soft:#25234A; --g-soft:#0F2B1F; --o-soft:#3A2413;
+  }
+}
+:root[data-theme="dark"]{--bg:#12141F;--bg-r:#1B1E2E;--ink:#EDEEF5;--ink-2:#A4A9BC;--ink-3:#5B6178;--rule:#2B2F44;--card:#1B1E2E;--a-soft:#25234A;--g-soft:#0F2B1F;--o-soft:#3A2413}
+:root[data-theme="light"]{--bg:#F5F6F8;--bg-r:#FFFFFF;--ink:#16192B;--ink-2:#4B5266;--ink-3:#8A90A3;--rule:#E3E5EC;--card:#FFFFFF;--a-soft:#EDECFD;--g-soft:#E1F5EA;--o-soft:#FCEEE1}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 48px;border-bottom:1px solid var(--rule);background:var(--bg-r);flex-wrap:wrap;gap:10px}
+.logo{font-size:15px;font-weight:700;color:var(--ink)}
+.logo span{color:var(--accent)}
+.nav-r{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--ink-3);flex-wrap:wrap}
+.pill{background:var(--accent);color:#fff;padding:4px 12px;border-radius:100px;font-size:12px;font-weight:500}
+
+.intro{max-width:1080px;margin:0 auto;padding:56px 48px 40px}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+h1{font-size:clamp(26px,3.2vw,40px);font-weight:700;letter-spacing:-.02em;line-height:1.2;margin-bottom:18px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+.vision-box{background:var(--a-soft);border:1px solid var(--rule);border-radius:10px;padding:22px 26px;margin:22px 0 26px}
+.vision-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:8px}
+.vision-text{font-size:17px;color:var(--ink);line-height:1.6;font-weight:500}
+.intro-sub{font-size:15px;color:var(--ink-2);max-width:640px;line-height:1.65}
+.meta-row{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--ink-3);margin-top:22px}
+.meta-row strong{color:var(--ink-2)}
+
+.section{max-width:1080px;margin:0 auto;padding:44px 48px}
+.section+.section{border-top:1px solid var(--rule)}
+.s-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+.s-title{font-size:24px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:8px}
+.s-sub{font-size:15px;color:var(--ink-2);max-width:640px;line-height:1.6;margin-bottom:32px}
+
+/* PILLARS */
+.pillars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.pillar-card{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:20px}
+.pillar-num{font-size:12px;font-weight:700;color:var(--accent);margin-bottom:8px}
+.pillar-card h4{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.35}
+.pillar-card p{font-size:13px;color:var(--ink-2);line-height:1.55}
+
+/* RICE TABLE */
+.table-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:720px}
+thead th{text-align:left;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);background:var(--bg);padding:12px 14px;border-bottom:1px solid var(--rule);font-weight:600}
+tbody td{padding:13px 14px;border-bottom:1px solid var(--rule);color:var(--ink-2)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr.top-rank{background:var(--a-soft)}
+.feat-name{color:var(--ink);font-weight:600}
+.rice-score{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.rank-badge{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:5px;background:var(--rule);color:var(--ink-2);font-size:11px;font-weight:700}
+.rank-badge.r1{background:var(--accent);color:#fff}
+.note-row td{padding:14px 14px 16px;color:var(--ink-3);font-size:12.5px;line-height:1.6;font-style:normal;background:var(--bg)}
+
+/* ROADMAP */
+.roadmap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.rm-col{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.rm-head{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.rm-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.rm-dot.now{background:var(--now)}
+.rm-dot.next{background:var(--next)}
+.rm-dot.later{background:var(--later)}
+.rm-title{font-size:13px;font-weight:700;color:var(--ink);letter-spacing:.02em}
+.rm-sub{font-size:11px;color:var(--ink-3)}
+.rm-item{background:var(--bg);border:1px solid var(--rule);border-radius:7px;padding:11px 12px}
+.rm-item h5{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.rm-item p{font-size:12px;color:var(--ink-2);line-height:1.5}
+
+/* METRICS */
+.metrics-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:20px}
+.metric-card{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:20px}
+.metric-card h4{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.metric-card h4 .swatch{width:8px;height:8px;border-radius:2px}
+.metric-card ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.metric-card li{font-size:13px;color:var(--ink-2);line-height:1.5;padding-left:14px;position:relative}
+.metric-card li::before{content:"—";position:absolute;left:0;color:var(--ink-3)}
+.north-star{background:var(--a-soft);border:1px solid var(--rule);border-radius:10px;padding:20px 22px}
+.north-star .ns-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:8px}
+.north-star p{font-size:14px;color:var(--ink);line-height:1.6}
+.north-star strong{color:var(--accent)}
+
+/* APPROACH NOTE */
+.approach{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:22px 26px}
+.approach p{font-size:13.5px;color:var(--ink-2);line-height:1.7}
+.approach p+p{margin-top:12px}
+
+footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;background:var(--bg-r)}
+.fl{font-size:13px;color:var(--ink-3)}
+.fl a{color:var(--ink-2);text-decoration:none}
+.fr{font-size:12px;color:var(--ink-3)}
+
+@media(max-width:860px){
+  nav,footer{padding:14px 20px}
+  .intro,.section{padding-left:20px;padding-right:20px}
+  .pillars-grid{grid-template-columns:1fr 1fr}
+  .roadmap-grid{grid-template-columns:1fr}
+  .metrics-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .pillars-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Aelin AquaSoul <span>·</span> Soul In PsyAbstract</div>
+  <div class="nav-r">
+    <span>Product strategy work sample — for Gini Talent · Product Lead, Web3 Social Platform</span>
+    <span class="pill">Prepared for review</span>
+  </div>
+</nav>
+
+<div class="intro">
+  <p class="eyebrow">Work sample · hypothetical case study · product strategy for a Web3 social platform</p>
+  <h1>Tessera — a working example of<br><em>how I'd own this product.</em></h1>
+
+  <div class="vision-box">
+    <div class="vision-label">Product vision</div>
+    <div class="vision-text">Tessera is the social platform where your standing in a community is yours to keep — reputation, governance rights, and creator earnings move with you, so communities can self-govern and creators can build a real business instead of chasing an algorithm.</div>
+  </div>
+
+  <p class="intro-sub">This is not a real client engagement — it's a self-directed case study built to show exactly how I'd approach the Product Lead role described in the posting: owning vision and roadmap, running discovery-to-delivery, prioritizing with a defensible framework, and tying every initiative back to a metric. "Tessera" is a hypothetical product; the thinking underneath it is how I actually work.</p>
+
+  <div class="meta-row">
+    <span><strong>Scope</strong> Web3 social platform · community spaces · creator monetization · on-chain reputation</span>
+    <span><strong>Horizon</strong> Next 2 quarters (Q3–Q4)</span>
+    <span><strong>Format</strong> Vision → prioritization → roadmap → metrics</span>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<div class="section">
+  <p class="s-label">Strategic pillars — next 2 quarters</p>
+  <h2 class="s-title">Four bets, in priority order</h2>
+  <p class="s-sub">Web3 social platforms fail for the same reason most social platforms fail — weak trust, no durable creator economics, and governance that's decorative rather than functional. These four pillars are chosen to close those gaps in order, not all at once.</p>
+
+  <div class="pillars-grid">
+    <div class="pillar-card">
+      <div class="pillar-num">01</div>
+      <h4>Trust &amp; identity infrastructure</h4>
+      <p>Sybil-resistant onboarding and portable, on-chain reputation. Without this, every other pillar inherits a fake-account problem — so it's funded and shipped first, even though it's the least visible pillar to users.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">02</div>
+      <h4>Community governance tooling</h4>
+      <p>Token-gated spaces, proposal/voting, and treasury visibility for community leads — the primitives that let a community actually run itself instead of depending on platform staff.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">03</div>
+      <h4>Creator monetization rails</h4>
+      <p>Stablecoin tipping, subscriptions, and revenue splits with a real fiat off-ramp. Sequenced after trust and governance, because payouts on top of a sybil-prone graph just subsidize fraud.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">04</div>
+      <h4>Trust &amp; safety at scale</h4>
+      <p>Moderation tooling and abuse controls that compound as the graph grows — built alongside, not bolted on after growth makes it an emergency.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRIORITIZATION -->
+<div class="section">
+  <p class="s-label">Prioritization framework</p>
+  <h2 class="s-title">RICE applied to five real feature candidates</h2>
+  <p class="s-sub">RICE = (Reach × Impact × Confidence) ÷ Effort. Reach is estimated users touched per quarter (thousands); Impact is 3/2/1/0.5 (massive/high/medium/low); Confidence is a percentage; Effort is person-months. The ranking below is deliberately counter-intuitive: the flashiest Web3 feature (governance voting) ranks last, and unglamorous trust infrastructure ranks first — that's the point of running the framework instead of building on instinct.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Feature candidate</th>
+          <th>Reach</th>
+          <th>Impact</th>
+          <th>Confidence</th>
+          <th>Effort</th>
+          <th>RICE score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="top-rank">
+          <td><span class="rank-badge r1">1</span></td>
+          <td class="feat-name">Sybil-resistant onboarding (proof-of-personhood)</td>
+          <td>25,000</td>
+          <td>2</td>
+          <td>65%</td>
+          <td>3</td>
+          <td class="rice-score">10,833</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge">2</span></td>
+          <td class="feat-name">Token-gated community spaces</td>
+          <td>15,000</td>
+          <td>2</td>
+          <td>75%</td>
+          <td>3</td>
+          <td class="rice-score">7,500</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge">3</span></td>
+          <td class="feat-name">Portable on-chain reputation badges</td>
+          <td>25,000</td>
+          <td>2</td>
+          <td>70%</td>
+          <td>6</td>
+          <td class="rice-score">5,833</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge">4</span></td>
+          <td class="feat-name">Stablecoin creator payouts (tips + subs)</td>
+          <td>8,000</td>
+          <td>3</td>
+          <td>80%</td>
+          <td>4</td>
+          <td class="rice-score">4,800</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge">5</span></td>
+          <td class="feat-name">Governance proposal &amp; voting module</td>
+          <td>5,000</td>
+          <td>1</td>
+          <td>60%</td>
+          <td>5</td>
+          <td class="rice-score">600</td>
+        </tr>
+        <tr class="note-row">
+          <td colspan="7">Reading the table: onboarding wins on reach and effort even at middling confidence and impact — it's cheap, touches everyone, and unlocks everything downstream. Payouts score high per-user (Impact 3) but touch a smaller base early. Governance voting is high-effort, lower-confidence (early communities don't reliably use formal voting), and low-reach until spaces mature — it's real, but it's a Q4/Later bet, not a launch feature.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ROADMAP -->
+<div class="section">
+  <p class="s-label">Roadmap</p>
+  <h2 class="s-title">Now / Next / Later</h2>
+  <p class="s-sub">Sequenced directly off the RICE ranking above — not a wishlist reshuffled to look tidy. Each phase unlocks the reach or confidence numbers the next phase depends on.</p>
+
+  <div class="roadmap-grid">
+    <div class="rm-col">
+      <div class="rm-head"><span class="rm-dot now"></span><span class="rm-title">NOW</span><span class="rm-sub">Weeks 1–6</span></div>
+      <div class="rm-item">
+        <h5>Sybil-resistant onboarding</h5>
+        <p>Proof-of-personhood integration + progressive trust scoring. Ships before anything that pays out value.</p>
+      </div>
+      <div class="rm-item">
+        <h5>Token-gated spaces v1</h5>
+        <p>NFT/token allowlist gating for community entry. Minimum viable governance surface.</p>
+      </div>
+    </div>
+    <div class="rm-col">
+      <div class="rm-head"><span class="rm-dot next"></span><span class="rm-title">NEXT</span><span class="rm-sub">Weeks 7–14</span></div>
+      <div class="rm-item">
+        <h5>Portable reputation badges</h5>
+        <p>Cross-community reputation primitive built on the trust-scoring foundation shipped in Now.</p>
+      </div>
+      <div class="rm-item">
+        <h5>Stablecoin creator payouts</h5>
+        <p>Tipping + subscriptions with a vetted fiat off-ramp partner. Gated behind onboarding to limit payout fraud.</p>
+      </div>
+    </div>
+    <div class="rm-col">
+      <div class="rm-head"><span class="rm-dot later"></span><span class="rm-title">LATER</span><span class="rm-sub">Q4+</span></div>
+      <div class="rm-item">
+        <h5>Governance proposal &amp; voting</h5>
+        <p>Treasury-linked, community-led decision making — introduced once communities have enough reputation-weighted members to make votes meaningful.</p>
+      </div>
+      <div class="rm-item">
+        <h5>Reputation interoperability</h5>
+        <p>Open import/export standard so reputation earned on Tessera has value beyond it — the long-term moat.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- METRICS -->
+<div class="section">
+  <p class="s-label">How I'd measure success</p>
+  <h2 class="s-title">Metrics tied to the strategy, not vanity numbers</h2>
+  <p class="s-sub">A Web3 social platform can post impressive MAU while the actual economy underneath is hollow. These are the numbers I'd put in front of leadership every two weeks.</p>
+
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <h4><span class="swatch" style="background:var(--now)"></span>Engagement</h4>
+      <ul>
+        <li>WAU/MAU ratio, tracked by cohort — not just headline MAU</li>
+        <li>Community formation rate: number of spaces with 20+ weekly active members</li>
+        <li>Session frequency segmented by onboarding-verified vs. unverified users</li>
+      </ul>
+    </div>
+    <div class="metric-card">
+      <h4><span class="swatch" style="background:var(--next)"></span>Retention</h4>
+      <ul>
+        <li>D7 / D30 retention, split by whether a user completed reputation onboarding</li>
+        <li>Creator retention specifically — churn here is a leading indicator, not a lagging one</li>
+        <li>Cohort retention curves by acquisition channel</li>
+      </ul>
+    </div>
+    <div class="metric-card">
+      <h4><span class="swatch" style="background:var(--orange)"></span>Creator economics</h4>
+      <ul>
+        <li>Total creator payout volume and month-over-month growth</li>
+        <li>% of active creators earning above a meaningful monthly threshold</li>
+        <li>Take-rate sustainability: platform revenue vs. payout-to-GMV ratio</li>
+      </ul>
+    </div>
+    <div class="metric-card">
+      <h4><span class="swatch" style="background:var(--ink-3)"></span>Trust &amp; safety</h4>
+      <ul>
+        <li>Sybil detection rate at onboarding vs. post-hoc removal rate</li>
+        <li>Moderation actions per 1,000 active users, trended over time</li>
+        <li>Community health score derived from report-rate trend, not raw volume</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="north-star">
+    <div class="ns-label">North star</div>
+    <p><strong>Weekly Active Contributing Members (WACM)</strong> — users who post, vote, tip, or govern in a given week, not just view. It's a deliberately stricter bar than MAU, chosen because a platform built on reputation and governance only works if "active" means "contributing," not "scrolling."</p>
+  </div>
+</div>
+
+<!-- APPROACH -->
+<div class="section">
+  <p class="s-label">A note on this exercise</p>
+  <h2 class="s-title">Why I built this instead of a generic pitch</h2>
+  <div class="approach">
+    <p>Tessera doesn't exist — I built this case study to demonstrate the actual mechanics of the role: framing a defensible vision, running a real prioritization framework instead of gut-feel roadmapping, sequencing a roadmap that respects dependencies between initiatives, and defining metrics before the first line of code ships.</p>
+    <p>For a real platform, this same process starts with discovery — user interviews, usage data, technical constraints from engineering, and the actual token/treasury economics already in place — none of which I could fabricate honestly for a hypothetical product. What's fixed here is the method; what changes with the real platform is the inputs.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="fl">Prepared by <a href="https://sipa-os.org">Aelin AquaSoul · Soul In PsyAbstract · sipa-os.org</a></div>
+  <div class="fr">Work sample for Gini Talent · Product Lead, Web3 Social Platform · Jul 2026</div>
+</footer>
+
+</body>
+</html>

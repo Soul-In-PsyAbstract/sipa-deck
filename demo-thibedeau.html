@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kajabi Membership Portal Concept · Catherine Thibedeau LLC — Aelin AquaSoul</title>
+<style>
+:root {
+  --bg:     #F3F5F8;
+  --bg-r:   #FFFFFF;
+  --ink:    #14202E;
+  --ink-2:  #4E5D6D;
+  --ink-3:  #8A97A6;
+  --accent: #2C5C8A;
+  --accent-2:#1E7A5E;
+  --a-soft: #E4EDF5;
+  --g-soft: #E1F0EA;
+  --amber:  #B4791F;
+  --am-soft:#F7EDDD;
+  --rule:   #DCE3EA;
+  --card:   #FFFFFF;
+  --navy:   #10233A;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:#0E1620; --bg-r:#16212E; --ink:#EAF0F6; --ink-2:#9FADBC;
+    --ink-3:#5C6B7C; --rule:#28323F; --card:#182430;
+    --a-soft:#1C2E42; --g-soft:#132A22; --am-soft:#2E2413;
+    --navy:#0A1420;
+  }
+}
+:root[data-theme="dark"]{--bg:#0E1620;--bg-r:#16212E;--ink:#EAF0F6;--ink-2:#9FADBC;--ink-3:#5C6B7C;--rule:#28323F;--card:#182430;--a-soft:#1C2E42;--g-soft:#132A22;--am-soft:#2E2413;--navy:#0A1420}
+:root[data-theme="light"]{--bg:#F3F5F8;--bg-r:#FFFFFF;--ink:#14202E;--ink-2:#4E5D6D;--ink-3:#8A97A6;--rule:#DCE3EA;--card:#FFFFFF;--a-soft:#E4EDF5;--g-soft:#E1F0EA;--am-soft:#F7EDDD;--navy:#10233A}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+@media (max-width:640px){.wrap{padding:0 18px}}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;border-bottom:1px solid var(--rule);background:var(--bg-r);position:sticky;top:0;z-index:50}
+.logo{font-size:14px;font-weight:700;color:var(--ink);letter-spacing:.01em}
+.logo span{color:var(--accent)}
+.nav-r{display:flex;align-items:center;gap:14px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--a-soft);border:1px solid var(--accent);color:var(--accent);border-radius:20px;padding:5px 12px;font-size:11px;letter-spacing:.06em;font-weight:600}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+/* HERO */
+.hero{padding:56px 0 40px;border-bottom:1px solid var(--rule)}
+.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:14px}
+.hero h1{font-size:clamp(26px,3.6vw,38px);font-weight:700;line-height:1.25;letter-spacing:-.01em;color:var(--ink);max-width:680px;margin-bottom:16px}
+.hero p{color:var(--ink-2);max-width:560px;font-size:15px;line-height:1.7;margin-bottom:22px}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px}
+.htag{background:var(--card);border:1px solid var(--rule);border-radius:5px;padding:6px 12px;font-size:12px;color:var(--ink-2)}
+
+/* NOTE BOX */
+.note{margin:32px 0;background:var(--am-soft);border:1px solid var(--amber);border-radius:8px;padding:16px 20px;display:flex;gap:14px;align-items:flex-start}
+.note-ic{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--amber);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:1px}
+.note-t{font-size:13.5px;color:var(--ink);line-height:1.6}
+.note-t strong{color:var(--amber)}
+
+/* SECTION */
+.section{padding:48px 0;border-bottom:1px solid var(--rule)}
+.section:last-of-type{border-bottom:none}
+.sec-label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:8px}
+.sec-title{font-size:21px;font-weight:700;color:var(--ink);letter-spacing:-.01em;margin-bottom:6px}
+.sec-sub{font-size:13.5px;color:var(--ink-2);max-width:600px;margin-bottom:28px}
+
+/* BROWSER FRAME (portal mockup) */
+.browser{border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--card);box-shadow:0 8px 28px rgba(16,35,58,0.08)}
+.browser-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--navy);border-bottom:1px solid var(--rule)}
+.dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.25)}
+.browser-url{flex:1;text-align:center;font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:.02em}
+
+.portal{display:grid;grid-template-columns:210px 1fr}
+@media (max-width:720px){.portal{grid-template-columns:1fr}}
+.portal-nav{background:var(--navy);color:#fff;padding:22px 16px;display:flex;flex-direction:column;gap:2px}
+@media (max-width:720px){.portal-nav{display:none}}
+.portal-brand{font-size:13px;font-weight:700;letter-spacing:.02em;margin-bottom:20px;color:#fff}
+.portal-brand span{color:#7FB8E8}
+.pnav-item{font-size:12.5px;padding:9px 10px;border-radius:5px;color:rgba(255,255,255,0.65)}
+.pnav-item.active{background:rgba(255,255,255,0.1);color:#fff;font-weight:600}
+.portal-main{padding:26px 26px 30px;background:var(--bg-r)}
+.pwelcome{margin-bottom:22px}
+.pwelcome h3{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.pwelcome p{font-size:13px;color:var(--ink-2)}
+
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:26px}
+@media (max-width:520px){.pgrid{grid-template-columns:1fr}}
+.pcard{border:1px solid var(--rule);border-radius:7px;padding:14px}
+.pcard-k{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:4px}
+.pcard-v{font-size:20px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+
+.plabel{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:22px 0 12px}
+.plabel:first-child{margin-top:0}
+
+/* LIBRARY CATEGORY GRID */
+.lib-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media (max-width:640px){.lib-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.lib-grid{grid-template-columns:1fr}}
+.lib-card{border:1px solid var(--rule);border-radius:7px;padding:13px;display:flex;flex-direction:column;gap:6px}
+.lib-ic{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+.lib-ic.doc{background:var(--a-soft);color:var(--accent)}
+.lib-ic.vid{background:var(--g-soft);color:var(--accent-2)}
+.lib-name{font-size:12.5px;font-weight:600;color:var(--ink)}
+.lib-count{font-size:11px;color:var(--ink-3)}
+
+/* WEBINAR ROWS (inside portal) */
+.web-row{display:flex;align-items:center;gap:12px;border:1px solid var(--rule);border-radius:7px;padding:11px 13px;margin-bottom:8px}
+.web-date{flex-shrink:0;width:44px;height:44px;border-radius:6px;background:var(--a-soft);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.web-date .m{font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.web-date .d{font-size:15px;font-weight:700;color:var(--accent);line-height:1}
+.web-body{flex:1;min-width:0}
+.web-title{font-size:12.5px;font-weight:600;color:var(--ink)}
+.web-meta{font-size:11px;color:var(--ink-3)}
+.web-btn{flex-shrink:0;font-size:11px;font-weight:600;color:#fff;background:var(--accent);border-radius:5px;padding:6px 12px;white-space:nowrap}
+
+/* RESOURCE LIBRARY (site-wide section, bigger cards) */
+.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.res-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.res-grid{grid-template-columns:1fr}}
+.res-card{background:var(--card);border:1px solid var(--rule);border-radius:9px;padding:20px;transition:border-color .2s, box-shadow .2s}
+.res-card:hover{border-color:var(--accent);box-shadow:0 6px 18px rgba(44,92,138,0.10)}
+.res-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.res-ic{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.res-ic.doc{background:var(--a-soft);color:var(--accent)}
+.res-ic.vid{background:var(--g-soft);color:var(--accent-2)}
+.res-h{font-size:14.5px;font-weight:700;color:var(--ink)}
+.res-p{font-size:12.5px;color:var(--ink-2);line-height:1.6;margin-bottom:10px}
+.res-tags{display:flex;flex-wrap:wrap;gap:5px}
+.rtag{background:var(--bg);border:1px solid var(--rule);border-radius:4px;padding:3px 8px;font-size:10.5px;color:var(--ink-2)}
+
+/* WEBINAR LIST (full section) */
+.wlist{display:flex;flex-direction:column;gap:10px}
+.wcard{display:flex;align-items:center;gap:18px;background:var(--card);border:1px solid var(--rule);border-radius:9px;padding:16px 20px}
+@media (max-width:600px){.wcard{flex-wrap:wrap}}
+.wcard-date{flex-shrink:0;width:64px;height:64px;border-radius:8px;background:var(--navy);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.wcard-date .m{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#7FB8E8;font-weight:700}
+.wcard-date .d{font-size:22px;font-weight:700;line-height:1.1}
+.wcard-body{flex:1;min-width:200px}
+.wcard-title{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.wcard-desc{font-size:12.5px;color:var(--ink-2)}
+.wcard-meta{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap}
+.wtag{font-size:10.5px;background:var(--bg);border:1px solid var(--rule);border-radius:4px;padding:3px 8px;color:var(--ink-2)}
+.wcard-cta{flex-shrink:0;font-size:12px;font-weight:600;color:#fff;background:var(--accent);border-radius:6px;padding:9px 16px;white-space:nowrap}
+
+/* AUTOMATION FLOW DIAGRAM */
+.flow{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding-bottom:8px}
+.flow-step{flex:1;min-width:168px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;padding:0 6px}
+.flow-node{background:var(--card);border:1.5px solid var(--rule);border-radius:9px;padding:16px 14px;width:100%;position:relative;z-index:1}
+.flow-node.start{border-color:var(--accent-2);background:var(--g-soft)}
+.flow-node.end{border-color:var(--amber);background:var(--am-soft)}
+.flow-num{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+.flow-node.start .flow-num{color:var(--accent-2)}
+.flow-node.end .flow-num{color:var(--amber)}
+.flow-title{font-size:12.5px;font-weight:700;color:var(--ink);margin-bottom:4px;line-height:1.35}
+.flow-desc{font-size:11px;color:var(--ink-2);line-height:1.5}
+.flow-arrow{display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--ink-3);font-size:18px;padding:0 2px;margin-top:38px}
+@media (max-width:900px){
+  .flow{flex-direction:column;align-items:stretch}
+  .flow-step{min-width:0}
+  .flow-arrow{transform:rotate(90deg);margin:2px auto}
+}
+
+/* DELIVERABLES */
+.deliv-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:560px){.deliv-grid{grid-template-columns:1fr}}
+.d-row{display:flex;align-items:flex-start;gap:10px;background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:12px 14px}
+.d-check{flex-shrink:0;width:18px;height:18px;border-radius:50%;background:var(--a-soft);border:1.5px solid var(--accent);display:flex;align-items:center;justify-content:center;margin-top:1px}
+.d-check::after{content:'';width:6px;height:4px;border-left:1.5px solid var(--accent);border-bottom:1.5px solid var(--accent);transform:rotate(-45deg) translateY(-1px)}
+.d-text{font-size:13px;color:var(--ink)}
+
+/* TIMELINE */
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+@media (max-width:640px){.timeline{grid-template-columns:1fr 1fr}}
+.tl-col{padding:18px 16px;border-right:1px solid var(--rule);background:var(--card)}
+.tl-col:last-child{border-right:none}
+.tl-week{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:8px}
+.tl-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.tl-items{list-style:none;display:flex;flex-direction:column;gap:4px}
+.tl-items li{font-size:11.5px;color:var(--ink-2);padding-left:11px;position:relative}
+.tl-items li::before{content:'·';position:absolute;left:0;color:var(--accent);font-weight:700}
+
+/* PRICING */
+.price-table{border:1px solid var(--rule);border-radius:8px;overflow:hidden;background:var(--card)}
+.price-row{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--rule);gap:14px}
+.price-row:last-child{border-bottom:none}
+.price-row.hi{background:var(--a-soft)}
+.price-name{font-size:14px;font-weight:600;color:var(--ink)}
+.price-desc{font-size:12px;color:var(--ink-2);margin-top:2px}
+.price-val{font-size:16px;font-weight:700;color:var(--accent);white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* CTA / FOOTER */
+.cta{padding:44px 0;text-align:center;border-bottom:1px solid var(--rule)}
+.cta h3{font-size:21px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px;color:var(--ink)}
+.cta p{color:var(--ink-2);font-size:13.5px;margin-bottom:22px;max-width:520px;margin-left:auto;margin-right:auto}
+.cta-link{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:12px 26px;border-radius:6px;font-size:13px;font-weight:600;letter-spacing:.02em;margin-right:10px}
+.cta-link.sec{background:transparent;border:1px solid var(--rule);color:var(--ink)}
+footer{display:flex;justify-content:space-between;align-items:center;padding:20px 32px;font-size:11.5px;color:var(--ink-3)}
+@media (max-width:560px){footer{flex-direction:column;gap:6px;text-align:center}}
+footer a{color:var(--accent);text-decoration:none;font-weight:600}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Aelin AquaSoul <span>· Kajabi Membership Concept</span></div>
+  <div class="nav-r"><div class="badge">Proposal Preview</div></div>
+</nav>
+
+<div class="wrap">
+  <section class="hero">
+    <p class="eyebrow">B2B Professional Membership Portal · Concept Preview</p>
+    <h1>A membership home for Catherine Thibedeau LLC's professional community — built for healthcare &amp; compliance work.</h1>
+    <p>A single portal where members log in to find the resource library, join upcoming webinars, and move through an onboarding journey that runs itself. Below is a visual direction for the member experience and the automation logic behind it — before we build the real thing inside Kajabi.</p>
+    <div class="hero-tags">
+      <span class="htag">Membership site architecture</span>
+      <span class="htag">Resource library (docs + video)</span>
+      <span class="htag">Webinar access</span>
+      <span class="htag">Onboarding &amp; renewal automation</span>
+    </div>
+  </section>
+
+  <div class="note">
+    <div class="note-ic">i</div>
+    <div class="note-t"><strong>What this is:</strong> a visual/UX concept preview — HTML mockup of the member experience and automation flow, built to show direction fast. It is <strong>not</strong> the final deliverable. The actual site, resource library, webinar pages, and automation workflows will be built natively inside <strong>Kajabi's</strong> site builder, course/community tools, and automation engine — the platform this program will actually run on.</div>
+  </div>
+
+  <!-- MEMBER DASHBOARD MOCKUP -->
+  <section class="section">
+    <div class="sec-label">Member Experience</div>
+    <div class="sec-title">Members Dashboard — Homepage Concept</div>
+    <p class="sec-sub">What a member sees the moment they log in: a welcome, quick stats, the resource library, and what's coming up next.</p>
+
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="browser-url">members.catherinethibedeau.com/home</div>
+      </div>
+      <div class="portal">
+        <div class="portal-nav">
+          <div class="portal-brand">Catherine <span>Thibedeau</span> LLC</div>
+          <div class="pnav-item active">Home</div>
+          <div class="pnav-item">Resource Library</div>
+          <div class="pnav-item">Webinars &amp; Events</div>
+          <div class="pnav-item">Community</div>
+          <div class="pnav-item">My Account</div>
+        </div>
+        <div class="portal-main">
+          <div class="pwelcome">
+            <h3>Welcome back, Jordan.</h3>
+            <p>Human Services Operations &amp; Compliance Membership · Professional Tier</p>
+          </div>
+          <div class="pgrid">
+            <div class="pcard"><div class="pcard-k">Resources available</div><div class="pcard-v">64</div></div>
+            <div class="pcard"><div class="pcard-k">Next live webinar</div><div class="pcard-v">Jul 16</div></div>
+          </div>
+
+          <div class="plabel">Resource Library — Featured Categories</div>
+          <div class="lib-grid">
+            <div class="lib-card"><div class="lib-ic doc">📄</div><div class="lib-name">Compliance Templates</div><div class="lib-count">18 documents</div></div>
+            <div class="lib-card"><div class="lib-ic vid">▶</div><div class="lib-name">Operations Trainings</div><div class="lib-count">12 videos</div></div>
+            <div class="lib-card"><div class="lib-ic doc">📄</div><div class="lib-name">Policy &amp; Governance</div><div class="lib-count">15 documents</div></div>
+            <div class="lib-card"><div class="lib-ic vid">▶</div><div class="lib-name">Strategic Advisory Sessions</div><div class="lib-count">9 videos</div></div>
+            <div class="lib-card"><div class="lib-ic doc">📄</div><div class="lib-name">Case Studies</div><div class="lib-count">10 documents</div></div>
+            <div class="lib-card"><div class="lib-ic vid">▶</div><div class="lib-name">Webinar Recordings</div><div class="lib-count">Growing weekly</div></div>
+          </div>
+
+          <div class="plabel">Upcoming Webinars</div>
+          <div class="web-row">
+            <div class="web-date"><div class="m">Jul</div><div class="d">16</div></div>
+            <div class="web-body"><div class="web-title">Compliance Audit Readiness — Live Q&amp;A</div><div class="web-meta">11:00 AM ET · 60 min · with Catherine Thibedeau</div></div>
+            <div class="web-btn">Reserve seat</div>
+          </div>
+          <div class="web-row">
+            <div class="web-date"><div class="m">Jul</div><div class="d">23</div></div>
+            <div class="web-body"><div class="web-title">Growth Strategy for Human Services Orgs</div><div class="web-meta">1:00 PM ET · 45 min</div></div>
+            <div class="web-btn">Reserve seat</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESOURCE LIBRARY DETAIL -->
+  <section class="section">
+    <div class="sec-label">Resource Library</div>
+    <div class="sec-title">Written &amp; Video Library — Layout Concept</div>
+    <p class="sec-sub">Organized by the way members actually search for it: by document type and by topic, not a flat file dump.</p>
+    <div class="res-grid">
+      <div class="res-card">
+        <div class="res-top"><div class="res-ic doc">📄</div><div class="res-h">Compliance Templates</div></div>
+        <p class="res-p">Ready-to-use policy templates, audit checklists, and documentation packs aligned to current regulatory standards.</p>
+        <div class="res-tags"><span class="rtag">PDF</span><span class="rtag">Editable DOCX</span><span class="rtag">Checklists</span></div>
+      </div>
+      <div class="res-card">
+        <div class="res-top"><div class="res-ic vid">▶</div><div class="res-h">Operations Training Videos</div></div>
+        <p class="res-p">Short-form training video series covering day-to-day operations, staff onboarding, and process standardization.</p>
+        <div class="res-tags"><span class="rtag">Video</span><span class="rtag">Transcript</span><span class="rtag">Downloadable slides</span></div>
+      </div>
+      <div class="res-card">
+        <div class="res-top"><div class="res-ic doc">📄</div><div class="res-h">Policy &amp; Governance Library</div></div>
+        <p class="res-p">Board-ready governance frameworks and policy language members can adapt directly for their own organizations.</p>
+        <div class="res-tags"><span class="rtag">PDF</span><span class="rtag">Sample language</span></div>
+      </div>
+      <div class="res-card">
+        <div class="res-top"><div class="res-ic vid">▶</div><div class="res-h">Strategic Advisory Sessions</div></div>
+        <p class="res-p">Recorded advisory conversations on growth planning, funding strategy, and organizational scaling decisions.</p>
+        <div class="res-tags"><span class="rtag">Video</span><span class="rtag">Discussion guide</span></div>
+      </div>
+      <div class="res-card">
+        <div class="res-top"><div class="res-ic doc">📄</div><div class="res-h">Case Studies &amp; Benchmarks</div></div>
+        <p class="res-p">Real-world examples of how peer organizations solved compliance and operations challenges, with outcomes.</p>
+        <div class="res-tags"><span class="rtag">PDF</span><span class="rtag">Data sheets</span></div>
+      </div>
+      <div class="res-card">
+        <div class="res-top"><div class="res-ic vid">▶</div><div class="res-h">Webinar Recording Archive</div></div>
+        <p class="res-p">Every past live webinar, automatically added to the library the day after it airs — searchable by topic and date.</p>
+        <div class="res-tags"><span class="rtag">Video</span><span class="rtag">Auto-archived</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEBINARS -->
+  <section class="section">
+    <div class="sec-label">Live Events</div>
+    <div class="sec-title">Upcoming Webinars — Section Concept</div>
+    <p class="sec-sub">A dedicated events page so members always know what's next and can register in one click.</p>
+    <div class="wlist">
+      <div class="wcard">
+        <div class="wcard-date"><div class="m">Jul</div><div class="d">16</div></div>
+        <div class="wcard-body">
+          <div class="wcard-title">Compliance Audit Readiness — Live Q&amp;A</div>
+          <div class="wcard-desc">A working session on what auditors look for in human services organizations, and how to prepare documentation ahead of time.</div>
+          <div class="wcard-meta"><span class="wtag">11:00 AM ET</span><span class="wtag">60 min</span><span class="wtag">Live + recorded</span></div>
+        </div>
+        <div class="wcard-cta">Reserve seat</div>
+      </div>
+      <div class="wcard">
+        <div class="wcard-date"><div class="m">Jul</div><div class="d">23</div></div>
+        <div class="wcard-body">
+          <div class="wcard-title">Growth Strategy for Human Services Organizations</div>
+          <div class="wcard-desc">Strategic advisory session on positioning, funding conversations, and scaling operations without losing quality of care.</div>
+          <div class="wcard-meta"><span class="wtag">1:00 PM ET</span><span class="wtag">45 min</span></div>
+        </div>
+        <div class="wcard-cta">Reserve seat</div>
+      </div>
+      <div class="wcard">
+        <div class="wcard-date"><div class="m">Aug</div><div class="d">06</div></div>
+        <div class="wcard-body">
+          <div class="wcard-title">Member Roundtable — Policy Updates &amp; Open Q&amp;A</div>
+          <div class="wcard-desc">Monthly member-only roundtable to discuss recent policy changes and bring questions directly to Catherine.</div>
+          <div class="wcard-meta"><span class="wtag">10:00 AM ET</span><span class="wtag">Members only</span></div>
+        </div>
+        <div class="wcard-cta">Reserve seat</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTOMATION FLOW -->
+  <section class="section">
+    <div class="sec-label">Automation Design</div>
+    <div class="sec-title">Membership Automation Workflow — Visual Map</div>
+    <p class="sec-sub">What happens automatically from the moment someone joins, so the program runs without manual follow-up.</p>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-node start">
+          <div class="flow-num">Step 1</div>
+          <div class="flow-title">New member signs up</div>
+          <div class="flow-desc">Payment confirmed, account created, tagged by membership tier.</div>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-node">
+          <div class="flow-num">Step 2</div>
+          <div class="flow-title">Welcome email sequence</div>
+          <div class="flow-desc">Immediate access email + 3-part welcome series over the first week.</div>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-node">
+          <div class="flow-num">Step 3</div>
+          <div class="flow-title">Drip-released onboarding modules</div>
+          <div class="flow-desc">Foundational resources unlocked on a schedule so new members aren't overwhelmed on day one.</div>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-node">
+          <div class="flow-num">Step 4</div>
+          <div class="flow-title">Webinar reminder automation</div>
+          <div class="flow-desc">Auto-enrolled in upcoming webinars with reminder emails at 48h, 24h, and 1h before.</div>
+        </div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-node end">
+          <div class="flow-num">Step 5</div>
+          <div class="flow-title">Renewal reminder</div>
+          <div class="flow-desc">Automated renewal sequence starts 30 days out, with a direct line to Catherine if a member has questions.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERABLES -->
+  <section class="section">
+    <div class="sec-label">Full Delivery Scope</div>
+    <div class="sec-title">What Gets Built (Natively in Kajabi)</div>
+    <div class="deliv-grid">
+      <div class="d-row"><div class="d-check"></div><div class="d-text">Membership site architecture — home, library, webinars, account</div></div>
+      <div class="d-row"><div class="d-check"></div><div class="d-text">Resource library structure — written docs + video, organized by category</div></div>
+      <div class="d-row"><div class="d-check"></div><div class="d-text">Webinar/events page with registration and recording archive</div></div>
+      <div class="d-row"><div class="d-check"></div><div class="d-text">Welcome email sequence (3–5 emails) built and triggered on signup</div></div>
+      <div class="d-row"><div class="d-check"></div><div class="d-text">Drip-release schedule for onboarding modules</div></div>
+      <div class="d-row"><div class="d-check"></div><div class="d-text">Webinar reminder automation (48h / 24h / 1h before)</div></div>
+      <div class="d-row"><div class="d-check"></div><div class="d-text">Renewal reminder automation sequence</div></div>
+      <div class="d-row"><div class="d-check"></div><div class="d-text">Branding pass — colors, fonts, logo placement across the portal</div></div>
+      <div class="d-row"><div class="d-check"></div><div class="d-text">Mobile-responsive review across all member-facing pages</div></div>
+      <div class="d-row"><div class="d-check"></div><div class="d-text">Walkthrough handoff + short async support window</div></div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section">
+    <div class="sec-label">Timeline</div>
+    <div class="sec-title">1-Month Delivery Plan</div>
+    <div class="timeline">
+      <div class="tl-col">
+        <div class="tl-week">Week 1</div>
+        <div class="tl-title">Architecture + Content Audit</div>
+        <ul class="tl-items">
+          <li>Review existing resources</li>
+          <li>Map library categories</li>
+          <li>Site structure confirmed</li>
+        </ul>
+      </div>
+      <div class="tl-col">
+        <div class="tl-week">Week 2</div>
+        <div class="tl-title">Build — Site &amp; Library</div>
+        <ul class="tl-items">
+          <li>Kajabi site build</li>
+          <li>Library upload &amp; tagging</li>
+          <li>Webinar page setup</li>
+        </ul>
+      </div>
+      <div class="tl-col">
+        <div class="tl-week">Week 3</div>
+        <div class="tl-title">Automation Build</div>
+        <ul class="tl-items">
+          <li>Welcome sequence written</li>
+          <li>Drip schedule configured</li>
+          <li>Webinar reminders wired</li>
+        </ul>
+      </div>
+      <div class="tl-col">
+        <div class="tl-week">Week 4</div>
+        <div class="tl-title">Test + Launch</div>
+        <ul class="tl-items">
+          <li>End-to-end test signup</li>
+          <li>Revisions applied</li>
+          <li>Handoff + walkthrough</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section">
+    <div class="sec-label">Investment</div>
+    <div class="sec-title">Project Pricing</div>
+    <div class="price-table">
+      <div class="price-row hi">
+        <div><div class="price-name">Full membership site + automation build</div><div class="price-desc">Site architecture, resource library, webinar pages, and full automation workflow — 1 month</div></div>
+        <div class="price-val">$1,850</div>
+      </div>
+      <div class="price-row">
+        <div><div class="price-name">Post-launch adjustment window</div><div class="price-desc">2 weeks of light revisions after handoff, included</div></div>
+        <div class="price-val">Included</div>
+      </div>
+      <div class="price-row">
+        <div><div class="price-name">Additional automation sequences</div><div class="price-desc">Per additional workflow beyond the 3 core sequences (welcome, drip, renewal)</div></div>
+        <div class="price-val">$150/seq</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h3>Let's shape the real thing together.</h3>
+    <p>This preview is a direction, not a final design — happy to adjust the library layout, homepage, or automation logic before we start building it live in Kajabi.</p>
+    <a href="https://calendly.com/soulinpsyabstract/30min" class="cta-link">Book a 30-min call</a>
+    <a href="mailto:sipa-core@sipa-os.org?subject=Kajabi Membership Site — Catherine Thibedeau LLC" class="cta-link sec">Email directly</a>
+  </div>
+</div>
+
+<footer>
+  <div>Prepared by <a href="https://sipa-os.org">Aelin AquaSoul · Soul In PsyAbstract · sipa-os.org</a></div>
+  <div>Concept preview for Catherine Thibedeau LLC · Jul 2026</div>
+</footer>
+
+</body>
+</html>

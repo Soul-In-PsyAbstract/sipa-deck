@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jerichow Advisory — Executive Profile · Aelin AquaSoul</title>
+<style>
+  :root {
+    --ground: #F0F1EE;
+    --ink: #1A1B1F;
+    --bronze: #A0784A;
+    --rule: #D4D5D0;
+    --subtle: #6E6F68;
+    --surface: #E6E7E3;
+    --deep: #12130F;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #141512;
+      --ink: #E5E6E1;
+      --bronze: #C49A62;
+      --rule: #2C2D28;
+      --subtle: #7A7B74;
+      --surface: #1E1F1B;
+      --deep: #F0F1ED;
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #F0F1EE;
+    --ink: #1A1B1F;
+    --bronze: #A0784A;
+    --rule: #D4D5D0;
+    --subtle: #6E6F68;
+    --surface: #E6E7E3;
+    --deep: #12130F;
+  }
+  :root[data-theme="dark"] {
+    --ground: #141512;
+    --ink: #E5E6E1;
+    --bronze: #C49A62;
+    --rule: #2C2D28;
+    --subtle: #7A7B74;
+    --surface: #1E1F1B;
+    --deep: #F0F1ED;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: 'Helvetica Neue', 'Arial Nova', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .label {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--subtle);
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    padding: 2.5rem 4rem 2rem;
+    border-bottom: 3px solid var(--ink);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .masthead-left {}
+  .agency-mark {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.05;
+  }
+  .agency-line {
+    width: 2.5rem;
+    height: 3px;
+    background: var(--bronze);
+    margin: 0.6rem 0 0.5rem;
+  }
+  .agency-sub {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--subtle);
+  }
+  .masthead-right {
+    text-align: right;
+  }
+  .masthead-right .label { margin-bottom: 0.3rem; }
+  .masthead-right p {
+    font-size: 0.8rem;
+    color: var(--subtle);
+    line-height: 1.5;
+  }
+
+  /* ── DOCUMENT BODY ── */
+  .doc-body {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  /* ── PROFILE BLOCK ── */
+  .profile-section {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+    padding: 3rem 0;
+  }
+  .profile-main {
+    padding-right: 4rem;
+    border-right: 1px solid var(--rule);
+  }
+  .profile-sidebar {
+    padding-left: 3rem;
+  }
+
+  .section-cap {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    margin-bottom: 1.2rem;
+  }
+
+  .exec-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    line-height: 1.08;
+    margin-bottom: 0.3rem;
+  }
+  .exec-title {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--subtle);
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .exec-summary {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--ink);
+    font-weight: 300;
+    max-width: 520px;
+    margin-bottom: 2rem;
+  }
+  .exec-summary strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .profile-rule {
+    width: 100%;
+    height: 1px;
+    background: var(--rule);
+    margin: 1.5rem 0;
+  }
+
+  .competencies {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem 1.5rem;
+  }
+  .comp-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--ink);
+    font-weight: 300;
+  }
+  .comp-item::before {
+    content: '';
+    width: 3px;
+    height: 3px;
+    background: var(--bronze);
+    flex-shrink: 0;
+    transform: rotate(45deg);
+  }
+
+  /* Sidebar info blocks */
+  .info-block {
+    margin-bottom: 1.8rem;
+  }
+  .info-block:last-child { margin-bottom: 0; }
+  .info-label {
+    font-size: 0.56rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .info-value {
+    font-size: 0.82rem;
+    color: var(--ink);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+  .info-value strong {
+    font-weight: 400;
+    display: block;
+  }
+  .highlight-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+  }
+  .stat-num {
+    font-family: Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--bronze);
+    line-height: 1;
+  }
+  .stat-desc {
+    font-size: 0.72rem;
+    color: var(--subtle);
+    line-height: 1.3;
+  }
+
+  /* ── ONEPAGER PREVIEW ── */
+  .onepager-section {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .section-header .section-cap { margin-bottom: 0; }
+  .header-rule { flex: 1; height: 1px; background: var(--rule); }
+
+  .onepager-mock {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+    max-width: 740px;
+  }
+  .op-header {
+    background: var(--ink);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .op-logo-block {
+    flex-shrink: 0;
+  }
+  .op-logo-mark {
+    font-family: Georgia, serif;
+    font-size: 1.4rem;
+    color: rgba(240,241,238,0.9);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .op-logo-accent {
+    width: 1.5rem;
+    height: 2px;
+    background: var(--bronze);
+    margin-top: 0.3rem;
+  }
+  .op-header-text {
+    border-left: 1px solid rgba(240,241,238,0.15);
+    padding-left: 2rem;
+  }
+  .op-headline {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    margin-bottom: 0.25rem;
+  }
+  .op-title-text {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: rgba(240,241,238,0.85);
+    letter-spacing: 0.02em;
+  }
+  .op-body {
+    padding: 1.5rem 2rem;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 1.5rem;
+  }
+  .op-col-title {
+    font-size: 0.52rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    margin-bottom: 0.5rem;
+  }
+  .op-text {
+    font-size: 0.72rem;
+    color: var(--subtle);
+    line-height: 1.55;
+  }
+  .op-divider { width: 100%; height: 1px; background: var(--rule); margin: 0.8rem 0; }
+  .op-stat-row {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .op-stat {
+    display: flex;
+    flex-direction: column;
+  }
+  .op-stat-n {
+    font-family: Georgia, serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1;
+  }
+  .op-stat-l {
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    margin-top: 0.2rem;
+  }
+
+  /* ── TEMPLATE SYSTEM ── */
+  .templates-section {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .template-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .template-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .tc-preview {
+    height: 100px;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .tc-preview::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--bronze);
+  }
+  .tc-bar {
+    height: 6px;
+    background: var(--ink);
+    opacity: 0.08;
+    border-radius: 2px;
+    margin-left: 0.4rem;
+  }
+  .tc-line { height: 3px; background: var(--rule); border-radius: 1px; margin: 3px 0; margin-left: 0.4rem; }
+  .tc-line.short { width: 60%; }
+  .tc-line.shorter { width: 40%; }
+  .tc-badge {
+    display: inline-block;
+    background: var(--ink);
+    opacity: 0.06;
+    border-radius: 1px;
+    height: 8px;
+    width: 52px;
+  }
+  .tc-meta {
+    padding: 0.75rem 1rem;
+  }
+  .tc-name {
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+  .tc-desc {
+    font-size: 0.66rem;
+    color: var(--subtle);
+    line-height: 1.4;
+  }
+
+  /* ── DELIVERABLES ── */
+  .deliverables-section {
+    padding: 2.5rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .del-col {
+    padding: 0 2rem 0 0;
+    border-right: 1px solid var(--rule);
+  }
+  .del-col:last-child { border-right: none; padding-right: 0; }
+  .del-col:not(:first-child) { padding-left: 2rem; }
+  .del-title {
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    margin-bottom: 0.8rem;
+  }
+  .del-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--ink);
+    font-weight: 300;
+    margin-bottom: 0.35rem;
+    line-height: 1.4;
+  }
+  .del-item::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border: 1px solid var(--bronze);
+    flex-shrink: 0;
+    margin-top: 0.45em;
+    transform: rotate(45deg);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 1.8rem 4rem;
+    border-top: 3px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer p {
+    font-size: 0.7rem;
+    color: var(--subtle);
+    letter-spacing: 0.02em;
+  }
+  footer a { color: var(--bronze); text-decoration: none; }
+  .footer-mark {
+    width: 0.8rem;
+    height: 2px;
+    background: var(--bronze);
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0.4rem;
+  }
+
+  @media (max-width: 860px) {
+    .masthead, footer { padding: 2rem; }
+    .doc-body { padding: 0 2rem; }
+    .profile-section { grid-template-columns: 1fr; }
+    .profile-main { padding-right: 0; border-right: none; border-bottom: 1px solid var(--rule); padding-bottom: 2rem; margin-bottom: 2rem; }
+    .profile-sidebar { padding-left: 0; }
+    .template-grid { grid-template-columns: 1fr 1fr; }
+    .deliverables-section { grid-template-columns: 1fr; gap: 1.5rem; }
+    .del-col { border-right: none; padding: 0; border-bottom: 1px solid var(--rule); padding-bottom: 1.5rem; }
+    .del-col:last-child { border-bottom: none; padding-bottom: 0; }
+    .op-body { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Masthead -->
+<div class="masthead">
+  <div class="masthead-left">
+    <div class="agency-mark">Jerichow Advisory</div>
+    <div class="agency-line"></div>
+    <div class="agency-sub">Executive Identity System · Proposal</div>
+  </div>
+  <div class="masthead-right">
+    <p class="label">Prepared by</p>
+    <p style="font-size:0.85rem;font-weight:400;color:var(--ink);margin-top:0.2rem;">Aelin AquaSoul</p>
+    <p style="font-size:0.75rem;color:var(--subtle);">Soul In PsyAbstract</p>
+  </div>
+</div>
+
+<div class="doc-body">
+
+  <!-- Executive Profile Section -->
+  <div class="profile-section">
+    <div class="profile-main">
+      <p class="section-cap">Executive Profile · Sample Format</p>
+
+      <div class="exec-name">Dr. Marcus Jerichow</div>
+      <div class="exec-title">Founder &amp; Managing Partner · Jerichow Advisory GmbH</div>
+      <p class="exec-summary">
+        <strong>Strategic transformation advisor</strong> to CEOs and institutional investors across Central Europe. With over two decades navigating complex organisational transitions and cross-border capital deployments, Dr. Jerichow brings a forensic clarity to ambiguity — diagnosing what others overlook, and building what others say cannot move.
+      </p>
+      <p class="exec-summary">
+        Based in Gelnhausen. Trusted by management teams in banking, industrial services, and early-stage ventures for decisions that matter and cannot be undone.
+      </p>
+
+      <div class="profile-rule"></div>
+
+      <p class="label" style="margin-bottom:0.8rem;">Core Competencies</p>
+      <div class="competencies">
+        <div class="comp-item">Organisational Transformation</div>
+        <div class="comp-item">CEO/Board Advisory</div>
+        <div class="comp-item">Capital Strategy</div>
+        <div class="comp-item">Cross-border M&amp;A</div>
+        <div class="comp-item">Stakeholder Alignment</div>
+        <div class="comp-item">Executive Positioning</div>
+        <div class="comp-item">Crisis &amp; Transition Management</div>
+        <div class="comp-item">Investor Narrative Design</div>
+      </div>
+    </div>
+
+    <div class="profile-sidebar">
+      <div class="info-block">
+        <div class="info-label">Experience</div>
+        <div class="highlight-stat">
+          <span class="stat-num">22+</span>
+          <span class="stat-desc">years advising<br>C-suite leadership</span>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Based</div>
+        <div class="info-value">
+          <strong>Gelnhausen, Germany</strong>
+          Active · EU + DACH region
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Focus Sectors</div>
+        <div class="info-value">
+          Financial services<br>
+          Industrial transformation<br>
+          Technology ventures<br>
+          Family-office advisory
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Languages</div>
+        <div class="info-value">German · English · French</div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Contact</div>
+        <div class="info-value">
+          <strong>Jerichow Advisory GmbH</strong>
+          contact@jerichow-advisory.com
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OnePager Preview -->
+  <div class="onepager-section">
+    <div class="section-header">
+      <p class="section-cap">One-Pager Format</p>
+      <div class="header-rule"></div>
+    </div>
+
+    <div class="onepager-mock">
+      <div class="op-header">
+        <div class="op-logo-block">
+          <div class="op-logo-mark">Jerichow</div>
+          <div class="op-logo-accent"></div>
+        </div>
+        <div class="op-header-text">
+          <div class="op-headline">Firm Overview</div>
+          <div class="op-title-text">Strategic Advisory · DACH &amp; Central Europe</div>
+        </div>
+      </div>
+      <div class="op-body">
+        <div>
+          <div class="op-col-title">What We Do</div>
+          <div class="op-text">Jerichow Advisory works exclusively with founders, CEOs, and family offices navigating high-stakes decisions. We do not manage portfolios — we advise the people who do. Our work begins where standard consultancy ends: with the decision that cannot be delegated.</div>
+          <div class="op-divider"></div>
+          <div class="op-stat-row">
+            <div class="op-stat"><div class="op-stat-n">22+</div><div class="op-stat-l">Years active</div></div>
+            <div class="op-stat"><div class="op-stat-n">€4B+</div><div class="op-stat-l">Capital advised</div></div>
+            <div class="op-stat"><div class="op-stat-n">14</div><div class="op-stat-l">Countries served</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="op-col-title">Engagement Models</div>
+          <div class="op-text">Advisory retainer — ongoing strategic access for CEOs and boards.</div>
+          <div class="op-divider"></div>
+          <div class="op-text">Project mandate — defined scope, clear deliverables, fixed timeline.</div>
+          <div class="op-divider"></div>
+          <div class="op-text">Investor preparation — narrative design, data room, board presentation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Template System -->
+  <div class="templates-section">
+    <div class="section-header">
+      <p class="section-cap">Template System</p>
+      <div class="header-rule"></div>
+    </div>
+    <div class="template-grid">
+      <div class="template-card">
+        <div class="tc-preview">
+          <div>
+            <div class="tc-bar" style="width:55%;opacity:0.12;height:8px;"></div>
+            <div class="tc-line" style="width:80%;margin-top:6px;"></div>
+            <div class="tc-line short"></div>
+          </div>
+          <div style="display:flex;gap:6px;margin-left:0.4rem;">
+            <div class="tc-badge" style="width:36px;"></div>
+            <div class="tc-badge" style="width:48px;"></div>
+          </div>
+        </div>
+        <div class="tc-meta">
+          <div class="tc-name">Executive Profile</div>
+          <div class="tc-desc">Word · Editable. Clean hierarchy, single-column, two-page max.</div>
+        </div>
+      </div>
+      <div class="template-card">
+        <div class="tc-preview" style="background:var(--ground);">
+          <div style="background:var(--ink);height:30%;width:100%;position:absolute;top:0;left:0;opacity:0.85;"></div>
+          <div style="position:relative;z-index:1;padding-top:0.2rem;">
+            <div class="tc-bar" style="width:40%;background:rgba(240,241,238,0.6);height:6px;"></div>
+          </div>
+          <div style="position:relative;z-index:1;margin-top:18px;">
+            <div class="tc-line" style="width:75%;"></div>
+            <div class="tc-line shorter"></div>
+            <div class="tc-line" style="width:65%;"></div>
+          </div>
+        </div>
+        <div class="tc-meta">
+          <div class="tc-name">OnePager Template</div>
+          <div class="tc-desc">PowerPoint. Dark-header layout, data block, bilingual variants.</div>
+        </div>
+      </div>
+      <div class="template-card">
+        <div class="tc-preview">
+          <div>
+            <div style="display:flex;align-items:center;gap:6px;margin-left:0.4rem;margin-bottom:6px;">
+              <div style="width:18px;height:18px;background:var(--ink);opacity:0.07;border-radius:1px;"></div>
+              <div class="tc-line" style="width:50%;margin:0;"></div>
+            </div>
+            <div class="tc-line" style="width:85%;"></div>
+            <div class="tc-line" style="width:72%;"></div>
+            <div class="tc-line shorter"></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;margin-left:0.4rem;">
+            <div style="width:8px;height:8px;background:var(--bronze);opacity:0.5;transform:rotate(45deg);flex-shrink:0;"></div>
+            <div class="tc-line" style="flex:1;margin:0;"></div>
+          </div>
+        </div>
+        <div class="tc-meta">
+          <div class="tc-name">Correspondence</div>
+          <div class="tc-desc">Word letterhead template. Formal advisory letter format.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deliverables -->
+  <div class="deliverables-section">
+    <div class="del-col">
+      <div class="del-title">Phase 1 Deliverables</div>
+      <div class="del-item">Executive Profile (Word, 2pp)</div>
+      <div class="del-item">One-Pager (PowerPoint + PDF)</div>
+      <div class="del-item">Corporate Letterhead (Word)</div>
+    </div>
+    <div class="del-col">
+      <div class="del-title">Design Standards</div>
+      <div class="del-item">Defined typographic system</div>
+      <div class="del-item">Colour and spacing tokens</div>
+      <div class="del-item">Bilingual layout variants (DE/EN)</div>
+    </div>
+    <div class="del-col">
+      <div class="del-title">Files &amp; Format</div>
+      <div class="del-item">Editable source files (DOCX, PPTX)</div>
+      <div class="del-item">PDF export versions</div>
+      <div class="del-item">Brand mini-guide (1pp PDF)</div>
+    </div>
+  </div>
+
+</div><!-- /doc-body -->
+
+<footer>
+  <p>Prepared by <strong>Aelin AquaSoul</strong> · Soul In PsyAbstract · <a href="https://sipa-os.org">sipa-os.org</a></p>
+  <p>Proposal · Jerichow Advisory · Executive Identity System · July 2026</p>
+</footer>
+
+</body>
+</html>

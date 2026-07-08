@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2B SaaS Dashboard Design · Techiatrix — Aelin AquaSoul</title>
+<style>
+:root {
+  --bg:     #F4F6FA;
+  --bg-r:   #FFFFFF;
+  --ink:    #1A2235;
+  --ink-2:  #4A5568;
+  --ink-3:  #8A96A8;
+  --accent: #3B6FF8;
+  --a-soft: #EBF0FF;
+  --green:  #16A34A;
+  --g-soft: #DCFCE7;
+  --orange: #EA7C2B;
+  --o-soft: #FEF0E4;
+  --rule:   #E2E8F0;
+  --card:   #FFFFFF;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:#111827; --bg-r:#1F2937; --ink:#F1F5F9; --ink-2:#94A3B8;
+    --ink-3:#4B5563; --rule:#2D3748; --card:#1F2937;
+    --a-soft:#1E2D4F; --g-soft:#052E16; --o-soft:#431407;
+  }
+}
+:root[data-theme="dark"]{--bg:#111827;--bg-r:#1F2937;--ink:#F1F5F9;--ink-2:#94A3B8;--ink-3:#4B5563;--rule:#2D3748;--card:#1F2937;--a-soft:#1E2D4F;--g-soft:#052E16;--o-soft:#431407}
+:root[data-theme="light"]{--bg:#F4F6FA;--bg-r:#FFFFFF;--ink:#1A2235;--ink-2:#4A5568;--ink-3:#8A96A8;--rule:#E2E8F0;--card:#FFFFFF;--a-soft:#EBF0FF;--g-soft:#DCFCE7;--o-soft:#FEF0E4}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 48px;border-bottom:1px solid var(--rule);background:var(--bg-r)}
+.logo{font-size:15px;font-weight:700;color:var(--ink)}
+.logo span{color:var(--accent)}
+.nav-r{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--ink-3)}
+.pill{background:var(--accent);color:#fff;padding:4px 12px;border-radius:100px;font-size:12px;font-weight:500}
+
+/* INTRO */
+.intro{max-width:1080px;margin:0 auto;padding:56px 48px 48px}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+h1{font-size:clamp(28px,3.5vw,44px);font-weight:700;letter-spacing:-.025em;line-height:1.15;margin-bottom:16px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+.intro-sub{font-size:17px;color:var(--ink-2);max-width:540px;line-height:1.65;margin-bottom:28px}
+.meta-row{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--ink-3)}
+.meta-row strong{color:var(--ink-2)}
+
+/* DASHBOARD MOCKUP */
+.dash-wrap{max-width:1080px;margin:0 auto 0;padding:0 48px 64px}
+.dash-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px}
+
+.dashboard{background:var(--bg-r);border:1px solid var(--rule);border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+
+/* Dash topbar */
+.dash-top{background:var(--card);border-bottom:1px solid var(--rule);padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+.dash-top-l{display:flex;align-items:center;gap:16px}
+.dash-brand{font-size:14px;font-weight:700;color:var(--ink)}
+.dash-brand span{color:var(--accent)}
+.dash-search{background:var(--bg);border:1px solid var(--rule);border-radius:6px;padding:6px 12px;font-size:13px;color:var(--ink-3);width:200px;font-family:inherit}
+.dash-top-r{display:flex;align-items:center;gap:12px}
+.avatar{width:28px;height:28px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+.notif{width:28px;height:28px;border-radius:6px;background:var(--bg);border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:default}
+
+/* Dash layout */
+.dash-body{display:grid;grid-template-columns:200px 1fr}
+
+/* Sidebar */
+.dash-sidebar{background:var(--card);border-right:1px solid var(--rule);padding:16px 0}
+.sidebar-section{padding:4px 12px 2px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:12px}
+.sidebar-item{display:flex;align-items:center;gap:10px;padding:8px 16px;font-size:13px;color:var(--ink-2);cursor:default;border-radius:0}
+.sidebar-item.active{background:var(--a-soft);color:var(--accent);font-weight:500}
+.sidebar-item .icon{width:16px;height:16px;border-radius:3px;background:currentColor;opacity:.25;flex-shrink:0}
+.sidebar-item.active .icon{opacity:.6}
+.sidebar-badge{margin-left:auto;background:var(--accent);color:#fff;font-size:10px;padding:1px 6px;border-radius:100px;font-weight:600}
+
+/* Main area */
+.dash-main{padding:20px 24px;background:var(--bg);display:flex;flex-direction:column;gap:20px}
+
+/* KPI row */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:16px}
+.kpi-label{font-size:11px;color:var(--ink-3);letter-spacing:.04em;margin-bottom:6px}
+.kpi-val{font-size:24px;font-weight:700;color:var(--ink);letter-spacing:-.02em;line-height:1;margin-bottom:4px;font-variant-numeric:tabular-nums}
+.kpi-delta{font-size:12px;display:flex;align-items:center;gap:4px}
+.up{color:var(--green)}.down{color:var(--orange)}
+
+/* Chart */
+.chart-row{display:grid;grid-template-columns:2fr 1fr;gap:12px}
+.chart-card{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:16px}
+.chart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.chart-title{font-size:13px;font-weight:600;color:var(--ink)}
+.chart-tabs{display:flex;gap:4px}
+.tab{font-size:11px;padding:3px 10px;border-radius:4px;cursor:default;color:var(--ink-3);background:transparent}
+.tab.active{background:var(--a-soft);color:var(--accent);font-weight:500}
+
+/* SVG bar chart */
+.bar-chart{width:100%;height:100px}
+
+/* Activity */
+.activity-list{display:flex;flex-direction:column;gap:0}
+.activity-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--rule)}
+.activity-item:last-child{border-bottom:none}
+.a-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.a-dot.green{background:var(--green)}
+.a-dot.blue{background:var(--accent)}
+.a-dot.orange{background:var(--orange)}
+.a-text{font-size:12px;color:var(--ink-2);line-height:1.4}
+.a-text strong{color:var(--ink);font-weight:500}
+.a-time{font-size:11px;color:var(--ink-3);margin-top:2px}
+
+/* Table */
+.table-card{background:var(--card);border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.table-head{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:10px 16px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);background:var(--bg);border-bottom:1px solid var(--rule)}
+.table-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:10px 16px;font-size:13px;color:var(--ink-2);border-bottom:1px solid var(--rule);align-items:center}
+.table-row:last-child{border-bottom:none}
+.table-row:hover{background:var(--bg)}
+.status{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:100px;font-size:11px;font-weight:500}
+.status.active{background:var(--g-soft);color:var(--green)}
+.status.pending{background:var(--o-soft);color:var(--orange)}
+.status.paused{background:var(--rule);color:var(--ink-3)}
+.client-name{font-weight:500;color:var(--ink)}
+
+/* SECTIONS */
+.section{max-width:1080px;margin:0 auto;padding:48px}
+.section+.section{border-top:1px solid var(--rule)}
+.s-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+.s-title{font-size:26px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:8px}
+.s-sub{font-size:16px;color:var(--ink-2);max-width:520px;line-height:1.6;margin-bottom:36px}
+
+/* SKILLS GRID */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.skill-card{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:20px}
+.skill-card h4{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.skill-card p{font-size:13px;color:var(--ink-2);line-height:1.5}
+.tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.tag{background:var(--bg);border:1px solid var(--rule);border-radius:4px;padding:3px 8px;font-size:11px;color:var(--ink-3)}
+.tag.hi{background:var(--a-soft);border-color:var(--accent);color:var(--accent)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--rule);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;background:var(--bg-r)}
+.fl{font-size:13px;color:var(--ink-3)}
+.fl a{color:var(--ink-2);text-decoration:none}
+.fr{font-size:12px;color:var(--ink-3)}
+
+@media(max-width:768px){
+  nav,footer{padding:14px 20px}
+  .intro,.dash-wrap,.section{padding-left:20px;padding-right:20px}
+  .kpi-row{grid-template-columns:1fr 1fr}
+  .chart-row{grid-template-columns:1fr}
+  .dash-body{grid-template-columns:1fr}
+  .dash-sidebar{display:none}
+  .skills-grid{grid-template-columns:1fr}
+  .table-head,.table-row{grid-template-columns:2fr 1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Aelin AquaSoul <span>·</span> Soul In PsyAbstract</div>
+  <div class="nav-r">
+    <span>Product/UI Design · Techiatrix</span>
+    <span class="pill">Available 20 hrs/wk</span>
+  </div>
+</nav>
+
+<div class="intro">
+  <p class="eyebrow">B2B SaaS · Dashboards · Client portals · Product design</p>
+  <h1>Practical. Tasteful.<br><em>Product-thinking first.</em></h1>
+  <p class="intro-sub">I design SaaS products, dashboards, and digital systems for startups and agencies — from structured brief to developer-ready Figma. Not just polished visuals, but interfaces that work for real users solving real problems.</p>
+  <div class="meta-row">
+    <span><strong>Strongest work</strong> B2B SaaS · dashboards · landing pages</span>
+    <span><strong>Tools</strong> Figma · Framer · Claude · Notion</span>
+    <span><strong>Timezone</strong> IST/GMT+3 · Eilat, IL</span>
+  </div>
+</div>
+
+<!-- DASHBOARD MOCKUP -->
+<div class="dash-wrap">
+  <p class="dash-label">Sample work — B2B client portal dashboard</p>
+  <div class="dashboard">
+
+    <div class="dash-top">
+      <div class="dash-top-l">
+        <div class="dash-brand">Client<span>OS</span></div>
+        <input class="dash-search" placeholder="Search projects, clients…" readonly>
+      </div>
+      <div class="dash-top-r">
+        <div class="notif">◉</div>
+        <div class="avatar">AQ</div>
+      </div>
+    </div>
+
+    <div class="dash-body">
+      <div class="dash-sidebar">
+        <div class="sidebar-section">Main</div>
+        <div class="sidebar-item active"><div class="icon"></div> Overview <span class="sidebar-badge">3</span></div>
+        <div class="sidebar-item"><div class="icon"></div> Projects</div>
+        <div class="sidebar-item"><div class="icon"></div> Clients</div>
+        <div class="sidebar-item"><div class="icon"></div> Analytics</div>
+        <div class="sidebar-section">Workspace</div>
+        <div class="sidebar-item"><div class="icon"></div> Tasks</div>
+        <div class="sidebar-item"><div class="icon"></div> Deliverables</div>
+        <div class="sidebar-item"><div class="icon"></div> Billing</div>
+        <div class="sidebar-section">Account</div>
+        <div class="sidebar-item"><div class="icon"></div> Settings</div>
+      </div>
+
+      <div class="dash-main">
+        <!-- KPIs -->
+        <div class="kpi-row">
+          <div class="kpi">
+            <div class="kpi-label">Active Projects</div>
+            <div class="kpi-val">24</div>
+            <div class="kpi-delta up">↑ 4 this month</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Revenue (MTD)</div>
+            <div class="kpi-val">$48.2K</div>
+            <div class="kpi-delta up">↑ 12% vs last</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Open Tasks</div>
+            <div class="kpi-val">137</div>
+            <div class="kpi-delta down">↑ 18 overdue</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Client Sat.</div>
+            <div class="kpi-val">4.8</div>
+            <div class="kpi-delta up">↑ 0.2 pts</div>
+          </div>
+        </div>
+
+        <!-- Chart + Activity -->
+        <div class="chart-row">
+          <div class="chart-card">
+            <div class="chart-header">
+              <span class="chart-title">Project velocity</span>
+              <div class="chart-tabs">
+                <span class="tab">W</span>
+                <span class="tab active">M</span>
+                <span class="tab">Q</span>
+              </div>
+            </div>
+            <svg class="bar-chart" viewBox="0 0 400 80" preserveAspectRatio="none">
+              <defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3B6FF8" stop-opacity=".15"/><stop offset="100%" stop-color="#3B6FF8" stop-opacity="0"/></linearGradient></defs>
+              <polyline fill="url(#bg)" stroke="none" points="0,80 30,55 75,48 115,42 150,50 190,35 230,28 265,38 300,22 340,18 380,24 400,20 400,80"/>
+              <polyline fill="none" stroke="#3B6FF8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="30,55 75,48 115,42 150,50 190,35 230,28 265,38 300,22 340,18 380,24"/>
+              <circle cx="380" cy="24" r="4" fill="#3B6FF8"/>
+            </svg>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header">
+              <span class="chart-title">Recent activity</span>
+            </div>
+            <div class="activity-list">
+              <div class="activity-item">
+                <div class="a-dot green"></div>
+                <div><div class="a-text"><strong>Northstar SaaS</strong> milestone approved</div><div class="a-time">2 hrs ago</div></div>
+              </div>
+              <div class="activity-item">
+                <div class="a-dot blue"></div>
+                <div><div class="a-text">Figma file shared — <strong>MedDash v3</strong></div><div class="a-time">4 hrs ago</div></div>
+              </div>
+              <div class="activity-item">
+                <div class="a-dot orange"></div>
+                <div><div class="a-text"><strong>FinFlow</strong> review pending</div><div class="a-time">Yesterday</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-card">
+          <div class="table-head">
+            <span>Client / Project</span>
+            <span>Status</span>
+            <span>Stage</span>
+            <span>Due</span>
+          </div>
+          <div class="table-row">
+            <div class="client-name">Northstar · SaaS dashboard</div>
+            <div><span class="status active">Active</span></div>
+            <div style="font-size:12px;color:var(--ink-3)">Visual design</div>
+            <div style="font-size:12px;color:var(--ink-3)">Jul 18</div>
+          </div>
+          <div class="table-row">
+            <div class="client-name">MedDash · Patient portal</div>
+            <div><span class="status pending">Review</span></div>
+            <div style="font-size:12px;color:var(--ink-3)">Wireframes</div>
+            <div style="font-size:12px;color:var(--ink-3)">Jul 12</div>
+          </div>
+          <div class="table-row">
+            <div class="client-name">FinFlow · Onboarding flow</div>
+            <div><span class="status paused">Paused</span></div>
+            <div style="font-size:12px;color:var(--ink-3)">Discovery</div>
+            <div style="font-size:12px;color:var(--ink-3)">Jul 25</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="section">
+  <p class="s-label">What I bring</p>
+  <h2 class="s-title">Product design that ships</h2>
+  <p class="s-sub">Practical, reliable, tasteful. I work from structured briefs and deliver interfaces that solve real product problems — not just UI that looks good on Dribbble.</p>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h4>Websites & landing pages</h4>
+      <p>Conversion-focused structure with clear hierarchy and visual direction. B2B and SaaS experience.</p>
+      <div class="tag-row">
+        <span class="tag hi">Core strength</span>
+        <span class="tag">Framer</span>
+        <span class="tag">Figma</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h4>SaaS dashboards</h4>
+      <p>Information architecture, component libraries, data-heavy interfaces that remain scannable and actionable.</p>
+      <div class="tag-row">
+        <span class="tag hi">Core strength</span>
+        <span class="tag">Figma</span>
+        <span class="tag">Dev handoff</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h4>Client portals</h4>
+      <p>Role-based access patterns, status visibility, async-first UX for agency and B2B client workflows.</p>
+      <div class="tag-row">
+        <span class="tag hi">Core strength</span>
+        <span class="tag">Figma</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h4>Design systems</h4>
+      <p>Component libraries, design tokens, documented patterns production teams can extend without asking.</p>
+      <div class="tag-row">
+        <span class="tag">Figma components</span>
+        <span class="tag">Tokens</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h4>Developer handoff</h4>
+      <p>Designs built with production in mind. Specs clean enough for async implementation with no follow-up calls needed.</p>
+      <div class="tag-row">
+        <span class="tag">Figma</span>
+        <span class="tag">Framer</span>
+        <span class="tag">Webflow</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h4>AI-accelerated workflow</h4>
+      <p>Claude as brief-analysis and copy concepting partner. Human taste and judgment drive every visual decision.</p>
+      <div class="tag-row">
+        <span class="tag hi">Claude</span>
+        <span class="tag">Notion AI</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="fl">Prepared by <a href="https://sipa-os.org">Aelin AquaSoul · Soul In PsyAbstract · sipa-os.org</a></div>
+  <div class="fr">Proposal for Techiatrix · Jul 2026</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,253 @@
+<title>Test Prep Insight — Channel Growth Audit · Aelin AquaSoul</title>
+<style>
+  :root {
+    --bg: #F7F6F3;
+    --surface: #EDECEA;
+    --surface2: #E4E2DE;
+    --ink: #1C1B18;
+    --ink-muted: #8A8780;
+    --accent: #1A56DB;
+    --accent-dim: rgba(26,86,219,0.08);
+    --green: #1A7F4B;
+    --green-dim: rgba(26,127,75,0.10);
+    --red: #C0392B;
+    --red-dim: rgba(192,57,43,0.09);
+    --rule: rgba(28,27,24,0.10);
+    --label: 0.67rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141412;
+      --surface: #1E1D1A;
+      --surface2: #262521;
+      --ink: #E8E6E0;
+      --ink-muted: #6B6962;
+      --accent: #4B8EF0;
+      --accent-dim: rgba(75,142,240,0.12);
+      --green: #3DBE7A;
+      --green-dim: rgba(61,190,122,0.10);
+      --red: #E05A4B;
+      --red-dim: rgba(224,90,75,0.10);
+      --rule: rgba(232,230,224,0.08);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #F7F6F3; --surface: #EDECEA; --surface2: #E4E2DE;
+    --ink: #1C1B18; --ink-muted: #8A8780; --accent: #1A56DB;
+    --accent-dim: rgba(26,86,219,0.08); --green: #1A7F4B;
+    --green-dim: rgba(26,127,75,0.10); --red: #C0392B;
+    --red-dim: rgba(192,57,43,0.09); --rule: rgba(28,27,24,0.10);
+  }
+  :root[data-theme="dark"] {
+    --bg: #141412; --surface: #1E1D1A; --surface2: #262521;
+    --ink: #E8E6E0; --ink-muted: #6B6962; --accent: #4B8EF0;
+    --accent-dim: rgba(75,142,240,0.12); --green: #3DBE7A;
+    --green-dim: rgba(61,190,122,0.10); --red: #E05A4B;
+    --red-dim: rgba(224,90,75,0.10); --rule: rgba(232,230,224,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--bg); color: var(--ink); font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  body { max-width: 780px; margin: 0 auto; padding: 3.5rem 1.75rem 7rem; }
+  @media (max-width: 580px) { body { padding: 2rem 1.1rem 5rem; } }
+
+  /* HEADER */
+  .header { padding-bottom: 2.5rem; border-bottom: 1px solid var(--rule); margin-bottom: 3rem; }
+  .header-meta { font-size: var(--label); letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 1.4rem; display: flex; gap: 2rem; flex-wrap: wrap; }
+  h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.18; color: var(--ink); text-wrap: balance; margin-bottom: 0.75rem; }
+  .header-sub { font-size: 0.95rem; color: var(--ink-muted); max-width: 58ch; }
+
+  /* SECTION */
+  .section { padding: 2.75rem 0; border-bottom: 1px solid var(--rule); }
+  .section:last-of-type { border-bottom: none; }
+  .section-eyebrow { font-size: var(--label); letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 0.75rem; }
+  h2 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 1rem; }
+  p { font-size: 0.94rem; line-height: 1.72; color: var(--ink); max-width: 64ch; margin-bottom: 0.9rem; }
+  p:last-child { margin-bottom: 0; }
+
+  /* OPPORTUNITY TABLE */
+  .opp-grid { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem; }
+  .opp-row { display: grid; grid-template-columns: 28px 1fr auto; gap: 0 1rem; align-items: start; padding: 1rem 1.1rem; background: var(--surface); }
+  .opp-icon { font-size: 0.9rem; margin-top: 0.1em; }
+  .opp-body {}
+  .opp-title { font-size: 0.92rem; font-weight: 600; color: var(--ink); margin-bottom: 0.2rem; }
+  .opp-desc { font-size: 0.84rem; color: var(--ink-muted); line-height: 1.55; }
+  .opp-impact { font-size: var(--label); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; padding: 0.25em 0.6em; background: var(--accent-dim); color: var(--accent); align-self: start; }
+
+  /* THUMBNAIL A/B */
+  .ab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.1rem; }
+  @media (max-width: 500px) { .ab-grid { grid-template-columns: 1fr; } }
+  .thumb-card { padding: 1.25rem 1.3rem; }
+  .thumb-card.before { background: var(--red-dim); border: 1px solid rgba(192,57,43,0.2); }
+  .thumb-card.after { background: var(--green-dim); border: 1px solid rgba(26,127,75,0.2); }
+  .thumb-label { font-size: var(--label); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.6rem; }
+  .thumb-card.before .thumb-label { color: var(--red); }
+  .thumb-card.after .thumb-label { color: var(--green); }
+  .thumb-mock { background: var(--surface2); height: 90px; display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; font-size: 0.8rem; color: var(--ink-muted); text-align: center; padding: 0.5rem; line-height: 1.4; }
+  .thumb-desc { font-size: 0.84rem; color: var(--ink-muted); line-height: 1.5; }
+
+  /* CONTENT PILLARS */
+  .pillars { display: flex; flex-direction: column; gap: 0; margin-top: 1rem; }
+  .pillar-row { display: grid; grid-template-columns: 110px 1fr; gap: 0 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--rule); align-items: start; }
+  .pillar-row:last-child { border-bottom: none; }
+  @media (max-width: 500px) { .pillar-row { grid-template-columns: 1fr; gap: 0.3rem 0; } }
+  .pillar-cat { font-size: var(--label); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); padding-top: 0.15em; }
+  .pillar-content {}
+  .pillar-title { font-size: 0.93rem; font-weight: 600; color: var(--ink); margin-bottom: 0.25rem; }
+  .pillar-example { font-size: 0.84rem; color: var(--ink-muted); font-style: italic; }
+
+  /* TITLES */
+  .title-pairs { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem; }
+  .title-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+  @media (max-width: 500px) { .title-pair { grid-template-columns: 1fr; } }
+  .title-bad, .title-good { padding: 0.7rem 0.9rem; font-size: 0.88rem; line-height: 1.45; }
+  .title-bad { background: var(--red-dim); color: var(--ink-muted); text-decoration: line-through; text-decoration-color: var(--red); }
+  .title-good { background: var(--green-dim); color: var(--ink); font-weight: 500; }
+
+  /* 90 DAY */
+  .timeline { display: flex; flex-direction: column; gap: 0; margin-top: 1rem; }
+  .tl-row { display: grid; grid-template-columns: 80px 1fr; gap: 0 1.25rem; padding: 1rem 0; border-bottom: 1px solid var(--rule); }
+  .tl-row:last-child { border-bottom: none; }
+  @media (max-width: 500px) { .tl-row { grid-template-columns: 1fr; gap: 0.3rem 0; } }
+  .tl-period { font-size: var(--label); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); padding-top: 0.1em; }
+  .tl-items { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+  .tl-items li { font-size: 0.9rem; color: var(--ink); padding-left: 1rem; position: relative; }
+  .tl-items li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+
+  /* CLOSER */
+  .closer { margin-top: 3rem; padding: 2rem 1.75rem; background: var(--surface); display: flex; flex-direction: column; gap: 0.6rem; }
+  .closer-label { font-size: var(--label); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+  .closer h3 { font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+  .closer p { color: var(--ink-muted); font-size: 0.9rem; }
+  .closer a { color: var(--accent); font-size: 0.88rem; text-decoration: none; border-bottom: 1px solid var(--accent); }
+</style>
+
+<body>
+
+<div class="header">
+  <div class="header-meta">
+    <span>Test Prep Insight — Channel Audit</span>
+    <span>Prepared by Aelin AquaSoul</span>
+    <span>July 2026</span>
+  </div>
+  <h1>Three growth levers TPI hasn't fully pulled yet</h1>
+  <p class="header-sub">A working audit of the Test Prep Insight YouTube channel — prepared as a demonstration of the strategic approach I'd bring as your Growth Strategist.</p>
+</div>
+
+<div class="section">
+  <div class="section-eyebrow">Channel Assessment</div>
+  <h2>What TPI already has right</h2>
+  <p>The core content model is structurally sound: real product testing, affiliate-aligned review content, high-intent search traffic. The "we actually buy the course" positioning is a genuine differentiator that most review channels can't match. This is a monetization-ready channel. The growth work is about unlocking the ceiling, not rebuilding the floor.</p>
+  <p>The opportunity is in three specific areas where mechanics, not effort, are limiting performance.</p>
+</div>
+
+<div class="section">
+  <div class="section-eyebrow">Growth Opportunities</div>
+  <h2>Where the ceiling is</h2>
+  <div class="opp-grid">
+    <div class="opp-row">
+      <div class="opp-icon">▲</div>
+      <div class="opp-body">
+        <div class="opp-title">Thumbnail CTR on comparison videos</div>
+        <div class="opp-desc">Comparison content ("Kaplan vs Princeton Review") carries the highest purchase intent on the channel. Generic thumbnails with product logos underperform against face-forward verdict thumbnails. This is the highest-leverage single change.</div>
+      </div>
+      <div class="opp-impact">Priority 1</div>
+    </div>
+    <div class="opp-row">
+      <div class="opp-icon">▲</div>
+      <div class="opp-body">
+        <div class="opp-title">Title formula for non-comparison content</div>
+        <div class="opp-desc">Review titles often lead with the product name. Curiosity-gap titles that lead with the outcome ("Why 80% of GRE students overpay for prep") consistently outperform product-first titles in education verticals.</div>
+      </div>
+      <div class="opp-impact">Priority 2</div>
+    </div>
+    <div class="opp-row">
+      <div class="opp-icon">▲</div>
+      <div class="opp-body">
+        <div class="opp-title">Shorts as decision-stage content</div>
+        <div class="opp-desc">Most test prep shorts are repurposed long-form clips. Shorts built specifically around micro-verdicts ("The one reason I'd pick Magoosh over Kaplan") perform 3–5× better as standalone content and feed long-form watch time.</div>
+      </div>
+      <div class="opp-impact">Priority 3</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-eyebrow">Thumbnail Direction</div>
+  <h2>The comparison video A/B test I'd run first</h2>
+  <p>Target: top 5 comparison videos by impressions. Test verdict-forward thumbnails against current versions over 4 weeks. Hypothesis: 20–35% CTR lift based on comparable tests in review verticals.</p>
+  <div class="ab-grid">
+    <div class="thumb-card before">
+      <div class="thumb-label">Current pattern</div>
+      <div class="thumb-mock">KAPLAN LOGO · VS · PRINCETON LOGO<br><br>text-heavy · no face · no verdict</div>
+      <div class="thumb-desc">Tells viewers what the video is. Doesn't give them a reason to click.</div>
+    </div>
+    <div class="thumb-card after">
+      <div class="thumb-label">Test variant</div>
+      <div class="thumb-mock">HOST FACE + reaction<br>✓ WINNER badge · one number<br>"$200 difference"</div>
+      <div class="thumb-desc">Creates a visual verdict. High-intent viewers see the answer exists — and click to confirm it.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-eyebrow">Title Direction</div>
+  <h2>From keyword-first to outcome-first</h2>
+  <div class="title-pairs">
+    <div class="title-pair">
+      <div class="title-bad">Kaplan GRE Prep Course Review 2026 — Is It Worth It?</div>
+      <div class="title-good">I spent $449 on Kaplan GRE. Here's what actually happened to my score.</div>
+    </div>
+    <div class="title-pair">
+      <div class="title-bad">Best LSAT Prep Courses 2026 (Ranked and Reviewed)</div>
+      <div class="title-good">The LSAT course that outscored Blueprint by 7 points — and costs half as much.</div>
+    </div>
+    <div class="title-pair">
+      <div class="title-bad">Babbel vs Duolingo — Which Language App is Better?</div>
+      <div class="title-good">We used both for 90 days. One was embarrassingly better.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-eyebrow">90-Day Plan</div>
+  <h2>What the first three months look like</h2>
+  <div class="timeline">
+    <div class="tl-row">
+      <div class="tl-period">Month 1</div>
+      <ul class="tl-items">
+        <li>Full channel audit across TPI + G2F: title patterns, thumbnail CTR, top performers, drop-off analysis</li>
+        <li>Identify 10 back-catalog videos for title/thumbnail optimization (low-effort, fast CTR gains)</li>
+        <li>Establish weekly content calendar rhythm and reporting format</li>
+        <li>Shorts audit: identify which clips have micro-verdict potential</li>
+      </ul>
+    </div>
+    <div class="tl-row">
+      <div class="tl-period">Month 2</div>
+      <ul class="tl-items">
+        <li>Run thumbnail A/B tests on top 5 comparison videos</li>
+        <li>Implement new title formula across all new uploads</li>
+        <li>Build Shorts pipeline: 2–3 micro-verdict shorts per week, original not repurposed</li>
+        <li>Competitor gap analysis: which high-volume keywords are underserved</li>
+      </ul>
+    </div>
+    <div class="tl-row">
+      <div class="tl-period">Month 3</div>
+      <ul class="tl-items">
+        <li>Read A/B test results, update thumbnail template accordingly</li>
+        <li>Propose content roadmap for Q4 based on search trend data</li>
+        <li>Build seasonal content calendar (test dates, enrollment windows)</li>
+        <li>Report: channel velocity before/after, CTR delta, Shorts growth</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="closer">
+  <div class="closer-label">About the Consultant</div>
+  <h3>Aelin AquaSoul — Content Strategist &amp; Brand Architect</h3>
+  <p>Built Soul In PsyAbstract from zero to international recognition through content strategy across Instagram, TikTok, and Facebook. No agency, no paid ads — strategic decisions and measured execution. I don't bring test prep experience. I bring the growth mechanics that transfer across any high-consideration vertical.</p>
+  <a href="mailto:soulinpsyabstract@gmail.com">soulinpsyabstract@gmail.com</a>
+</div>
+
+</body>
