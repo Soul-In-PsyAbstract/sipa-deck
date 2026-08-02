@@ -39,7 +39,7 @@ body {
 }
 
 /* ── Layout ── */
-.wrap { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+.wrap { min-height: 100vh; }
 
 /* ── Sidebar ── */
 aside {
@@ -308,6 +308,7 @@ main { margin-left: 260px; padding: 2.5rem; display: flex; flex-direction: colum
 <script defer src="https://cloud.umami.is/script.js" data-website-id="f5acf9c9-b423-4e8b-8396-47d7a479232d"></script>
 <script src="https://browser.sentry-cdn.com/8.0.0/bundle.min.js" crossorigin="anonymous"></script>
 <script>Sentry.init({dsn:"https://aad6081c0afcdd7a5dede25592742dcf@o4511524169318400.ingest.us.sentry.io/4511524193173504",tracesSampleRate:1.0});</script>
+<script>function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,o.onload=function(){window.trackingFunctions.onLoad({appId:"6a228540bd394d000c1d41f5"})},document.head.appendChild(o)}initApollo();</script>
 </head>
 <body>
 <div class="wrap">
@@ -371,10 +372,10 @@ main { margin-left: 260px; padding: 2.5rem; display: flex; flex-direction: colum
 
   <!-- STATS -->
   <div class="stats">
-    <div class="stat"><span class="stat-n">5</span><div class="stat-l">Live Domains</div></div>
-    <div class="stat"><span class="stat-n">40+</span><div class="stat-l">AI Agents</div></div>
-    <div class="stat"><span class="stat-n">160+</span><div class="stat-l">APIs Integrated</div></div>
-    <div class="stat"><span class="stat-n">14</span><div class="stat-l">Pipeline Layers</div></div>
+    <div class="stat"><span class="stat-n">6</span><div class="stat-l">Live Domains</div></div>
+    <div class="stat"><span class="stat-n">344+</span><div class="stat-l">AI Models</div></div>
+    <div class="stat"><span class="stat-n">111</span><div class="stat-l">API Providers</div></div>
+    <div class="stat"><span class="stat-n">10</span><div class="stat-l">MLL Pipeline Layers</div></div>
     <div class="stat"><span class="stat-n">12</span><div class="stat-l">ADHD Games</div></div>
     <div class="stat"><span class="stat-n">94</span><div class="stat-l">Art Assets</div></div>
   </div>
@@ -590,6 +591,39 @@ main { margin-left: 260px; padding: 2.5rem; display: flex; flex-direction: colum
         </ul>
       </div>
     </div>
+
+    <div class="glass" style="margin-bottom:2rem">
+      <div class="ct">Cap Table</div>
+      <div class="spec"><span class="sk">Aelin AquaSoul (Founder)</span><span class="sv">40%</span></div>
+      <div class="spec"><span class="sk">Company treasury</span><span class="sv">40%</span></div>
+      <div class="spec"><span class="sk">Natasha Jigalov</span><span class="sv">5%</span></div>
+      <div class="spec"><span class="sk">PR contract (quarterly vest)</span><span class="sv">1%</span></div>
+      <div class="spec"><span class="sk">Marketing contract (quarterly vest)</span><span class="sv">1%</span></div>
+      <div class="spec"><span class="sk">Reserved for future investors</span><span class="sv">13%</span></div>
+    </div>
+
+    <div class="g2" style="margin-bottom:2rem">
+      <div class="glass">
+        <div class="ct">Financial Model — Founder-Funded to Date</div>
+        <div class="spec"><span class="sk">Self-funded, 7 months</span><span class="sv">~$40,000</span></div>
+        <div class="spec"><span class="sk">Current real burn</span><span class="sv">$25–64 / month</span></div>
+        <div class="spec"><span class="sk">SIPA Token FDV (Aerodrome)</span><span class="sv">~$3.6M</span></div>
+        <div class="cd" style="margin-top:.75rem">Infrastructure runs mostly on startup credits (Cloudflare, Auth0, NVIDIA), not cash — capital-efficient, but scaling cost past those credits is not yet tested.</div>
+      </div>
+      <div class="glass">
+        <div class="ct">Revenue Scenarios — API Subscriptions (12mo)</div>
+        <div class="spec"><span class="sk">Conservative</span><span class="sv">$1,422 MRR</span></div>
+        <div class="spec"><span class="sk">Base</span><span class="sv">$6,915 MRR</span></div>
+        <div class="spec"><span class="sk">Optimistic</span><span class="sv">$27,570 MRR</span></div>
+        <div class="cd" style="margin-top:.75rem">Scenarios, not forecasts — zero historical conversion data yet.</div>
+      </div>
+    </div>
+
+    <div class="glass" style="margin-bottom:2rem">
+      <div class="ct">Honest Note on the $1.5M Ask</div>
+      <div class="cd">Of the full $1.5M seed target, roughly <strong>$134K–357K is backed by concrete, itemized needs</strong> today (token liquidity, GPU buffer, hiring, founder runway, KYC unblock). The remainder depends on open questions — clinical/FDA path, hiring plan, real GPU cost at scale — deliberately not padded with placeholder numbers. A minimum <strong>$50K</strong> unlocks the immediate blockers on their own, independent of the full round.</div>
+    </div>
+
     <p style="color:var(--text-secondary);font-size:.9rem;margin-bottom:1.5rem">Stage: Seed · Open to debt, equity &amp; project finance · Delaware LLC + EIN ready</p>
     <div style="display:flex;gap:1rem;flex-wrap:wrap">
       <a href="mailto:sipa-core@sipa-os.org" class="btn-glow">Contact Investor Relations</a>
